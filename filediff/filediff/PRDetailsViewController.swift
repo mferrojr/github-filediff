@@ -1,25 +1,28 @@
 //
-//  ViewController.swift
+//  PRDetailsViewController.swift
 //  filediff
 //
-//  Created by Michael Ferro on 7/9/17.
+//  Created by Michael Ferro on 7/10/17.
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
-
+final class PRDetailsViewController : UIViewController {
+    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    //MARK: - Private Functions
 }
-

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A143E1F13109E004E9EE6 /* AppDelegate.swift */; };
-		017A14411F13109E004E9EE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A14401F13109E004E9EE6 /* ViewController.swift */; };
 		017A14441F13109E004E9EE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017A14421F13109E004E9EE6 /* Main.storyboard */; };
 		017A14461F13109E004E9EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017A14451F13109E004E9EE6 /* Assets.xcassets */; };
 		017A14491F13109E004E9EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017A14471F13109E004E9EE6 /* LaunchScreen.storyboard */; };
@@ -16,6 +15,9 @@
 		017A145F1F13109E004E9EE6 /* filediffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A145E1F13109E004E9EE6 /* filediffUITests.swift */; };
 		017A14721F131165004E9EE6 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A14711F131165004E9EE6 /* GitHubService.swift */; };
 		017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A14731F13118C004E9EE6 /* PRListViewController.swift */; };
+		01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598301F14391E00B93E48 /* PRDetailsViewController.swift */; };
+		01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598341F14476C00B93E48 /* PRDiffViewController.swift */; };
+		01C598371F14487100B93E48 /* PRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598361F14487100B93E48 /* PRTableViewCell.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -41,7 +43,6 @@
 /* Begin PBXFileReference section */
 		017A143B1F13109D004E9EE6 /* filediff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filediff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A143E1F13109E004E9EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		017A14401F13109E004E9EE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		017A14431F13109E004E9EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		017A14451F13109E004E9EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017A14481F13109E004E9EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +55,9 @@
 		017A14601F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017A14711F131165004E9EE6 /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		017A14731F13118C004E9EE6 /* PRListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListViewController.swift; sourceTree = "<group>"; };
+		01C598301F14391E00B93E48 /* PRDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDetailsViewController.swift; sourceTree = "<group>"; };
+		01C598341F14476C00B93E48 /* PRDiffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffViewController.swift; sourceTree = "<group>"; };
+		01C598361F14487100B93E48 /* PRTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRTableViewCell.swift; sourceTree = "<group>"; };
 		049130BCFE94FDC34A305DAF /* Pods-filediffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +128,6 @@
 				017A146C1F1310E3004E9EE6 /* Services */,
 				017A14701F131130004E9EE6 /* Views */,
 				017A143E1F13109E004E9EE6 /* AppDelegate.swift */,
-				017A14401F13109E004E9EE6 /* ViewController.swift */,
 				017A14421F13109E004E9EE6 /* Main.storyboard */,
 				017A14451F13109E004E9EE6 /* Assets.xcassets */,
 				017A14471F13109E004E9EE6 /* LaunchScreen.storyboard */,
@@ -162,6 +165,8 @@
 		017A146D1F1310EF004E9EE6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				01C598301F14391E00B93E48 /* PRDetailsViewController.swift */,
+				01C598341F14476C00B93E48 /* PRDiffViewController.swift */,
 				017A14731F13118C004E9EE6 /* PRListViewController.swift */,
 			);
 			name = Controllers;
@@ -192,6 +197,7 @@
 		017A14751F1311B1004E9EE6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				01C598361F14487100B93E48 /* PRTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -503,8 +509,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017A14411F13109E004E9EE6 /* ViewController.swift in Sources */,
+				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
+				01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */,
 				017A14721F131165004E9EE6 /* GitHubService.swift in Sources */,
+				01C598371F14487100B93E48 /* PRTableViewCell.swift in Sources */,
 				017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
 			);
@@ -765,6 +773,7 @@
 				017A14651F13109E004E9EE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		017A14661F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffTests" */ = {
 			isa = XCConfigurationList;
@@ -773,6 +782,7 @@
 				017A14681F13109E004E9EE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		017A14691F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffUITests" */ = {
 			isa = XCConfigurationList;
@@ -781,6 +791,7 @@
 				017A146B1F13109E004E9EE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
