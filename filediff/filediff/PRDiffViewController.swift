@@ -10,11 +10,25 @@ import UIKit
 
 final class PRDiffViewController: UIViewController {
 
+    //MARK: - Variables
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        get {
+            return .landscapeLeft
+        }
+    }
+    
+    override var shouldAutorotate : Bool {
+        get {
+            return true
+        }
+    }
+    
     //MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +37,7 @@ final class PRDiffViewController: UIViewController {
     }
     
     //MARK: - Private Functions
+
 
     /*
     // MARK: - Navigation
