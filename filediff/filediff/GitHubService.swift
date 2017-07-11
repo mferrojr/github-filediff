@@ -24,11 +24,11 @@ final class GitHubService {
     private static let GITHUB_AUTHOR = "raywenderlich"
     private static let GITHUB_REPO = "swift-algorithm-club"
     
-    static func getPullRequests(_ successCB:@escaping (_ response : GitHubPRListResponse) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
+    static func getPullRequests(_ successCB:@escaping (_ response : [RealmGitHubPR]) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
         Alamofire.request(GitHubRouter.getPRs()).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                if let obj = Mapper<GitHubPRListResponse>().map(JSONObject:value) {
+                if let obj = Mapper<RealmGitHubPR>().mapArray(JSONObject: value) {
                     successCB(obj)
                 }
                 else {
@@ -40,11 +40,11 @@ final class GitHubService {
         }
      }
     
-    static func getPullRequestDetail(number: PR_NUMBER, successCB:@escaping (_ response : GitHubPRListResponse) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
+    static func getPullRequestDetail(number: PR_NUMBER, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
         Alamofire.request(GitHubRouter.getPullRequestDetail(number)).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                if let obj = Mapper<GitHubPRListResponse>().map(JSONObject:value) {
+                if let obj = Mapper<RealmGitHubPR>().map(JSONObject:value) {
                     successCB(obj)
                 }
                 else {
@@ -56,11 +56,11 @@ final class GitHubService {
         }
     }
     
-    static func getPullRequestDiff(base : String, head : String, successCB:@escaping (_ response : GitHubPRListResponse) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
+    static func getPullRequestDiff(base : String, head : String, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping (Error?,Int?) -> Void) {
         Alamofire.request(GitHubRouter.getPullRequestDiff(base, head)).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                if let obj = Mapper<GitHubPRListResponse>().map(JSONObject:value) {
+                if let obj = Mapper<RealmGitHubPR>().map(JSONObject:value) {
                     successCB(obj)
                 }
                 else {

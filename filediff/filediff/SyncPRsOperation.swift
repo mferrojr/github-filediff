@@ -8,7 +8,23 @@
 
 import Foundation
 
-class SyncPRsOperation : Operation {
+class SyncPRsOperation : BaseOperation {
     
+    override func main() {
+        super.main()
+        getPRs()
+    }
     
+    private func getPRs(){
+        GitHubService.getPullRequests(successCB, errorCB: errorCB)
+    }
+    
+    private func successCB(_ response : [RealmGitHubPR]) {
+        self.saveArrayToRealm(response)
+    }
+    
+    private func errorCB(_ error : Error?, code : Int?) {
+        self.errorCallback?(error,code)
+    }
+
 }
