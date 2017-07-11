@@ -18,6 +18,8 @@
 		01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598301F14391E00B93E48 /* PRDetailsViewController.swift */; };
 		01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598341F14476C00B93E48 /* PRDiffViewController.swift */; };
 		01C598371F14487100B93E48 /* PRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598361F14487100B93E48 /* PRTableViewCell.swift */; };
+		01C598391F144F3900B93E48 /* GitHubPRListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598381F144F3900B93E48 /* GitHubPRListResponse.swift */; };
+		01C5983B1F14506700B93E48 /* SyncPRsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -58,6 +60,8 @@
 		01C598301F14391E00B93E48 /* PRDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDetailsViewController.swift; sourceTree = "<group>"; };
 		01C598341F14476C00B93E48 /* PRDiffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffViewController.swift; sourceTree = "<group>"; };
 		01C598361F14487100B93E48 /* PRTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRTableViewCell.swift; sourceTree = "<group>"; };
+		01C598381F144F3900B93E48 /* GitHubPRListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubPRListResponse.swift; sourceTree = "<group>"; };
+		01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPRsOperation.swift; sourceTree = "<group>"; };
 		049130BCFE94FDC34A305DAF /* Pods-filediffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,7 @@
 		017A146E1F1310F7004E9EE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01C598381F144F3900B93E48 /* GitHubPRListResponse.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 		017A146F1F131100004E9EE6 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -510,8 +516,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
+				01C598391F144F3900B93E48 /* GitHubPRListResponse.swift in Sources */,
 				01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */,
 				017A14721F131165004E9EE6 /* GitHubService.swift in Sources */,
+				01C5983B1F14506700B93E48 /* SyncPRsOperation.swift in Sources */,
 				01C598371F14487100B93E48 /* PRTableViewCell.swift in Sources */,
 				017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
