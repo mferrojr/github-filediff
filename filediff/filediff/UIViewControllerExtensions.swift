@@ -20,4 +20,10 @@ extension UIViewController {
         self.performSegue(withIdentifier: segue.rawValue, sender: self)
     }
     
+    func displayError() {
+        let alert = UIAlertController(title: "Error", message: "Unable to load data", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

@@ -54,6 +54,13 @@ final class PRDetailsViewController : UIViewController {
                 self.updateView()
             }
         }
+        prDetailOperation?.errorCallback = { _, _ in
+            DispatchQueue.main.async {
+                self.stopLoading()
+                self.displayError()
+            }
+        }
+        
         if let op = prDetailOperation {
             queue.addOperation(op)
         }
@@ -78,6 +85,11 @@ final class PRDetailsViewController : UIViewController {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         stackView.isHidden = false
+    }
+    
+    fileprivate func setUpStackView() {
+        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
+        stackView.isLayoutMarginsRelativeArrangement = true
     }
     
 }

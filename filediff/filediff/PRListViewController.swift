@@ -83,13 +83,24 @@ final class PRListViewController : UIViewController {
             
             // UI Changes on the main queue
             DispatchQueue.main.async {
-                self.refreshCtrl.endRefreshing()
+                self.stopLoading()
                 self.prTableView.reloadData()
+            }
+        }
+        prOperation?.errorCallback = { _, _ in
+            // UI Changes on the main queue
+            DispatchQueue.main.async {
+                self.stopLoading()
+                self.displayError()
             }
         }
         if let op = prOperation {
             queue.addOperation(op)
         }
+    }
+    
+    fileprivate func stopLoading() {
+        self.refreshCtrl.endRefreshing()
     }
 }
 
