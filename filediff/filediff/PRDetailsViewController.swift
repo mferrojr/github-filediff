@@ -12,13 +12,16 @@ import UIKit
 final class PRDetailsViewController : UIViewController {
     
     //MARK: - Public Varibales
-    var prNumber : Int!
+    var prNumber = 0
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = "PR #\(prNumber)"
     }
     
     override func didReceiveMemoryWarning() {
