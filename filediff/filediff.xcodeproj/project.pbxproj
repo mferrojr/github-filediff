@@ -29,6 +29,7 @@
 		01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598531F15944000B93E48 /* UIViewControllerExtensions.swift */; };
 		01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598561F159B9200B93E48 /* PRListDataSource.swift */; };
 		01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */; };
+		01C5985B1F15BCA600B93E48 /* SyncPRDetailsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -80,6 +81,7 @@
 		01C598531F15944000B93E48 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		01C598561F159B9200B93E48 /* PRListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListDataSource.swift; sourceTree = "<group>"; };
 		01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
+		01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPRDetailsOperation.swift; sourceTree = "<group>"; };
 		049130BCFE94FDC34A305DAF /* Pods-filediffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				01C5984A1F15727100B93E48 /* BaseOperation.swift */,
+				01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */,
 				01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */,
 			);
 			name = Operations;
@@ -599,6 +602,7 @@
 				01C598461F156A3900B93E48 /* RealmGitHubUser.swift in Sources */,
 				01C598441F15697000B93E48 /* RealmGitHubPR.swift in Sources */,
 				01C598401F15685D00B93E48 /* Repository.swift in Sources */,
+				01C5985B1F15BCA600B93E48 /* SyncPRDetailsOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

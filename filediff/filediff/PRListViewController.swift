@@ -13,6 +13,7 @@ final class PRListViewController : UIViewController {
     
     //MARK: Private Variables
     fileprivate let dataSource = PRListDataSource()
+    fileprivate var prOperation : SyncPRsOperation?
     
     //MARK: IBOutlets
     @IBOutlet weak fileprivate var prTableView: UITableView!
@@ -50,7 +51,10 @@ final class PRListViewController : UIViewController {
             guard let destVC = segue.destination as? PRDetailsViewController else { return }
             guard let row = self.prTableView.indexPathForSelectedRow?.row else { return }
             
-            destVC.prNumber = dataSource.datas[row].number
+            let model = dataSource.datas[row]
+            destVC.prId = model.id
+            destVC.prNumber = model.number
+            
         default:
             break
         }
@@ -72,8 +76,9 @@ final class PRListViewController : UIViewController {
     
     fileprivate func fetchData() {
         let queue = OperationQueue()
-        let prOperation = SyncPRsOperation()
-        prOperation.completionBlock = {
+        prOperation = SyncPRsOperation()
+        prOperation?.completionBlock = {
+            self.prOperation = nil
             self.dataSource.refresh()
             
             // UI Changes on the main queue
@@ -82,7 +87,9 @@ final class PRListViewController : UIViewController {
                 self.prTableView.reloadData()
             }
         }
-        queue.addOperation(prOperation)
+        if let op = prOperation {
+            queue.addOperation(op)
+        }
     }
 }
 
@@ -93,6 +100,8 @@ final class PRListViewController : UIViewController {
 extension PRListViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        prOperation?.cancel()
+        prOperation = nil
         performSegaue(.showPRDetails)
     }
 

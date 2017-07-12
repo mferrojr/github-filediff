@@ -12,7 +12,7 @@ protocol Repository {
     associatedtype T
     
     func getAll() -> [T]
-    func getById(id: String) -> T?
+    func getById(id: Int) -> T?
     func insert(item: T)
     func update(item: T)
     func deleteById(id: String)

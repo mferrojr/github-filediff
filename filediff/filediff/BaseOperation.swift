@@ -7,10 +7,12 @@
 //
 
 import RealmSwift
+import Alamofire
 
 class BaseOperation : Operation {
     
     var errorCallback: ((Error?,Int?) -> Void)?
+    var request : Request?
     
     //MARK: - Private Variables
     fileprivate var _executing = false
@@ -41,6 +43,14 @@ class BaseOperation : Operation {
         }
     }
     
+    override func cancel() {
+        guard !self.isCancelled else { return }
+        
+        completionBlock = nil
+        request?.cancel()
+    }
+    
+    //MARK: Persistence Functions
     func saveArrayToRealm<T>(_ data : [T]?) where T:GitHubObject, T:GitHubRealmBase {
         guard let data = data, !self.isCancelled else {
             done()
@@ -97,9 +107,14 @@ class BaseOperation : Operation {
         done()
     }
     
+    //MARK: Ending Functions
     func done() {
         isExecuting = false
         isFinished = true
+    }
+    
+    func errorCB(_ error : Error?, code : Int?) {
+        self.errorCallback?(error,code)
     }
 
 }

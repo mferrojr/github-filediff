@@ -16,15 +16,11 @@ class SyncPRsOperation : BaseOperation {
     }
     
     private func getPRs(){
-        GitHubService.getPullRequests(successCB, errorCB: errorCB)
+        self.request = GitHubService.getPullRequests(successCB, errorCB: errorCB)
     }
     
     private func successCB(_ response : [RealmGitHubPR]) {
         self.saveArrayToRealm(response)
-    }
-    
-    private func errorCB(_ error : Error?, code : Int?) {
-        self.errorCallback?(error,code)
     }
 
 }

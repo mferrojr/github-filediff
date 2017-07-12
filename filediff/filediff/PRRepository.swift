@@ -20,7 +20,7 @@ class PRRepository: Repository {
         return realm.objects(RealmGitHubPR.self).map { $0.entity }
     }
     
-    func getById(id: String) -> GitHubPR? {
+    func getById(id: Int) -> GitHubPR? {
         return realm.objects(RealmGitHubPR.self).filter("id == %@", id).first?.entity
     }
     
