@@ -18,7 +18,9 @@ final class PRDetailsViewController : UIViewController {
     
     //MARK: - Private Variables
     @IBOutlet weak fileprivate var titleLabel: UILabel!
+    @IBOutlet weak fileprivate var stackView: UIStackView!
     @IBOutlet weak fileprivate var descriptionLabel: UILabel!
+    @IBOutlet weak fileprivate var activityIndicator: UIActivityIndicatorView!
     
     fileprivate var prDetailOperation : SyncPRDetailsOperation?
     
@@ -28,6 +30,7 @@ final class PRDetailsViewController : UIViewController {
         self.navigationItem.title = "PR #\(prNumber)"
         
         self.fetchData()
+        self.showLoading()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,6 +50,7 @@ final class PRDetailsViewController : UIViewController {
         prDetailOperation?.completionBlock = {
             // UI Changes on the main queue
             DispatchQueue.main.async {
+                self.stopLoading()
                 self.updateView()
             }
         }
@@ -63,6 +67,17 @@ final class PRDetailsViewController : UIViewController {
     
         titleLabel.text = pr.title
         descriptionLabel.text = pr.body
+    }
+    
+    fileprivate func showLoading(){
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    fileprivate func stopLoading(){
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        stackView.isHidden = false
     }
     
 }

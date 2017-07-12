@@ -89,7 +89,7 @@
         <!--Details View Controller-->
         <scene sceneID="HOg-vL-juX">
             <objects>
-                <viewController id="fPM-nl-xa4" customClass="PRDetailsViewController" customModule="filediff" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fPM-nl-xa4" customClass="PRDetailsViewController" customModule="filediff" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PU1-BZ-VSU"/>
                         <viewControllerLayoutGuide type="bottom" id="Sxk-eR-Rdo"/>
@@ -98,77 +98,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="15m-1V-ldl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15m-1V-ldl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LI2-Pb-a9c">
-                                        <rect key="frame" x="0.0" y="-64" width="375" height="603"/>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cd0-yu-V82">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U86-Vy-5vt">
-                                                <rect key="frame" x="30" y="30" width="315" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="G3N-xo-YrW"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXI-Wf-lq9">
-                                                <rect key="frame" x="30" y="83" width="315" height="200"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="6ak-Ra-u14"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="30.5" width="375" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNT-iO-bu3">
-                                                <rect key="frame" x="55" y="303" width="265" height="50"/>
+                                                <rect key="frame" x="0.0" y="61" width="375" height="30"/>
                                                 <color key="backgroundColor" red="0.070588235294117646" green="0.41176470588235292" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="N20-8z-1hL"/>
-                                                </constraints>
                                                 <state key="normal" title="View Diff">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="viewDiffPressed:" destination="fPM-nl-xa4" eventType="touchUpInside" id="hYQ-i3-3ma"/>
+                                                    <action selector="viewDiffPressed:" destination="fPM-nl-xa4" eventType="touchUpInside" id="gPQ-ji-Z8d"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="U86-Vy-5vt" secondAttribute="trailing" constant="30" id="5Bt-y5-sK8"/>
-                                            <constraint firstItem="yXI-Wf-lq9" firstAttribute="top" secondItem="U86-Vy-5vt" secondAttribute="bottom" constant="32" id="BbY-hZ-iua"/>
-                                            <constraint firstAttribute="trailing" secondItem="rNT-iO-bu3" secondAttribute="trailing" constant="55" id="Lvz-fb-t6C"/>
-                                            <constraint firstItem="rNT-iO-bu3" firstAttribute="top" secondItem="yXI-Wf-lq9" secondAttribute="bottom" constant="20" id="cfj-75-ZIQ"/>
-                                            <constraint firstItem="U86-Vy-5vt" firstAttribute="leading" secondItem="LI2-Pb-a9c" secondAttribute="leading" constant="30" id="jdd-J3-zRY"/>
-                                            <constraint firstAttribute="trailing" secondItem="yXI-Wf-lq9" secondAttribute="trailing" constant="30" id="pa5-a9-Sjl"/>
-                                            <constraint firstItem="yXI-Wf-lq9" firstAttribute="leading" secondItem="LI2-Pb-a9c" secondAttribute="leading" constant="30" id="sit-hI-Lwl"/>
-                                            <constraint firstItem="rNT-iO-bu3" firstAttribute="leading" secondItem="LI2-Pb-a9c" secondAttribute="leading" constant="55" id="tHc-Fr-HVE"/>
-                                            <constraint firstItem="U86-Vy-5vt" firstAttribute="top" secondItem="LI2-Pb-a9c" secondAttribute="top" constant="30" id="tVK-90-Ed7"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="LI2-Pb-a9c" firstAttribute="top" secondItem="15m-1V-ldl" secondAttribute="top" id="A8k-wT-23o"/>
-                                    <constraint firstAttribute="trailing" secondItem="LI2-Pb-a9c" secondAttribute="trailing" id="VVS-bU-mmf"/>
-                                    <constraint firstAttribute="bottom" secondItem="LI2-Pb-a9c" secondAttribute="bottom" id="jPr-J6-zhC"/>
-                                    <constraint firstItem="LI2-Pb-a9c" firstAttribute="leading" secondItem="15m-1V-ldl" secondAttribute="leading" id="shk-P3-ZZR"/>
+                                    <constraint firstAttribute="bottom" secondItem="cd0-yu-V82" secondAttribute="bottom" id="IrD-ih-y8t"/>
+                                    <constraint firstItem="cd0-yu-V82" firstAttribute="top" secondItem="15m-1V-ldl" secondAttribute="top" id="Q3R-yb-0IC"/>
+                                    <constraint firstItem="cd0-yu-V82" firstAttribute="leading" secondItem="15m-1V-ldl" secondAttribute="leading" id="XV8-fH-l8U"/>
+                                    <constraint firstAttribute="trailing" secondItem="cd0-yu-V82" secondAttribute="trailing" id="zPI-Gv-XAs"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BDP-wV-aHl">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="3jO-TH-TPF"/>
+                                    <constraint firstAttribute="width" constant="20" id="LTm-OA-L5r"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="15m-1V-ldl" secondAttribute="trailing" id="3j7-K1-U4g"/>
                             <constraint firstItem="15m-1V-ldl" firstAttribute="top" secondItem="PU1-BZ-VSU" secondAttribute="bottom" id="E4O-On-bbT"/>
                             <constraint firstItem="Sxk-eR-Rdo" firstAttribute="top" secondItem="15m-1V-ldl" secondAttribute="bottom" id="OHj-Hu-vEX"/>
-                            <constraint firstItem="LI2-Pb-a9c" firstAttribute="width" secondItem="rAd-JS-hlj" secondAttribute="width" id="XMe-uL-fnw"/>
+                            <constraint firstItem="BDP-wV-aHl" firstAttribute="centerY" secondItem="rAd-JS-hlj" secondAttribute="centerY" id="QW5-Gd-Wbz"/>
+                            <constraint firstItem="cd0-yu-V82" firstAttribute="width" secondItem="rAd-JS-hlj" secondAttribute="width" id="i8q-0O-jnt"/>
                             <constraint firstItem="15m-1V-ldl" firstAttribute="leading" secondItem="rAd-JS-hlj" secondAttribute="leading" id="pbv-es-YSa"/>
+                            <constraint firstItem="BDP-wV-aHl" firstAttribute="centerX" secondItem="rAd-JS-hlj" secondAttribute="centerX" id="tMm-Nf-88v"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="BDP-wV-aHl" id="ton-nK-xGp"/>
                         <outlet property="descriptionLabel" destination="yXI-Wf-lq9" id="p1K-OW-5IB"/>
+                        <outlet property="stackView" destination="cd0-yu-V82" id="ixp-XX-LdR"/>
                         <outlet property="titleLabel" destination="U86-Vy-5vt" id="Eli-Sc-HK5"/>
                         <segue destination="F2q-lz-la9" kind="show" identifier="displayPRDiff" id="b6q-sA-yhV"/>
                     </connections>
