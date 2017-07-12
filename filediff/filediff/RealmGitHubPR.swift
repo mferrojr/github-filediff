@@ -12,6 +12,7 @@ import RealmSwift
 struct GitHubPR {
     var id = 0
     var number = 0
+    var diff_url = ""
     var state = ""
     var title = ""
     var created_at = ""
@@ -24,6 +25,7 @@ final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     //MARK: - Varibales
     dynamic var id = 0
     dynamic var number = 0
+    dynamic var diff_url = ""
     dynamic var state = ""
     dynamic var title = ""
     dynamic var body = ""
@@ -33,6 +35,7 @@ final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     override func mapping(map: Map) {
         id <- map["id"]
         number <- map["number"]
+        diff_url <- map["diff_url"]
         state <- map["state"]
         title <- map["title"]
         body <- map["body"]
@@ -47,6 +50,7 @@ final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     var entity: GitHubPR {
         return GitHubPR(id: id,
                     number: number,
+                    diff_url: diff_url,
                     state: state,
                     title: title,
                     created_at: created_at,
