@@ -31,6 +31,7 @@ final class PRDetailsViewController : UIViewController {
         
         self.fetchData()
         self.showLoading()
+        self.setUpStackView()
     }
     
     override func didReceiveMemoryWarning() {
