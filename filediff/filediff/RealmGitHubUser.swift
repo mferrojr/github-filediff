@@ -10,14 +10,14 @@ import ObjectMapper
 import RealmSwift
 
 struct GitHubUser {
-    var id = ""
+    var id = 0
     var login = ""
     var avatar_url = ""
 }
 final class RealmGitHubUser : GitHubObject, GitHubRealmBase {
     
     //MARK: - Varibales
-    dynamic var id = ""
+    dynamic var id = 0
     dynamic var login = ""
     dynamic var avatar_url = ""
     

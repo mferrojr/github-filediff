@@ -11,6 +11,9 @@ import UIKit
 
 final class PRDetailsViewController : UIViewController {
     
+    //MARK: - Public Varibales
+    var prNumber : Int!
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

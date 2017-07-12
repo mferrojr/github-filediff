@@ -9,7 +9,7 @@
 import UIKit
 
 struct PRTableViewModel {
-    let title = ""
+    var title = ""
 }
 
 final class PRTableViewCell: UITableViewCell {

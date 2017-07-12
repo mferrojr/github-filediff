@@ -70,6 +70,8 @@ class BaseOperation : Operation {
                 print("Error saving data for \(self.name!)")
             }
         }
+        
+        done()
     }
     
     func saveToRealm<T>(_ data : T?) where T:GitHubObject, T:GitHubRealmBase {

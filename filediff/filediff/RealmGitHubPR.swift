@@ -10,7 +10,7 @@ import ObjectMapper
 import RealmSwift
 
 struct GitHubPR {
-    var id = ""
+    var id = 0
     var number = 0
     var state = ""
     var title = ""
@@ -21,7 +21,7 @@ struct GitHubPR {
 final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     
     //MARK: - Varibales
-    dynamic var id = ""
+    dynamic var id = 0
     dynamic var number = 0
     dynamic var state = ""
     dynamic var title = ""
@@ -42,7 +42,7 @@ final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     }
     
     var entity: GitHubPR {
-        return GitHubPR(id: title,
+        return GitHubPR(id: id,
                     number: number,
                     state: state,
                     title: title,

@@ -10,7 +10,7 @@ import Foundation
 
 extension Array where Element : GitHubRealmBase {
     
-    func getIds() -> [String] {
+    func getIds() -> [Int] {
         return self.map { $0.id }
     }
     

@@ -11,7 +11,7 @@ import RealmSwift
 import ObjectMapper
 
 protocol GitHubRealmBase {
-    var id: String { get set }
+    var id: Int { get set }
 }
 
 class GitHubObject : Object, Mappable {

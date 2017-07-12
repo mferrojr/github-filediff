@@ -26,6 +26,9 @@
 		01C598481F156D8C00B93E48 /* GitHubObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598471F156D8C00B93E48 /* GitHubObject.swift */; };
 		01C5984B1F15727100B93E48 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5984A1F15727100B93E48 /* BaseOperation.swift */; };
 		01C5984E1F1576FB00B93E48 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5984D1F1576FB00B93E48 /* ArrayExtensions.swift */; };
+		01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598531F15944000B93E48 /* UIViewControllerExtensions.swift */; };
+		01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598561F159B9200B93E48 /* PRListDataSource.swift */; };
+		01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -74,6 +77,9 @@
 		01C598471F156D8C00B93E48 /* GitHubObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubObject.swift; sourceTree = "<group>"; };
 		01C5984A1F15727100B93E48 /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
 		01C5984D1F1576FB00B93E48 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		01C598531F15944000B93E48 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		01C598561F159B9200B93E48 /* PRListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListDataSource.swift; sourceTree = "<group>"; };
+		01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		049130BCFE94FDC34A305DAF /* Pods-filediffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,8 +229,8 @@
 		01C5983C1F1567F000B93E48 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				01C598551F159B8200B93E48 /* DataSource */,
 				017A146F1F131100004E9EE6 /* Operations */,
-				01C5983E1F15681400B93E48 /* Queues */,
 				01C5983D1F15680B00B93E48 /* Repositories */,
 				017A146C1F1310E3004E9EE6 /* Services */,
 			);
@@ -238,13 +244,6 @@
 				01C598411F15690B00B93E48 /* PRRepository.swift */,
 			);
 			name = Repositories;
-			sourceTree = "<group>";
-		};
-		01C5983E1F15681400B93E48 /* Queues */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Queues;
 			sourceTree = "<group>";
 		};
 		01C598491F156FD900B93E48 /* Resources */ = {
@@ -262,8 +261,18 @@
 			isa = PBXGroup;
 			children = (
 				01C5984D1F1576FB00B93E48 /* ArrayExtensions.swift */,
+				01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */,
+				01C598531F15944000B93E48 /* UIViewControllerExtensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		01C598551F159B8200B93E48 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				01C598561F159B9200B93E48 /* PRListDataSource.swift */,
+			);
+			name = DataSource;
 			sourceTree = "<group>";
 		};
 		0AD2340C8D9BCBAD998588A9 /* Frameworks */ = {
@@ -573,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */,
 				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
 				01C598421F15690B00B93E48 /* PRRepository.swift in Sources */,
 				01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */,
@@ -582,6 +592,8 @@
 				017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
 				01C598481F156D8C00B93E48 /* GitHubObject.swift in Sources */,
+				01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */,
+				01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */,
 				01C5984E1F1576FB00B93E48 /* ArrayExtensions.swift in Sources */,
 				01C5984B1F15727100B93E48 /* BaseOperation.swift in Sources */,
 				01C598461F156A3900B93E48 /* RealmGitHubUser.swift in Sources */,
