@@ -23,23 +23,28 @@ struct GitHubFile {
 }
 
 struct GitHubFileGroup {
-    typealias lineDiff = (GitHubFileDiff,GitHubFileDiff)
-    
     var title = ""
-    var diffs:[Int: lineDiff] = [:]
+    
+    var beforeDiffs = [GitHubFileDiff]()
+    var afterDiffs = [GitHubFileDiff]()
     
     mutating func setTitle(value: String) {
         title = value
     }
     
-    mutating func addDiff(key: Int, value: lineDiff) {
-        diffs[key] = value
+    mutating func addBeforeDiff(value: GitHubFileDiff) {
+        beforeDiffs.append(value)
+    }
+    
+    mutating func addAfterDiff(value: GitHubFileDiff) {
+        afterDiffs.append(value)
     }
 }
 
 struct GitHubFileDiff {
     var type : GitHubFileDiffType = .same
-    var text = ""
+    var text : String?
+    var lineNumber : Int?
     
     mutating func setType(value: GitHubFileDiffType) {
         type = value
@@ -47,6 +52,10 @@ struct GitHubFileDiff {
     
     mutating func setText(value: String) {
         text = value
+    }
+    
+    mutating func setLineNumber(value: Int?) {
+        lineNumber = value
     }
 }
 

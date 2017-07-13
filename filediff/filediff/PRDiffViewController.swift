@@ -63,6 +63,7 @@ final class PRDiffViewController: UIViewController {
     //MARK: - Private Functions
     fileprivate func setUpTable(){
         self.tableView.dataSource = dataSource
+        self.tableView.delegate = self
         self.tableView.tableHeaderView = UIView(frame: .zero)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.addSubview(refreshCtrl)
@@ -110,4 +111,19 @@ final class PRDiffViewController: UIViewController {
         activityIndicator.isHidden = true
     }
 
+}
+
+//MARK: - Delegates
+
+//MARK: UITableViewDelegate
+extension PRDiffViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
 }
