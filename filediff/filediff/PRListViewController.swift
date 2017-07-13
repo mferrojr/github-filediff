@@ -17,6 +17,7 @@ final class PRListViewController : UIViewController {
     
     //MARK: IBOutlets
     @IBOutlet weak fileprivate var prTableView: UITableView!
+    @IBOutlet weak fileprivate var activityIndicator: UIActivityIndicatorView!
     
     lazy var refreshCtrl: UIRefreshControl = { [weak self] in
         let refreshControl = UIRefreshControl()
@@ -32,7 +33,7 @@ final class PRListViewController : UIViewController {
         
         self.setUpTable()
         self.fetchData()
-        self.refreshCtrl.beginRefreshing()
+        self.showLoading()
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,8 +100,15 @@ final class PRListViewController : UIViewController {
         }
     }
     
-    fileprivate func stopLoading() {
-        self.refreshCtrl.endRefreshing()
+    fileprivate func showLoading(){
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    fileprivate func stopLoading(){
+        refreshCtrl.endRefreshing()
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }
 

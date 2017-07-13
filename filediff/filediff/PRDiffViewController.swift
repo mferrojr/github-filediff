@@ -51,6 +51,7 @@ final class PRDiffViewController: UIViewController {
         UIViewController.attemptRotationToDeviceOrientation()
         
         self.setUpTable()
+        self.showLoading()
         self.fetchData()
     }
 
