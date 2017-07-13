@@ -31,9 +31,9 @@ final class FileDiffTableViewCell: UITableViewCell {
         for group in model.groups {
             addGroupRow(title: group.title)
             
-            for (_,diff) in Array(group.diffs).sorted(by: {$0.0 < $1.0}) {
-                addBeforeRow(diff: diff.0)
-                addAfterRow(diff: diff.1)
+            for (key,diff) in Array(group.diffs).sorted(by: {$0.0 < $1.0}) {
+                addBeforeRow(forRow: key, withDiff: diff.0)
+                addAfterRow(forRow: key, withDiff: diff.0)
             }
         }
     }
@@ -41,12 +41,7 @@ final class FileDiffTableViewCell: UITableViewCell {
     //MARK: - Private Functions
     fileprivate func addGroupRow(title: String){
         //Add Before
-        let textLabel = UILabel()
-        textLabel.backgroundColor = groupColor
-        textLabel.heightAnchor.constraint(equalToConstant: rowHeight).isActive = true
-        textLabel.widthAnchor.constraint(equalToConstant: beforeStackView.frame.width).isActive = true
-        textLabel.text = title
-        textLabel.font = textLabel.font.withSize(12)
+        let textLabel = createLabel(text: title, color: groupColor, width: beforeStackView.frame.width)
         beforeStackView.addArrangedSubview(textLabel)
         
         //Add After
@@ -57,12 +52,24 @@ final class FileDiffTableViewCell: UITableViewCell {
         afterStackView.addArrangedSubview(afterView)
     }
     
-    fileprivate func addBeforeRow(diff: GitHubFileDiff){
-        
+    fileprivate func addBeforeRow(forRow: Int, withDiff diff: GitHubFileDiff){
+        let textLabel = createLabel(text: diff.text, color: diff.type.getColor(), width: beforeStackView.frame.width)
+        beforeStackView.addArrangedSubview(textLabel)
     }
     
-    fileprivate func addAfterRow(diff: GitHubFileDiff){
-        
+    fileprivate func addAfterRow(forRow: Int, withDiff diff: GitHubFileDiff){
+        let textLabel = createLabel(text: diff.text, color: diff.type.getColor(), width: beforeStackView.frame.width)
+        afterStackView.addArrangedSubview(textLabel)
+    }
+    
+    fileprivate func createLabel(text: String, color: UIColor, width: CGFloat) -> UILabel {
+        let textLabel = UILabel()
+        textLabel.backgroundColor = color
+        textLabel.heightAnchor.constraint(equalToConstant: rowHeight).isActive = true
+        textLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        textLabel.text = text
+        textLabel.font = textLabel.font.withSize(12)
+        return textLabel
     }
     
 }

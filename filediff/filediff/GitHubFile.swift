@@ -26,7 +26,7 @@ struct GitHubFileGroup {
     typealias lineDiff = (GitHubFileDiff,GitHubFileDiff)
     
     var title = ""
-    var diffs = [Int: lineDiff]()
+    var diffs:[Int: lineDiff] = [:]
     
     mutating func setTitle(value: String) {
         title = value
@@ -38,17 +38,27 @@ struct GitHubFileGroup {
 }
 
 struct GitHubFileDiff {
-    var type : GitHubFileDiffType = .none
+    var type : GitHubFileDiffType = .same
     var text = ""
+    
+    mutating func setType(value: GitHubFileDiffType) {
+        type = value
+    }
+    
+    mutating func setText(value: String) {
+        text = value
+    }
 }
 
 enum GitHubFileDiffType {
-    case none, remove, add
+    case same, blank, remove, add
     
     func getColor() -> UIColor {
         switch self {
-        case .none:
+        case .same:
             return .clear
+        case .blank:
+            return UIColor(red: 0.980, green: 0.984, blue: 0.988, alpha: 1)
         case .remove:
             return UIColor(red: 0.937, green: 0.839, blue: 0.839, alpha: 1)
         case .add:
@@ -56,15 +66,16 @@ enum GitHubFileDiffType {
         }
     }
     
-    func getSymbol() -> String {
+    func getForegroundColor() -> UIColor {
         switch self {
-        case .none:
-            return ""
         case .remove:
-            return "-"
+            return UIColor(red: 252/255, green: 184/255, blue: 193/255, alpha: 1)
         case .add:
-            return "+"
+            return UIColor(red: 174/255, green: 241/255, blue: 191/255, alpha: 1)
+        default:
+            return getColor()
         }
     }
+
     
 }
