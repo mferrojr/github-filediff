@@ -11,7 +11,7 @@ import Alamofire
 
 class BaseOperation : Operation {
     
-    var errorCallback: ((Error?,Int?) -> Void)?
+    var errorCallback: ((Error?) -> Void)?
     var request : Request?
     
     //MARK: - Private Variables
@@ -113,8 +113,8 @@ class BaseOperation : Operation {
         isFinished = true
     }
     
-    func errorCB(_ error : Error?, code : Int?) {
-        self.errorCallback?(error,code)
+    func errorCB(_ error : Error?) {
+        self.errorCallback?(error)
     }
 
 }

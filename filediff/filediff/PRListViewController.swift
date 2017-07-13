@@ -77,19 +77,19 @@ final class PRListViewController : UIViewController {
     fileprivate func fetchData() {
         let queue = OperationQueue()
         prOperation = SyncPRsOperation()
-        prOperation?.completionBlock = {
+        prOperation?.completionBlock = { [unowned self] in
             self.prOperation = nil
             self.dataSource.refresh()
             
             // UI Changes on the main queue
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.prTableView.reloadData()
             }
         }
-        prOperation?.errorCallback = { _, _ in
+        prOperation?.errorCallback = { _ in
             // UI Changes on the main queue
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.displayError()
             }

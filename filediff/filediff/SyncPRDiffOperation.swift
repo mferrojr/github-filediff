@@ -12,6 +12,7 @@ class SyncPRDiffOperation : BaseOperation {
     
     //MARK: - Public Variables
     var diffUrl = ""
+    var fileText : String!
     
     override func main() {
         super.main()
@@ -19,10 +20,11 @@ class SyncPRDiffOperation : BaseOperation {
     }
     
     private func getPRDiff(){
-        //self.request = GitHubService.getPullRequests(successCB, errorCB: errorCB)
+        GitHubService.getPullRequestDiff(diffUrl: diffUrl, successCB: successCB, errorCB: errorCB)
     }
     
-    private func successCB(_ response : [RealmGitHubPR]) {
+    private func successCB(_ response : String) {
+        self.fileText = response
         self.done()
     }
     

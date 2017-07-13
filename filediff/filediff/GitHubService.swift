@@ -19,12 +19,13 @@ enum GitHubServiceError : Error {
 final class GitHubService {
     
     typealias PR_NUMBER = Int
+    typealias ERROR_CB = (Error?) -> Void
     
     private static let GITHUB_BASE_URL = "https://api.github.com/repos/"
     private static let GITHUB_AUTHOR = "raywenderlich"
     private static let GITHUB_REPO = "swift-algorithm-club"
     
-    static func getPullRequests(_ successCB:@escaping (_ response : [RealmGitHubPR]) -> Void, errorCB: @escaping (Error?,Int?) -> Void) -> Request {
+    static func getPullRequests(_ successCB:@escaping (_ response : [RealmGitHubPR]) -> Void, errorCB: @escaping ERROR_CB) -> Request {
         let request = Alamofire.request(GitHubRouter.getPRs())
         
         request.validate().responseJSON { response in
@@ -34,17 +35,17 @@ final class GitHubService {
                     successCB(obj)
                 }
                 else {
-                    errorCB(nil,nil)
+                    errorCB(nil)
                 }
             case .failure(let error):
-                errorCB(error,nil)
+                errorCB(error)
             }
         }
         
         return request
      }
     
-    static func getPullRequestByNumber(number: PR_NUMBER, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping (Error?,Int?) -> Void) -> Request {
+    static func getPullRequestByNumber(number: PR_NUMBER, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping ERROR_CB) -> Request {
         let request = Alamofire.request(GitHubRouter.getPullRequestByNumber(number))
         
         request.validate().responseJSON { response in
@@ -54,33 +55,34 @@ final class GitHubService {
                     successCB(obj)
                 }
                 else {
-                    errorCB(nil,nil)
+                    errorCB(nil)
                 }
             case .failure(let error):
-                errorCB(error,nil)
+                errorCB(error)
             }
         }
         return request
     }
     
-    static func getPullRequestDiff(base : String, head : String, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping (Error?,Int?) -> Void) -> Request {
-        let request = Alamofire.request(GitHubRouter.getPullRequestDiff(base, head))
+    static func getPullRequestDiff(diffUrl : String, successCB:@escaping (_ response : String) -> Void, errorCB: @escaping ERROR_CB) {
+        let destination = DownloadRequest.suggestedDownloadDestination()
         
-        request.validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                if let obj = Mapper<RealmGitHubPR>().map(JSONObject:value) {
-                    successCB(obj)
-                }
-                else {
-                    errorCB(nil,nil)
-                }
-            case .failure(let error):
-                errorCB(error,nil)
+        Alamofire.download(diffUrl, to: destination)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
+                print("Progress: \(progress.fractionCompleted)")
             }
-        }
-        
-        return request
+            .validate().responseData { response in
+                switch response.result {
+                case .success(_):
+                    guard let url = response.destinationURL else { errorCB(nil); return }
+                    guard let fileText = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { errorCB(nil); return }
+                    guard let _ = try? FileManager.default.removeItem(at: url) else { errorCB(nil); return }
+                    
+                    successCB(fileText)
+                case .failure(let error):
+                    errorCB(error)
+                }
+            }
     }
     
     //MARK: - Private Variables
@@ -88,7 +90,6 @@ final class GitHubService {
         
         case getPRs()
         case getPullRequestByNumber(Int)
-        case getPullRequestDiff(String, String)
         
         fileprivate var method: Alamofire.HTTPMethod {
             switch self {
@@ -105,8 +106,6 @@ final class GitHubService {
                 return "\(base)/pulls?state=open"
             case .getPullRequestByNumber(let number):
                 return "\(base)/pulls/\(number)"
-            case .getPullRequestDiff(let base, let head):
-                return "\(base)/compare/:\(base)...:\(head)"
             }
         }
         

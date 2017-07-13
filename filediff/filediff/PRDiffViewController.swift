@@ -52,7 +52,6 @@ final class PRDiffViewController: UIViewController {
         
         self.setUpTable()
         self.fetchData()
-        self.refreshCtrl.beginRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,19 +76,19 @@ final class PRDiffViewController: UIViewController {
         let queue = OperationQueue()
         prDiffOperation = SyncPRDiffOperation()
         prDiffOperation?.diffUrl = diffUrl
-        prDiffOperation?.completionBlock = {
+        prDiffOperation?.completionBlock = { [unowned self] in
+            self.dataSource.refresh(fileText: self.prDiffOperation!.fileText)
             self.prDiffOperation = nil
-            self.dataSource.refresh()
-            
+
             // UI Changes on the main queue
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.tableView.reloadData()
             }
         }
-        prDiffOperation?.errorCallback = { _, _ in
+        prDiffOperation?.errorCallback = { _ in
             // UI Changes on the main queue
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.displayError()
             }
@@ -105,9 +104,9 @@ final class PRDiffViewController: UIViewController {
     }
     
     fileprivate func stopLoading(){
+        refreshCtrl.endRefreshing()
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
-        tableView.isHidden = false
     }
 
 }

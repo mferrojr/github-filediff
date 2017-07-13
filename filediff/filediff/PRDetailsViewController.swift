@@ -23,6 +23,7 @@ final class PRDetailsViewController : UIViewController {
     @IBOutlet weak fileprivate var activityIndicator: UIActivityIndicatorView!
     
     fileprivate var prDetailOperation : SyncPRDetailsOperation?
+    fileprivate var diffUrl : String?
     
     //MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +40,26 @@ final class PRDetailsViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: - Actions
     @IBAction func viewDiffPressed(_ sender: UIButton) {
         performSegaue(.displayPRDiff)
+    }
+    
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier, let seg = FileDiffSegue(rawValue: identifier) else {
+            return
+        }
+        
+        switch seg {
+        case .displayPRDiff:
+            guard let destVC = segue.destination as? PRDiffViewController else { return }
+            guard let diffUrl = diffUrl else { return }
+
+            destVC.diffUrl = diffUrl
+        default:
+            break
+        }
     }
     
     //MARK: - Private Functions
@@ -50,13 +69,13 @@ final class PRDetailsViewController : UIViewController {
         prDetailOperation?.prNumber = prNumber
         prDetailOperation?.completionBlock = {
             // UI Changes on the main queue
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.updateView()
             }
         }
-        prDetailOperation?.errorCallback = { _, _ in
-            DispatchQueue.main.async {
+        prDetailOperation?.errorCallback = { _ in
+            DispatchQueue.main.async { [unowned self] in
                 self.stopLoading()
                 self.displayError()
             }
@@ -75,6 +94,9 @@ final class PRDetailsViewController : UIViewController {
     
         titleLabel.text = pr.title
         descriptionLabel.text = pr.body
+        
+        // Store diffUrl if the user wants to see the diff
+        diffUrl = pr.diff_url
     }
     
     fileprivate func showLoading(){
@@ -89,7 +111,7 @@ final class PRDetailsViewController : UIViewController {
     }
     
     fileprivate func setUpStackView() {
-        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
+        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         stackView.isLayoutMarginsRelativeArrangement = true
     }
     
