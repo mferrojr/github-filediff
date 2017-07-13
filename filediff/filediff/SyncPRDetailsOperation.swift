@@ -10,7 +10,7 @@ import Foundation
 
 class SyncPRDetailsOperation : BaseOperation {
     
-    //MARK: - Public Functions
+    //MARK: - Public Variables
     var prNumber = 0
     
     override func main() {

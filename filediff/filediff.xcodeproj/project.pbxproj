@@ -30,6 +30,10 @@
 		01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598561F159B9200B93E48 /* PRListDataSource.swift */; };
 		01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */; };
 		01C5985B1F15BCA600B93E48 /* SyncPRDetailsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */; };
+		01C5985D1F16E40C00B93E48 /* PRDiffDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5985C1F16E40C00B93E48 /* PRDiffDataSource.swift */; };
+		01C5985F1F16E44E00B93E48 /* GitHubFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5985E1F16E44E00B93E48 /* GitHubFile.swift */; };
+		01C598611F16E4B600B93E48 /* FileDiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */; };
+		01C598631F16F12E00B93E48 /* SyncPRDiffOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -82,6 +86,10 @@
 		01C598561F159B9200B93E48 /* PRListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListDataSource.swift; sourceTree = "<group>"; };
 		01C598581F159E3F00B93E48 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPRDetailsOperation.swift; sourceTree = "<group>"; };
+		01C5985C1F16E40C00B93E48 /* PRDiffDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffDataSource.swift; sourceTree = "<group>"; };
+		01C5985E1F16E44E00B93E48 /* GitHubFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubFile.swift; sourceTree = "<group>"; };
+		01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDiffTableViewCell.swift; sourceTree = "<group>"; };
+		01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPRDiffOperation.swift; sourceTree = "<group>"; };
 		049130BCFE94FDC34A305DAF /* Pods-filediffTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +204,7 @@
 		017A146E1F1310F7004E9EE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01C5985E1F16E44E00B93E48 /* GitHubFile.swift */,
 				01C598471F156D8C00B93E48 /* GitHubObject.swift */,
 				01C598431F15697000B93E48 /* RealmGitHubPR.swift */,
 				01C598451F156A3900B93E48 /* RealmGitHubUser.swift */,
@@ -208,6 +217,7 @@
 			children = (
 				01C5984A1F15727100B93E48 /* BaseOperation.swift */,
 				01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */,
+				01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */,
 				01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */,
 			);
 			name = Operations;
@@ -224,6 +234,7 @@
 		017A14751F1311B1004E9EE6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */,
 				01C598361F14487100B93E48 /* PRTableViewCell.swift */,
 			);
 			name = Cells;
@@ -273,6 +284,7 @@
 		01C598551F159B8200B93E48 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				01C5985C1F16E40C00B93E48 /* PRDiffDataSource.swift */,
 				01C598561F159B9200B93E48 /* PRListDataSource.swift */,
 			);
 			name = DataSource;
@@ -595,14 +607,18 @@
 				017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
 				01C598481F156D8C00B93E48 /* GitHubObject.swift in Sources */,
+				01C5985F1F16E44E00B93E48 /* GitHubFile.swift in Sources */,
 				01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */,
 				01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */,
+				01C598631F16F12E00B93E48 /* SyncPRDiffOperation.swift in Sources */,
 				01C5984E1F1576FB00B93E48 /* ArrayExtensions.swift in Sources */,
+				01C5985D1F16E40C00B93E48 /* PRDiffDataSource.swift in Sources */,
 				01C5984B1F15727100B93E48 /* BaseOperation.swift in Sources */,
 				01C598461F156A3900B93E48 /* RealmGitHubUser.swift in Sources */,
 				01C598441F15697000B93E48 /* RealmGitHubPR.swift in Sources */,
 				01C598401F15685D00B93E48 /* Repository.swift in Sources */,
 				01C5985B1F15BCA600B93E48 /* SyncPRDetailsOperation.swift in Sources */,
+				01C598611F16E4B600B93E48 /* FileDiffTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

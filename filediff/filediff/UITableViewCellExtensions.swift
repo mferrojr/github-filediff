@@ -10,4 +10,5 @@ import Foundation
 
 enum FileDiffCell : String {
     case prCell = "prCell"
+    case fileDiffCell = "fileDiffCell"
 }

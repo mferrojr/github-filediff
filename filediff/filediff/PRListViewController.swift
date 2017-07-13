@@ -11,7 +11,7 @@ import UIKit
 
 final class PRListViewController : UIViewController {
     
-    //MARK: Private Variables
+    //MARK: - Private Variables
     fileprivate let dataSource = PRListDataSource()
     fileprivate var prOperation : SyncPRsOperation?
     
