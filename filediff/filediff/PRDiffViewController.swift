@@ -13,18 +13,6 @@ final class PRDiffViewController: UIViewController {
     //MARK: - Public Variables
     var diffUrl = ""
     
-    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-        get {
-            return .landscapeLeft
-        }
-    }
-    
-    override var shouldAutorotate : Bool {
-        get {
-            return true
-        }
-    }
-    
     //MARK: - Private Variables
     
     //MARK: IBOutlets
@@ -46,13 +34,18 @@ final class PRDiffViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let value = UIInterfaceOrientation.landscapeLeft.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
-        UIViewController.attemptRotationToDeviceOrientation()
+        AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
         
         self.setUpTable()
         self.showLoading()
         self.fetchData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
     }
 
     override func didReceiveMemoryWarning() {

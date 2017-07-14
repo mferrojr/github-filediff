@@ -123,8 +123,6 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
                 addingLinesCount = 0
                 removingLinesCount = 0
             }
-            
-            var s = ""
         }
         
         // Fill in blanks

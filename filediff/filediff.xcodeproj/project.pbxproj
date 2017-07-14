@@ -37,6 +37,7 @@
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		BBEED5C01F17EC850025661E /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */; };
 		BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5C11F1813AE0025661E /* StringExtensions.swift */; };
+		BBEED5C51F19239E0025661E /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5C41F19239E0025661E /* AppUtility.swift */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		95B7E9B4290C25065452A654 /* Pods-filediffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.release.xcconfig"; sourceTree = "<group>"; };
 		BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 		BBEED5C11F1813AE0025661E /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		BBEED5C41F19239E0025661E /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		D08528B728A852EF94BBD054 /* Pods-filediff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.debug.xcconfig"; sourceTree = "<group>"; };
 		D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8CBC308E6E04F20A97227B /* Pods-filediffUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediffUITests/Pods-filediffUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				01C5983C1F1567F000B93E48 /* Persistence */,
 				01C598491F156FD900B93E48 /* Resources */,
 				017A14701F131130004E9EE6 /* Views */,
+				BBEED5C31F19238C0025661E /* Utils */,
 			);
 			path = filediff;
 			sourceTree = "<group>";
@@ -319,6 +322,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BBEED5C31F19238C0025661E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BBEED5C41F19239E0025661E /* AppUtility.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -396,7 +407,7 @@
 				TargetAttributes = {
 					017A143A1F13109D004E9EE6 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = D3D8DSFWDT;
+						DevelopmentTeam = B67XRFU44H;
 						ProvisioningStyle = Automatic;
 					};
 					017A144E1F13109E004E9EE6 = {
@@ -605,6 +616,7 @@
 			files = (
 				BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */,
 				01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */,
+				BBEED5C51F19239E0025661E /* AppUtility.swift in Sources */,
 				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
 				01C598421F15690B00B93E48 /* PRRepository.swift in Sources */,
 				01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */,
@@ -781,7 +793,7 @@
 			baseConfigurationReference = D08528B728A852EF94BBD054 /* Pods-filediff.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = D3D8DSFWDT;
+				DEVELOPMENT_TEAM = B67XRFU44H;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediff;
@@ -795,7 +807,7 @@
 			baseConfigurationReference = 919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = D3D8DSFWDT;
+				DEVELOPMENT_TEAM = B67XRFU44H;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediff;
