@@ -63,6 +63,8 @@ final class PRDetailsViewController : UIViewController {
     //MARK: - Private Functions
     fileprivate func fetchData() {
         let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
+        
         prDetailOperation = SyncPRDetailsOperation()
         prDetailOperation?.prNumber = prNumber
         prDetailOperation?.completionBlock = {

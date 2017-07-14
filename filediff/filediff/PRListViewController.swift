@@ -75,6 +75,8 @@ final class PRListViewController : UIViewController {
     
     fileprivate func fetchData() {
         let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
+        
         prOperation = SyncPRsOperation()
         prOperation?.completionBlock = { [unowned self] in
             self.prOperation = nil

@@ -16,7 +16,7 @@ class BaseOperation : Operation {
     
     //MARK: - Private Variables
     fileprivate var _executing = false
-    override open var isExecuting: Bool {
+    override var isExecuting: Bool {
         get {
             return _executing
         }
@@ -30,7 +30,7 @@ class BaseOperation : Operation {
     }
     
     fileprivate var _finished = false
-    override open var isFinished: Bool {
+    override var isFinished: Bool {
         get {
             return _finished
         }
@@ -41,6 +41,10 @@ class BaseOperation : Operation {
                 didChangeValue(forKey: "isFinished")
             }
         }
+    }
+    
+    override var isAsynchronous: Bool {
+        return true
     }
     
     override func cancel() {
