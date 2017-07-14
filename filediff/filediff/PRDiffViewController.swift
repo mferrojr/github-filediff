@@ -35,7 +35,7 @@ final class PRDiffViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 20
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension //TODO: Manually calculate for better scrolling
     }
     
     override func viewWillAppear(_ animated: Bool) {
