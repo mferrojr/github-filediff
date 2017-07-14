@@ -155,7 +155,6 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
     
     fileprivate func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType {
         
-        
         // Adding line
         if line.hasPrefix("+"){
             var fileDiff = GitHubFileDiff()

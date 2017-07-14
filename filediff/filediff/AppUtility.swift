@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// https://stackoverflow.com/questions/28938660/how-to-lock-orientation-of-one-view-controller-to-portrait-mode-only-in-swift
 struct AppUtility {
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {

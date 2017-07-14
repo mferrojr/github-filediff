@@ -261,8 +261,8 @@
 		01C5983D1F15680B00B93E48 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				01C5983F1F15685D00B93E48 /* Repository.swift */,
 				01C598411F15690B00B93E48 /* PRRepository.swift */,
+				01C5983F1F15685D00B93E48 /* Repository.swift */,
 			);
 			name = Repositories;
 			sourceTree = "<group>";

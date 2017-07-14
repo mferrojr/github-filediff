@@ -64,10 +64,12 @@ final class GitHubService {
         return request
     }
     
-    static func getPullRequestDiff(diffUrl : String, successCB:@escaping (_ response : String) -> Void, errorCB: @escaping ERROR_CB) {
+    static func getPullRequestDiff(diffUrl : String, successCB:@escaping (_ response : String) -> Void, errorCB: @escaping ERROR_CB) -> Request {
         let destination = DownloadRequest.suggestedDownloadDestination()
         
-        Alamofire.download(diffUrl, to: destination)
+        let request = Alamofire.download(diffUrl, to: destination)
+        
+        request
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
                 print("Progress: \(progress.fractionCompleted)")
             }
@@ -83,6 +85,7 @@ final class GitHubService {
                     errorCB(error)
                 }
             }
+        return request
     }
     
     //MARK: - Private Variables

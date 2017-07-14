@@ -32,14 +32,20 @@ final class PRDiffViewController: UIViewController {
     fileprivate var prDiffOperation : SyncPRDiffOperation?
     
     //MARK: View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.estimatedRowHeight = 20
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
         
-        self.setUpTable()
-        self.showLoading()
         self.fetchData()
+        self.showLoading()
+        self.setUpTable()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,12 +53,13 @@ final class PRDiffViewController: UIViewController {
         
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
+        prDiffOperation?.cancel()
+        prDiffOperation = nil
     }
     
     //MARK: - Private Functions
     fileprivate func setUpTable(){
         self.tableView.dataSource = dataSource
-        self.tableView.delegate = self
         self.tableView.tableHeaderView = UIView(frame: .zero)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.addSubview(refreshCtrl)
@@ -100,19 +107,4 @@ final class PRDiffViewController: UIViewController {
         activityIndicator.isHidden = true
     }
 
-}
-
-//MARK: - Delegates
-
-//MARK: UITableViewDelegate
-extension PRDiffViewController : UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
 }

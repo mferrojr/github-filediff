@@ -33,10 +33,9 @@ final class PRDetailsViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "PR #\(prNumber)"
-        
+        self.setUpStackView()
         self.fetchData()
         self.showLoading()
-        self.setUpStackView()
     }
 
     //MARK: - Actions

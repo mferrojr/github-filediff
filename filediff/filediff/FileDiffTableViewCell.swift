@@ -22,6 +22,7 @@ final class FileDiffTableViewCell: UITableViewCell {
     fileprivate let lineFontSize : CGFloat = 8
     
     fileprivate let lineNumberWidth : CGFloat = 25
+    fileprivate let lineNumberHeight : CGFloat = 15
     
     //MARK: IBOutlets
     @IBOutlet weak fileprivate var nameLabel: UILabel!
@@ -95,6 +96,7 @@ final class FileDiffTableViewCell: UITableViewCell {
     fileprivate func createContainer(numberLabel : UILabel, textLabel: UILabel) -> UIView {
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.sizeToFit()
         
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -103,8 +105,8 @@ final class FileDiffTableViewCell: UITableViewCell {
         
         numberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         numberLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        numberLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         numberLabel.widthAnchor.constraint(equalToConstant: lineNumberWidth).isActive = true
+        numberLabel.heightAnchor.constraint(equalToConstant: lineNumberHeight).isActive = true
         
         textLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor).isActive = true
         textLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true

@@ -31,10 +31,13 @@ final class PRListViewController : UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.setUpTable()
         self.fetchData()
         self.showLoading()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setUpTable()
     }
 
     //MARK: - Navigation
