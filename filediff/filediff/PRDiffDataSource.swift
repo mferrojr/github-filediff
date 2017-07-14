@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+struct DiffInfo {
+    var startingLine = 0
+    var numLines = 0
+}
+
 class PRDiffDataSource : NSObject, UITableViewDataSource {
     
     private(set) var datas = [GitHubFile]()
@@ -82,48 +87,48 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         
         guard lines.count > 1 else { return fileGroup }
         
-        // Parse "@@ -31,22 +31,17 @@" to extract line diffs
-        var lineDiffs = lines[0].components(separatedBy: " ")
-        var beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
-        var afterDiffComma = lineDiffs[2].components(separatedBy: ",")
+        let parsed = parseLines(input: lines[0])
         
-        let bDiffFirst = beforeDiffComma[1]
-        var beforeLineIndex = Int(bDiffFirst.substring(from: bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1))) ?? 0
-        
-        let aDiffFirst = afterDiffComma[1]
-        var afterLineIndex = Int(aDiffFirst.substring(from: aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1))) ?? 0
+        var beforeLineNumber = parsed.0.startingLine
+        var afterLineNumber = parsed.1.startingLine
         
         // Add lines to diff
         var removingLinesCount = 0
         var addingLinesCount = 0
         
         for line in lines[1..<lines.endIndex]{
-            let type = processLine(line: line, fileGroup: &fileGroup, afterLineIndex: afterLineIndex,beforeLineIndex:beforeLineIndex, addingLinesCount: addingLinesCount, removingLinesCount: removingLinesCount )
+            let type = processLine(
+                line: line, fileGroup: &fileGroup,
+                afterLineNumber: afterLineNumber,beforeLineNumber:beforeLineNumber,
+                addingLinesCount: addingLinesCount, removingLinesCount: removingLinesCount)
             switch type {
             case .add:
                 // Add line number
-                afterLineIndex = afterLineIndex + 1
+                afterLineNumber = afterLineNumber + 1
                 // Update difference
                 addingLinesCount = addingLinesCount + 1
                 removingLinesCount = removingLinesCount - 1
             case .remove:
                 // Add line number
-                beforeLineIndex = beforeLineIndex + 1
+                beforeLineNumber = beforeLineNumber + 1
                 // Update difference
                 removingLinesCount = removingLinesCount + 1
                 addingLinesCount = addingLinesCount - 1
             default:
+                // Increment
+                beforeLineNumber = beforeLineNumber + 1
+                afterLineNumber = afterLineNumber + 1
+                
+                // Reset difference
                 addingLinesCount = 0
                 removingLinesCount = 0
-                
-                // Increment
-                beforeLineIndex = beforeLineIndex + 1
-                afterLineIndex = afterLineIndex + 1
             }
+            
+            var s = ""
         }
         
         // Fill in blanks
-        let linesChanges = max((Int(beforeDiffComma[1]) ?? 0), (Int(afterDiffComma[1]) ?? 0))
+        let linesChanges = max(parsed.0.numLines, parsed.1.numLines)
         let beforeDiffsCount = linesChanges - fileGroup.beforeDiffs.count
         let afterDiffsCount = linesChanges - fileGroup.afterDiffs.count
         
@@ -132,38 +137,61 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         return fileGroup
     }
     
-    fileprivate func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineIndex: Int, beforeLineIndex : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType {
+     // Parse "@@ -31,22 +31,17 @@" to extract line diffs
+    fileprivate func parseLines(input : String) -> (DiffInfo,DiffInfo){
+        var lineDiffs = input.components(separatedBy: " ")
+        var beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
+        var afterDiffComma = lineDiffs[2].components(separatedBy: ",")
+        
+        let bDiffFirst = beforeDiffComma[0]
+        let beforeLineIndex = Int(bDiffFirst.substring(from: bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1))) ?? 0
+        
+        let aDiffFirst = afterDiffComma[0]
+        let afterLineIndex = Int(aDiffFirst.substring(from: aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1))) ?? 0
+        
+        let beforeParse = DiffInfo(startingLine: beforeLineIndex, numLines: Int(beforeDiffComma[1]) ?? 0)
+        let afterParse = DiffInfo(startingLine: afterLineIndex, numLines: Int(afterDiffComma[1]) ?? 0)
+        
+        return (beforeParse,afterParse)
+    }
+    
+    fileprivate func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType {
+        
+        
         // Adding line
         if line.hasPrefix("+"){
-            var afterDiff = GitHubFileDiff()
-            afterDiff.setText(value: line)
-            afterDiff.setType(value: .add)
-            afterDiff.setLineNumber(value: afterLineIndex)
-            fileGroup.addAfterDiff(value: afterDiff)
+            var fileDiff = GitHubFileDiff()
+            fileDiff.setText(value: line)
+            fileDiff.setType(value: .add)
+            fileDiff.setLineNumber(value: afterLineNumber)
+            fileGroup.addAfterDiff(value: fileDiff)
             return .add
         }
         // Removing line
         else if line.hasPrefix("-"){
-            var beforeDiff = GitHubFileDiff()
-            beforeDiff.setText(value: line)
-            beforeDiff.setType(value: .remove)
-            beforeDiff.setLineNumber(value: beforeLineIndex)
-            fileGroup.addBeforeDiff(value: beforeDiff)
+            var fileDiff = GitHubFileDiff()
+            fileDiff.setText(value: line)
+            fileDiff.setType(value: .remove)
+            fileDiff.setLineNumber(value: beforeLineNumber)
+            fileGroup.addBeforeDiff(value: fileDiff)
             return .remove
         }
         // No change
         else {
             fillInBlanks(fileGroup: &fileGroup, addBeforeLines: addingLinesCount, addingAfterLines: removingLinesCount)
             
-            // Same line so add to both
-            var beforeDiff = GitHubFileDiff()
-            beforeDiff.setText(value: line)
-            beforeDiff.setLineNumber(value: beforeLineIndex)
-            fileGroup.addBeforeDiff(value: beforeDiff)
-            var afterDiff = GitHubFileDiff()
-            afterDiff.setText(value: line)
-            afterDiff.setLineNumber(value: afterLineIndex)
-            fileGroup.addAfterDiff(value: afterDiff)
+            // Before line #
+            var bFileDiff = GitHubFileDiff()
+            bFileDiff.setText(value: line)
+            bFileDiff.setLineNumber(value: beforeLineNumber)
+            fileGroup.addBeforeDiff(value: bFileDiff)
+            
+            // After line #
+            var aFileDiff = GitHubFileDiff()
+            aFileDiff.setText(value: line)
+            aFileDiff.setLineNumber(value: afterLineNumber)
+            fileGroup.addAfterDiff(value: aFileDiff)
+            
             return .same
         }
     }
@@ -187,8 +215,5 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
             }
         }
     }
-    
-    fileprivate func calcStartLine() -> Int {
-        return 0
-    }
+
 }

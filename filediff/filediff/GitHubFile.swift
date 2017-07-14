@@ -62,29 +62,30 @@ struct GitHubFileDiff {
 enum GitHubFileDiffType {
     case same, blank, remove, add
     
-    func getColor() -> UIColor {
+    func getDiffColor() -> UIColor {
         switch self {
         case .same:
-            return .clear
+            return .white
         case .blank:
             return UIColor(red: 0.980, green: 0.984, blue: 0.988, alpha: 1)
         case .remove:
-            return UIColor(red: 0.937, green: 0.839, blue: 0.839, alpha: 1)
+            return UIColor(red: 1, green: 0.933, blue: 0.941, alpha: 1)
         case .add:
-            return UIColor(red: 0.835, green: 0.914, blue: 0.808, alpha: 1)
+            return UIColor(red: 0.902, green: 1, blue: 0.929, alpha: 1)
         }
     }
     
-    func getForegroundColor() -> UIColor {
+    func getLineNumberColor() -> UIColor {
         switch self {
+        case .same:
+            return .white
+        case .blank:
+            return getDiffColor()
         case .remove:
-            return UIColor(red: 252/255, green: 184/255, blue: 193/255, alpha: 1)
+            return UIColor(red: 1, green: 0.863, blue: 0.878, alpha: 1)
         case .add:
-            return UIColor(red: 174/255, green: 241/255, blue: 191/255, alpha: 1)
-        default:
-            return getColor()
+            return UIColor(red: 0.804, green: 1, blue: 0.847, alpha: 1)
         }
     }
-
     
 }

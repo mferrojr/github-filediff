@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     
+    //https://stackoverflow.com/questions/42476395/how-to-split-string-using-regex-expressions
     func getMatches(pattern : String) -> [String]{
         let regex = try! NSRegularExpression(pattern: pattern, options: [])
         
