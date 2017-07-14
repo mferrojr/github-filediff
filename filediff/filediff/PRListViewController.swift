@@ -22,7 +22,7 @@ final class PRListViewController : UIViewController {
     
     lazy var refreshCtrl: UIRefreshControl = { [weak self] in
         let refreshControl = UIRefreshControl()
-        let title = NSLocalizedString("PullToRefresh", comment: "Pull to refresh")
+        let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
         refreshControl.attributedTitle = NSAttributedString(string: title)
         refreshControl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         return refreshControl
