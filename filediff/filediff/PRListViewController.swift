@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// VC to list PRs
 final class PRListViewController : UIViewController {
     
     //MARK: - Private Variables
@@ -35,11 +36,6 @@ final class PRListViewController : UIViewController {
         self.fetchData()
         self.showLoading()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,7 +51,6 @@ final class PRListViewController : UIViewController {
             let model = dataSource.datas[row]
             destVC.prId = model.id
             destVC.prNumber = model.number
-            
         default:
             break
         }

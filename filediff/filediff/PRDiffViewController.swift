@@ -8,6 +8,7 @@
 
 import UIKit
 
+// VC to show PR Diff
 final class PRDiffViewController: UIViewController {
 
     //MARK: - Public Variables
@@ -46,11 +47,6 @@ final class PRDiffViewController: UIViewController {
         
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - Private Functions

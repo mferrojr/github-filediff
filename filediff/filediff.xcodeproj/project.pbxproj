@@ -166,8 +166,8 @@
 				017A146E1F1310F7004E9EE6 /* Models */,
 				01C5983C1F1567F000B93E48 /* Persistence */,
 				01C598491F156FD900B93E48 /* Resources */,
-				017A14701F131130004E9EE6 /* Views */,
 				BBEED5C31F19238C0025661E /* Utils */,
+				017A14701F131130004E9EE6 /* Views */,
 			);
 			path = filediff;
 			sourceTree = "<group>";

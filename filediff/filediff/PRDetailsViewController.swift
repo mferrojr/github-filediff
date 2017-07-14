@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
+// VC to show PR Details
 final class PRDetailsViewController : UIViewController {
     
     //MARK: - Public Varibales
@@ -17,6 +18,8 @@ final class PRDetailsViewController : UIViewController {
     var prNumber = 0
     
     //MARK: - Private Variables
+    
+    //MARK: IBOutlets
     @IBOutlet weak fileprivate var titleLabel: UILabel!
     @IBOutlet weak fileprivate var stackView: UIStackView!
     @IBOutlet weak fileprivate var descriptionLabel: UILabel!
@@ -24,6 +27,7 @@ final class PRDetailsViewController : UIViewController {
     
     fileprivate var prDetailOperation : SyncPRDetailsOperation?
     fileprivate var diffUrl : String?
+    fileprivate let MARGIN : CGFloat = 20
     
     //MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -33,11 +37,6 @@ final class PRDetailsViewController : UIViewController {
         self.fetchData()
         self.showLoading()
         self.setUpStackView()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     //MARK: - Actions
@@ -111,7 +110,7 @@ final class PRDetailsViewController : UIViewController {
     }
     
     fileprivate func setUpStackView() {
-        stackView.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        stackView.layoutMargins = UIEdgeInsets(top: MARGIN, left: MARGIN, bottom: MARGIN, right: MARGIN)
         stackView.isLayoutMarginsRelativeArrangement = true
     }
     

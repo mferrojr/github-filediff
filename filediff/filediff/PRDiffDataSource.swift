@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct DiffInfo {
-    var startingLine = 0
+    var startingLine = 1
     var numLines = 0
 }
 
@@ -19,7 +19,7 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
     private(set) var datas = [GitHubFile]()
     
     fileprivate let FILE_DELIMITER = "diff --git "
-    fileprivate let GROUP_DELIMITER = "@@ "
+    fileprivate let GROUP_DELIMITER = "@@"
     fileprivate let ROW_DELIMITER = "\n"
     
     //MARK: - Public Functions
@@ -70,7 +70,7 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         let groups = file.substring(from: groupRange)
         
         // For each group
-        for group in groups.getMatches(pattern: "@@ .* @@") {
+        for group in groups.getMatches(pattern: "\(GROUP_DELIMITER) .* \(GROUP_DELIMITER)") {
             ghFile.addGroup(value: processGroup(group: group))
         }
         
@@ -142,10 +142,10 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         var afterDiffComma = lineDiffs[2].components(separatedBy: ",")
         
         let bDiffFirst = beforeDiffComma[0]
-        let beforeLineIndex = Int(bDiffFirst.substring(from: bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1))) ?? 0
+        let beforeLineIndex = Int(bDiffFirst.substring(from: bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1))) ?? 1
         
         let aDiffFirst = afterDiffComma[0]
-        let afterLineIndex = Int(aDiffFirst.substring(from: aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1))) ?? 0
+        let afterLineIndex = Int(aDiffFirst.substring(from: aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1))) ?? 1
         
         let beforeParse = DiffInfo(startingLine: beforeLineIndex, numLines: Int(beforeDiffComma[1]) ?? 0)
         let afterParse = DiffInfo(startingLine: afterLineIndex, numLines: Int(afterDiffComma[1]) ?? 0)
