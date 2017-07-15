@@ -32,12 +32,6 @@ final class PRDiffViewController: UIViewController {
     fileprivate var prDiffOperation : SyncPRDiffOperation?
     
     //MARK: View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.estimatedRowHeight = 20
-        tableView.rowHeight = UITableViewAutomaticDimension //TODO: Manually calculate for better scrolling
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -60,6 +54,7 @@ final class PRDiffViewController: UIViewController {
     //MARK: - Private Functions
     fileprivate func setUpTable(){
         self.tableView.dataSource = dataSource
+        self.tableView.delegate = self
         self.tableView.tableHeaderView = UIView(frame: .zero)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.addSubview(refreshCtrl)
@@ -72,7 +67,7 @@ final class PRDiffViewController: UIViewController {
     
     fileprivate func fetchData() {
         let queue = OperationQueue()
-        queue.qualityOfService = .userInitiated
+        queue.qualityOfService = .background
         
         prDiffOperation = SyncPRDiffOperation()
         prDiffOperation?.diffUrl = diffUrl
@@ -109,4 +104,27 @@ final class PRDiffViewController: UIViewController {
         activityIndicator.isHidden = true
     }
 
+}
+
+//MARK: - UITableViewDelegate
+extension PRDiffViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView,didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if dataSource.getCellHeight(index: indexPath.row) == nil {
+            dataSource.setCellHeight(index: indexPath.row, height: cell.frame.height)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height = dataSource.getCellHeight(index: indexPath.row) {
+            return height
+        }
+        else {
+            return UITableViewAutomaticDimension
+        }
+    }
 }

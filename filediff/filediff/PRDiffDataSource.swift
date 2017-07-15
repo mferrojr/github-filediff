@@ -50,6 +50,14 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         return cell
     }
     
+    func getCellHeight(index : Int) -> CGFloat? {
+        return datas[index].cellHeight
+    }
+    
+    func setCellHeight(index : Int, height : CGFloat){
+        datas[index].setCellHeight(value: height)
+    }
+    
     //MARK: - Private Functions
     fileprivate func preProcess(input : String) -> [String] {
         let text = input.replacingOccurrences(of: "\t", with: "    ")
@@ -83,7 +91,8 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         
         // New group
         var fileGroup = GitHubFileGroup()
-        fileGroup.setTitle(value: lines[0])
+        let groupComponents = group.components(separatedBy: GROUP_DELIMITER)
+        fileGroup.setTitle(value: GROUP_DELIMITER + groupComponents[1] + GROUP_DELIMITER)
         
         guard lines.count > 1 else { return fileGroup }
         

@@ -69,22 +69,18 @@ final class GitHubService {
         
         let request = Alamofire.download(diffUrl, to: destination)
         
-        request
-            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { (progress) in
-                print("Progress: \(progress.fractionCompleted)")
+        request.validate().responseData { response in
+            switch response.result {
+            case .success(_):
+                guard let url = response.destinationURL else { errorCB(nil); return }
+                guard let fileText = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { errorCB(nil); return }
+                guard let _ = try? FileManager.default.removeItem(at: url) else { errorCB(nil); return }
+                
+                successCB(fileText)
+            case .failure(let error):
+                errorCB(error)
             }
-            .validate().responseData { response in
-                switch response.result {
-                case .success(_):
-                    guard let url = response.destinationURL else { errorCB(nil); return }
-                    guard let fileText = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { errorCB(nil); return }
-                    guard let _ = try? FileManager.default.removeItem(at: url) else { errorCB(nil); return }
-                    
-                    successCB(fileText)
-                case .failure(let error):
-                    errorCB(error)
-                }
-            }
+        }
         return request
     }
     

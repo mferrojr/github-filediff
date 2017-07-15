@@ -12,6 +12,7 @@ import UIKit
 struct GitHubFile {
     var name = ""
     var groups = [GitHubFileGroup]()
+    var cellHeight : CGFloat?
     
     mutating func setName(value: String) {
         name = value
@@ -19,6 +20,10 @@ struct GitHubFile {
     
     mutating func addGroup(value: GitHubFileGroup) {
         groups.append(value)
+    }
+    
+    mutating func setCellHeight(value : CGFloat) {
+        cellHeight = value
     }
 }
 
