@@ -67,7 +67,7 @@ final class PRDiffViewController: UIViewController {
     
     fileprivate func fetchData() {
         let queue = OperationQueue()
-        queue.qualityOfService = .background
+        queue.qualityOfService = .userInitiated
         
         prDiffOperation = SyncPRDiffOperation()
         prDiffOperation?.diffUrl = diffUrl
