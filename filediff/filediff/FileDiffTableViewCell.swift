@@ -18,6 +18,7 @@ final class FileDiffTableViewCell: UITableViewCell {
     
     //MARK: - Private Variables
     fileprivate let groupColor = UIColor(red: 0.945, green: 0.973, blue: 1, alpha: 1)
+    
     fileprivate let groupFontSize : CGFloat = 12
     fileprivate let lineFontSize : CGFloat = 8
     
@@ -58,11 +59,13 @@ final class FileDiffTableViewCell: UITableViewCell {
     fileprivate func addGroupRow(title: String){
         //Add Before
         let textLabel = createLabel(text: title, color: groupColor, size: groupFontSize)
-        beforeStackView.addArrangedSubview(textLabel)
+        let textContainer = createGroupContainer(textLabel: textLabel)
+        beforeStackView.addArrangedSubview(textContainer)
         
         //Add After
         let blankLabel = createLabel(text: " ", color: groupColor, size: groupFontSize)
-        afterStackView.addArrangedSubview(blankLabel)
+        let blankTextContainer = createGroupContainer(textLabel: blankLabel)
+        afterStackView.addArrangedSubview(blankTextContainer)
     }
     
     fileprivate func addBeforeRow(withDiff diff: GitHubFileDiff){
@@ -70,7 +73,7 @@ final class FileDiffTableViewCell: UITableViewCell {
         numberLabel.textAlignment = .center
         let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor(), size: lineFontSize)
         
-        let container = createContainer(numberLabel: numberLabel, textLabel: textLabel)
+        let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         beforeStackView.addArrangedSubview(container)
     }
     
@@ -79,8 +82,21 @@ final class FileDiffTableViewCell: UITableViewCell {
         numberLabel.textAlignment = .center
         let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor(), size: lineFontSize)
         
-        let container = createContainer(numberLabel: numberLabel, textLabel: textLabel)
+        let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         afterStackView.addArrangedSubview(container)
+    }
+    
+    fileprivate func createGroupContainer(textLabel : UILabel) -> UIView {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(textLabel)
+        
+        textLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        textLabel.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        textLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
+        textLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+        
+        return container
     }
     
     fileprivate func createLabel(text: String?, color: UIColor, size: CGFloat) -> UILabel {
@@ -88,16 +104,13 @@ final class FileDiffTableViewCell: UITableViewCell {
         textLabel.backgroundColor = color
         textLabel.text = text ?? " "
         textLabel.font = textLabel.font.withSize(size)
-        textLabel.numberOfLines = 0
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.sizeToFit()
         
         return textLabel
     }
     
-    fileprivate func createContainer(numberLabel : UILabel, textLabel: UILabel) -> UIView {
-        numberLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.sizeToFit()
-        
+    fileprivate func createRowContainer(numberLabel : UILabel, textLabel: UILabel) -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(numberLabel)

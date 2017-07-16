@@ -407,7 +407,7 @@
 				TargetAttributes = {
 					017A143A1F13109D004E9EE6 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = B67XRFU44H;
+						DevelopmentTeam = 5AXT2S9SA9;
 						ProvisioningStyle = Automatic;
 					};
 					017A144E1F13109E004E9EE6 = {
@@ -793,7 +793,7 @@
 			baseConfigurationReference = D08528B728A852EF94BBD054 /* Pods-filediff.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B67XRFU44H;
+				DEVELOPMENT_TEAM = 5AXT2S9SA9;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediff;
@@ -807,7 +807,7 @@
 			baseConfigurationReference = 919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B67XRFU44H;
+				DEVELOPMENT_TEAM = 5AXT2S9SA9;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediff;

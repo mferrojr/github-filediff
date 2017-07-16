@@ -116,15 +116,10 @@ extension PRDiffViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return dataSource.getCellHeight(index: indexPath.row) ?? UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let height = dataSource.getCellHeight(index: indexPath.row) {
-            return height
-        }
-        else {
-            return UITableViewAutomaticDimension
-        }
+        return dataSource.getCellHeight(index: indexPath.row) ?? UITableViewAutomaticDimension
     }
 }

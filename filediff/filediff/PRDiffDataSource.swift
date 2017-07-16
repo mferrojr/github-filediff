@@ -18,6 +18,7 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
     
     private(set) var datas = [GitHubFile]()
     
+    //MARK: - Private Variables
     fileprivate let FILE_DELIMITER = "diff --git "
     fileprivate let GROUP_DELIMITER = "@@"
     fileprivate let ROW_DELIMITER = "\n"
@@ -51,6 +52,8 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
     }
     
     func getCellHeight(index : Int) -> CGFloat? {
+        guard index < datas.count else { return nil }
+        
         return datas[index].cellHeight
     }
     
@@ -111,19 +114,19 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
                 afterLineNumber: afterLineNumber,beforeLineNumber:beforeLineNumber,
                 addingLinesCount: addingLinesCount, removingLinesCount: removingLinesCount)
             switch type {
-            case .add:
+            case .some(.add):
                 // Add line number
                 afterLineNumber = afterLineNumber + 1
                 // Update difference
                 addingLinesCount = addingLinesCount + 1
                 removingLinesCount = removingLinesCount - 1
-            case .remove:
+            case .some(.remove):
                 // Add line number
                 beforeLineNumber = beforeLineNumber + 1
                 // Update difference
                 removingLinesCount = removingLinesCount + 1
                 addingLinesCount = addingLinesCount - 1
-            default:
+            case .some(.blank), .some(.same):
                 // Increment
                 beforeLineNumber = beforeLineNumber + 1
                 afterLineNumber = afterLineNumber + 1
@@ -131,6 +134,8 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
                 // Reset difference
                 addingLinesCount = 0
                 removingLinesCount = 0
+            default:
+                break
             }
         }
         
@@ -162,7 +167,9 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         return (beforeParse,afterParse)
     }
     
-    fileprivate func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType {
+    fileprivate func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType? {
+        
+        guard !line.isEmpty else { return nil }
         
         // Adding line
         if line.hasPrefix("+"){
@@ -183,7 +190,7 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
             return .remove
         }
         // No change
-        else {
+        else  {
             fillInBlanks(fileGroup: &fileGroup, addBeforeLines: addingLinesCount, addingAfterLines: removingLinesCount)
             
             // Before line #
