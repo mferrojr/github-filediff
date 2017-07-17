@@ -17,13 +17,13 @@ struct FileDiffTableViewModel {
 final class FileDiffTableViewCell: UITableViewCell {
     
     //MARK: - Private Variables
-    fileprivate let groupColor = UIColor(red: 0.945, green: 0.973, blue: 1, alpha: 1)
+    fileprivate let TOP_PADDING : CGFloat = 10
+    fileprivate let GROUP_COLOR = UIColor(red: 0.945, green: 0.973, blue: 1, alpha: 1)
+    fileprivate let FONT_SIZE : CGFloat = 8
+    fileprivate let LINE_NUMBER_WIDTH : CGFloat = 25
+    fileprivate let FILE_NAME_SIZE : CGFloat = 17
     
-    fileprivate let groupFontSize : CGFloat = 12
-    fileprivate let lineFontSize : CGFloat = 8
-    
-    fileprivate let lineNumberWidth : CGFloat = 25
-    fileprivate let lineNumberHeight : CGFloat = 15
+    fileprivate var model : FileDiffTableViewModel!
     
     //MARK: IBOutlets
     @IBOutlet weak fileprivate var nameLabel: UILabel!
@@ -37,6 +37,8 @@ final class FileDiffTableViewCell: UITableViewCell {
     
     //MARK: - Public Functions
     func configure(_ model : FileDiffTableViewModel) {
+        self.model =  model
+        
         clearArrangedSubviews()
         
         self.nameLabel.text = model.name
@@ -55,32 +57,43 @@ final class FileDiffTableViewCell: UITableViewCell {
         }
     }
     
+    func getCellHeight() -> CGFloat {
+        var height = TOP_PADDING + (FILE_NAME_SIZE * 1.5)
+        
+        for group in model.groups {
+            height = height + FONT_SIZE
+            height = height + (CGFloat(group.afterDiffs.count) * (FONT_SIZE + 0.5))
+        }
+        
+        return height
+    }
+    
     //MARK: - Private Functions
     fileprivate func addGroupRow(title: String){
         //Add Before
-        let textLabel = createLabel(text: title, color: groupColor, size: groupFontSize)
+        let textLabel = createLabel(text: title, color: GROUP_COLOR)
         let textContainer = createGroupContainer(textLabel: textLabel)
         beforeStackView.addArrangedSubview(textContainer)
         
         //Add After
-        let blankLabel = createLabel(text: " ", color: groupColor, size: groupFontSize)
+        let blankLabel = createLabel(text: " ", color: GROUP_COLOR)
         let blankTextContainer = createGroupContainer(textLabel: blankLabel)
         afterStackView.addArrangedSubview(blankTextContainer)
     }
     
     fileprivate func addBeforeRow(withDiff diff: GitHubFileDiff){
-        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor(), size: lineFontSize)
+        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
         numberLabel.textAlignment = .center
-        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor(), size: lineFontSize)
+        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         beforeStackView.addArrangedSubview(container)
     }
     
     fileprivate func addAfterRow(withDiff diff: GitHubFileDiff){
-        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor(), size: lineFontSize)
+        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
         numberLabel.textAlignment = .center
-        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor(), size: lineFontSize)
+        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         afterStackView.addArrangedSubview(container)
@@ -94,17 +107,18 @@ final class FileDiffTableViewCell: UITableViewCell {
         textLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         textLabel.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         textLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+        textLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
         
         return container
     }
     
-    fileprivate func createLabel(text: String?, color: UIColor, size: CGFloat) -> UILabel {
+    fileprivate func createLabel(text: String?, color: UIColor) -> UILabel {
         let textLabel = UILabel()
         textLabel.backgroundColor = color
         textLabel.text = text ?? " "
-        textLabel.font = textLabel.font.withSize(size)
+        textLabel.font = textLabel.font.withSize(FONT_SIZE)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.numberOfLines = 1
         textLabel.sizeToFit()
         
         return textLabel
@@ -118,13 +132,13 @@ final class FileDiffTableViewCell: UITableViewCell {
         
         numberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         numberLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        numberLabel.widthAnchor.constraint(equalToConstant: lineNumberWidth).isActive = true
-        numberLabel.heightAnchor.constraint(equalToConstant: lineNumberHeight).isActive = true
+        numberLabel.widthAnchor.constraint(equalToConstant: LINE_NUMBER_WIDTH).isActive = true
+        numberLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
         
         textLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor).isActive = true
-        textLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        textLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        textLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
         
         return view
     }

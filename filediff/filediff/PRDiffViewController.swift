@@ -109,16 +109,6 @@ final class PRDiffViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension PRDiffViewController : UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView,didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if dataSource.getCellHeight(index: indexPath.row) == nil {
-            dataSource.setCellHeight(index: indexPath.row, height: cell.frame.height)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return dataSource.getCellHeight(index: indexPath.row) ?? UITableViewAutomaticDimension
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return dataSource.getCellHeight(index: indexPath.row) ?? UITableViewAutomaticDimension
     }

@@ -47,18 +47,21 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
         let model = datas[indexPath.row]
         
         cell.configure(FileDiffTableViewModel(name: model.name, groups: model.groups))
+        setCellHeight(index: indexPath.row, height: cell.getCellHeight())
         
         return cell
+    }
+    
+    func setCellHeight(index : Int, height : CGFloat){
+        guard index < datas.count else { return }
+        
+        datas[index].setCellHeight(value: height)
     }
     
     func getCellHeight(index : Int) -> CGFloat? {
         guard index < datas.count else { return nil }
         
         return datas[index].cellHeight
-    }
-    
-    func setCellHeight(index : Int, height : CGFloat){
-        datas[index].setCellHeight(value: height)
     }
     
     //MARK: - Private Functions
