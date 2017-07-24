@@ -30,7 +30,7 @@ class PRListDataSource : NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FileDiffCell.prCell.rawValue, for: indexPath) as! PRTableViewCell
         
         let model = datas[indexPath.row]
-        var subTitle = "#\(model.id)"
+        var subTitle = "#\(model.number)"
         
         if let login = model.user?.login {
             subTitle.append(" by \(login)")
