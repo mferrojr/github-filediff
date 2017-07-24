@@ -35,6 +35,7 @@
 		01C598611F16E4B600B93E48 /* FileDiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */; };
 		01C598631F16F12E00B93E48 /* SyncPRDiffOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
+		BBDFDC2C1F26410600982B02 /* GitHubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDFDC2B1F26410600982B02 /* GitHubParser.swift */; };
 		BBEED5C01F17EC850025661E /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */; };
 		BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5C11F1813AE0025661E /* StringExtensions.swift */; };
 		BBEED5C51F19239E0025661E /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5C41F19239E0025661E /* AppUtility.swift */; };
@@ -99,6 +100,7 @@
 		62A3F954AE982C1FEBAB2879 /* Pods-filediffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffUITests/Pods-filediffUITests.release.xcconfig"; sourceTree = "<group>"; };
 		919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.release.xcconfig"; sourceTree = "<group>"; };
 		95B7E9B4290C25065452A654 /* Pods-filediffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.release.xcconfig"; sourceTree = "<group>"; };
+		BBDFDC2B1F26410600982B02 /* GitHubParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubParser.swift; sourceTree = "<group>"; };
 		BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 		BBEED5C11F1813AE0025661E /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		BBEED5C41F19239E0025661E /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				BBEED5C41F19239E0025661E /* AppUtility.swift */,
+				BBDFDC2B1F26410600982B02 /* GitHubParser.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				017A14741F13118C004E9EE6 /* PRListViewController.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
 				01C598481F156D8C00B93E48 /* GitHubObject.swift in Sources */,
+				BBDFDC2C1F26410600982B02 /* GitHubParser.swift in Sources */,
 				01C5985F1F16E44E00B93E48 /* GitHubFile.swift in Sources */,
 				01C598571F159B9200B93E48 /* PRListDataSource.swift in Sources */,
 				01C598591F159E3F00B93E48 /* UITableViewCellExtensions.swift in Sources */,

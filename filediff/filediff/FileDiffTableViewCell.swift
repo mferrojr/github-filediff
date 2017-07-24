@@ -30,11 +30,6 @@ final class FileDiffTableViewCell: UITableViewCell {
     @IBOutlet weak fileprivate var beforeStackView: UIStackView!
     @IBOutlet weak fileprivate var afterStackView: UIStackView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        clearArrangedSubviews()
-    }
-    
     //MARK: - Public Functions
     func configure(_ model : FileDiffTableViewModel) {
         self.model =  model
@@ -71,19 +66,21 @@ final class FileDiffTableViewCell: UITableViewCell {
     //MARK: - Private Functions
     fileprivate func addGroupRow(title: String){
         //Add Before
-        let textLabel = createLabel(text: title, color: GROUP_COLOR)
-        let textContainer = createGroupContainer(textLabel: textLabel)
-        beforeStackView.addArrangedSubview(textContainer)
+        if let textLabel = createLabel(text: title, color: GROUP_COLOR) {
+            let textContainer = createGroupContainer(textLabel: textLabel)
+            beforeStackView.addArrangedSubview(textContainer)
+        }
         
         //Add After
-        let blankLabel = createLabel(text: " ", color: GROUP_COLOR)
-        let blankTextContainer = createGroupContainer(textLabel: blankLabel)
-        afterStackView.addArrangedSubview(blankTextContainer)
+        if let blankLabel = createLabel(text: " ", color: GROUP_COLOR) {
+            let blankTextContainer = createGroupContainer(textLabel: blankLabel)
+            afterStackView.addArrangedSubview(blankTextContainer)
+        }
     }
     
     fileprivate func addBeforeRow(withDiff diff: GitHubFileDiff){
         let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
-        numberLabel.textAlignment = .center
+        numberLabel?.textAlignment = .center
         let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
@@ -92,7 +89,7 @@ final class FileDiffTableViewCell: UITableViewCell {
     
     fileprivate func addAfterRow(withDiff diff: GitHubFileDiff){
         let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
-        numberLabel.textAlignment = .center
+        numberLabel?.textAlignment = .center
         let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
@@ -101,7 +98,6 @@ final class FileDiffTableViewCell: UITableViewCell {
     
     fileprivate func createGroupContainer(textLabel : UILabel) -> UIView {
         let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(textLabel)
         
         textLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
@@ -112,10 +108,14 @@ final class FileDiffTableViewCell: UITableViewCell {
         return container
     }
     
-    fileprivate func createLabel(text: String?, color: UIColor) -> UILabel {
+    fileprivate func createLabel(text: String?, color: UIColor) -> UILabel? {
+        guard let text = text else {
+            return nil
+        }
+        
         let textLabel = UILabel()
         textLabel.backgroundColor = color
-        textLabel.text = text ?? " "
+        textLabel.text = text
         textLabel.font = textLabel.font.withSize(FONT_SIZE)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.numberOfLines = 1
@@ -124,28 +124,32 @@ final class FileDiffTableViewCell: UITableViewCell {
         return textLabel
     }
     
-    fileprivate func createRowContainer(numberLabel : UILabel, textLabel: UILabel) -> UIView {
+    fileprivate func createRowContainer(numberLabel : UILabel?, textLabel: UILabel?) -> UIView {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(numberLabel)
-        view.addSubview(textLabel)
+        view.backgroundColor = GitHubFileDiffType.blank.getDiffColor()
         
-        numberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        numberLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        numberLabel.widthAnchor.constraint(equalToConstant: LINE_NUMBER_WIDTH).isActive = true
-        numberLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
+        if let numberLabel = numberLabel {
+            view.addSubview(numberLabel)
+            numberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            numberLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            numberLabel.widthAnchor.constraint(equalToConstant: LINE_NUMBER_WIDTH).isActive = true
+            numberLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
+        }
         
-        textLabel.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor).isActive = true
-        textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        textLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        textLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
+        if let textLabel = textLabel {
+            view.addSubview(textLabel)
+            textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: LINE_NUMBER_WIDTH).isActive = true
+            textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            textLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            textLabel.heightAnchor.constraint(equalToConstant: FONT_SIZE).isActive = true
+        }
         
         return view
     }
     
     fileprivate func clearArrangedSubviews(){
-        beforeStackView.removeArrangedSubviews()
-        afterStackView.removeArrangedSubviews()
+        beforeStackView.removeSubviews()
+        afterStackView.removeSubviews()
     }
     
     fileprivate func getLineNumber(number : Int?) -> String? {
