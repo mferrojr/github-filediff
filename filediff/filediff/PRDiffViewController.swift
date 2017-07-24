@@ -72,7 +72,8 @@ final class PRDiffViewController: UIViewController {
         prDiffOperation = SyncPRDiffOperation()
         prDiffOperation?.diffUrl = diffUrl
         prDiffOperation?.completionBlock = { [unowned self] in
-            self.dataSource.refresh(fileText: self.prDiffOperation!.fileText)
+            let files = GitHubParser.parse(fileText: self.prDiffOperation!.fileText)
+            self.dataSource.refresh(files: files)
             self.prDiffOperation = nil
 
             // UI Changes on the main queue
