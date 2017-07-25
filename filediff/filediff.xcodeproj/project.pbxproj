@@ -35,6 +35,8 @@
 		01C598611F16E4B600B93E48 /* FileDiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */; };
 		01C598631F16F12E00B93E48 /* SyncPRDiffOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
+		BBBF6A501F277D75007ABCCB /* FileDiffQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBF6A4F1F277D75007ABCCB /* FileDiffQueue.swift */; };
+		BBBF6A521F2783DF007ABCCB /* GitHubParserOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBF6A511F2783DF007ABCCB /* GitHubParserOperation.swift */; };
 		BBDFDC2C1F26410600982B02 /* GitHubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDFDC2B1F26410600982B02 /* GitHubParser.swift */; };
 		BBEED5C01F17EC850025661E /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */; };
 		BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEED5C11F1813AE0025661E /* StringExtensions.swift */; };
@@ -100,6 +102,8 @@
 		62A3F954AE982C1FEBAB2879 /* Pods-filediffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffUITests/Pods-filediffUITests.release.xcconfig"; sourceTree = "<group>"; };
 		919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.release.xcconfig"; sourceTree = "<group>"; };
 		95B7E9B4290C25065452A654 /* Pods-filediffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.release.xcconfig"; sourceTree = "<group>"; };
+		BBBF6A4F1F277D75007ABCCB /* FileDiffQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDiffQueue.swift; sourceTree = "<group>"; };
+		BBBF6A511F2783DF007ABCCB /* GitHubParserOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubParserOperation.swift; sourceTree = "<group>"; };
 		BBDFDC2B1F26410600982B02 /* GitHubParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubParser.swift; sourceTree = "<group>"; };
 		BBEED5BF1F17EC850025661E /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
 		BBEED5C11F1813AE0025661E /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				01C5984A1F15727100B93E48 /* BaseOperation.swift */,
+				BBBF6A511F2783DF007ABCCB /* GitHubParserOperation.swift */,
 				01C5985A1F15BCA600B93E48 /* SyncPRDetailsOperation.swift */,
 				01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */,
 				01C5983A1F14506700B93E48 /* SyncPRsOperation.swift */,
@@ -254,6 +259,7 @@
 			children = (
 				01C598551F159B8200B93E48 /* DataSource */,
 				017A146F1F131100004E9EE6 /* Operations */,
+				BBBF6A4E1F277CA6007ABCCB /* Queues */,
 				01C5983D1F15680B00B93E48 /* Repositories */,
 				017A146C1F1310E3004E9EE6 /* Services */,
 			);
@@ -322,6 +328,14 @@
 				62A3F954AE982C1FEBAB2879 /* Pods-filediffUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BBBF6A4E1F277CA6007ABCCB /* Queues */ = {
+			isa = PBXGroup;
+			children = (
+				BBBF6A4F1F277D75007ABCCB /* FileDiffQueue.swift */,
+			);
+			name = Queues;
 			sourceTree = "<group>";
 		};
 		BBEED5C31F19238C0025661E /* Utils */ = {
@@ -620,6 +634,8 @@
 				BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */,
 				01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */,
 				BBEED5C51F19239E0025661E /* AppUtility.swift in Sources */,
+				BBBF6A521F2783DF007ABCCB /* GitHubParserOperation.swift in Sources */,
+				BBBF6A501F277D75007ABCCB /* FileDiffQueue.swift in Sources */,
 				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
 				01C598421F15690B00B93E48 /* PRRepository.swift in Sources */,
 				01C598311F14391E00B93E48 /* PRDetailsViewController.swift in Sources */,

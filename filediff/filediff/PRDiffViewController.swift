@@ -29,7 +29,7 @@ final class PRDiffViewController: UIViewController {
         }()
     
     fileprivate let dataSource = PRDiffDataSource()
-    fileprivate var prDiffOperation : SyncPRDiffOperation?
+    fileprivate let queue = FileDiffQueue()
     
     //MARK: View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -47,8 +47,7 @@ final class PRDiffViewController: UIViewController {
         
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
-        prDiffOperation?.cancel()
-        prDiffOperation = nil
+        queue.cancel()
     }
     
     //MARK: - Private Functions
@@ -66,34 +65,27 @@ final class PRDiffViewController: UIViewController {
     }
     
     fileprivate func fetchData() {
-        let queue = OperationQueue()
-        queue.qualityOfService = .userInitiated
-        
-        prDiffOperation = SyncPRDiffOperation()
-        prDiffOperation?.diffUrl = diffUrl
-        prDiffOperation?.completionBlock = { [unowned self] in
-            guard let fileText = self.prDiffOperation?.fileText else { return }
-            
-            let files = GitHubParser.parse(fileText: fileText)
-            self.dataSource.refresh(files: files)
-            self.prDiffOperation = nil
-
-            // UI Changes on the main queue
-            DispatchQueue.main.async { [unowned self] in
-                self.stopLoading()
-                self.tableView.reloadData()
+        queue.getFileDiff(diffUrl: diffUrl,
+        completion: { result in
+            switch result {
+            case .success(let value):
+                if let value = value {
+                    self.dataSource.refresh(files: value)
+                }
+                
+                // UI Changes on the main queue
+                DispatchQueue.main.async { [unowned self] in
+                    self.stopLoading()
+                    self.tableView.reloadData()
+                }
+            case .error:
+                // UI Changes on the main queue
+                DispatchQueue.main.async { [unowned self] in
+                    self.stopLoading()
+                    self.displayError()
+                }
             }
-        }
-        prDiffOperation?.errorCallback = { _ in
-            // UI Changes on the main queue
-            DispatchQueue.main.async { [unowned self] in
-                self.stopLoading()
-                self.displayError()
-            }
-        }
-        if let op = prDiffOperation {
-            queue.addOperation(op)
-        }
+        })
     }
     
     fileprivate func showLoading(){

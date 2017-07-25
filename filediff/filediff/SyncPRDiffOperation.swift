@@ -11,8 +11,13 @@ import Foundation
 class SyncPRDiffOperation : BaseOperation {
     
     //MARK: - Public Variables
-    var diffUrl = ""
-    var fileText : String!
+    fileprivate var diffUrl = ""
+    fileprivate var context : FileDiffQueueContext!
+    
+    required init(diffUrl : String, context : FileDiffQueueContext) {
+        self.diffUrl = diffUrl
+        self.context = context
+    }
     
     override func main() {
         super.main()
@@ -24,7 +29,7 @@ class SyncPRDiffOperation : BaseOperation {
     }
     
     private func successCB(_ response : String) {
-        self.fileText = response
+        self.context.fileText = response
         self.done()
     }
     
