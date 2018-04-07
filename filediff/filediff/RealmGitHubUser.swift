@@ -17,9 +17,9 @@ struct GitHubUser {
 final class RealmGitHubUser : GitHubObject, GitHubRealmBase {
     
     //MARK: - Varibales
-    dynamic var id = 0
-    dynamic var login = ""
-    dynamic var avatar_url = ""
+    @objc dynamic var id = 0
+    @objc dynamic var login = ""
+    @objc dynamic var avatar_url = ""
     
     override func mapping(map: Map) {
         id <- map["id"]

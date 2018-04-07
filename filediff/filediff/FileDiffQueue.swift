@@ -65,8 +65,8 @@ class FileDiffQueue {
         parseFilesOperation.errorCallback = { error in
             completion(.error(error))
         }
-        parseFilesOperation.completionBlock = { _ in
-            completion(.success(context.files))
+        parseFilesOperation.completionBlock = {
+           completion(.success(context.files))
         }
         parseFilesOperation.addDependency(prDiffOperation)
         

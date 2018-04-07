@@ -20,12 +20,12 @@ extension String {
         // the combination of zip, dropFirst and map to optional here is a trick
         // to be able to map on [(result1, result2), (result2, result3), (result3, nil)]
         let results = zip(matches, matches.dropFirst().map { Optional.some($0) } + [nil]).map { current, next -> String in
-            let range = current.rangeAt(0)
-            let start = String.UTF16Index(range.location)
+            let range = current.range(at: 0)
+            let start = String.UTF16Index(encodedOffset: range.lowerBound)
             // if there's a next, use it's starting location as the ending of our match
             // otherwise, go to the end of the searched string
-            let end = next.map { $0.rangeAt(0) }.map { String.UTF16Index($0.location) } ?? String.UTF16Index(self.utf16.count)
-            
+            let end = next.map { $0.range(at: 0) }.map { _ in String.UTF16Index(encodedOffset: range.lowerBound) } ?? String.UTF16Index(encodedOffset: self.count)
+
             return String(self.utf16[start..<end])!
         }
         

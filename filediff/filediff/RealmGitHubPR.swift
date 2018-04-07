@@ -23,14 +23,14 @@ struct GitHubPR {
 final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
     
     //MARK: - Varibales
-    dynamic var id = 0
-    dynamic var number = 0
-    dynamic var diff_url = ""
-    dynamic var state = ""
-    dynamic var title = ""
-    dynamic var body = ""
-    dynamic var created_at = ""
-    dynamic var user : RealmGitHubUser?
+    @objc dynamic var id = 0
+    @objc dynamic var number = 0
+    @objc dynamic var diff_url = ""
+    @objc dynamic var state = ""
+    @objc dynamic var title = ""
+    @objc dynamic var body = ""
+    @objc dynamic var created_at = ""
+    @objc dynamic var user : RealmGitHubUser?
     
     override func mapping(map: Map) {
         id <- map["id"]

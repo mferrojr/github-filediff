@@ -46,12 +46,12 @@ struct GitHubParser {
         // Get File Title
         var lines = file.components(separatedBy: ROW_DELIMITER)
         if let index = lines[0].range(of: "/", options: .backwards)?.lowerBound {
-            ghFile.setName(value: lines[0].substring(from: lines[0].index(index, offsetBy: 1)))
+            ghFile.setName(value: String(lines[0][lines[0].index(index, offsetBy: 1)...]))
         }
         
         // Remove file info and break the file into groups
         guard let groupRange = file.range(of: GROUP_DELIMITER)?.lowerBound else { return ghFile }
-        let groups = file.substring(from: groupRange)
+        let groups = String(file[groupRange...])
         
         // For each group
         for group in groups.getMatches(pattern: "\(GROUP_DELIMITER) .* \(GROUP_DELIMITER)") {
@@ -68,6 +68,9 @@ struct GitHubParser {
         // New group
         var fileGroup = GitHubFileGroup()
         let groupComponents = group.components(separatedBy: GROUP_DELIMITER)
+        
+        guard groupComponents.count > 1 else { return fileGroup }
+        
         fileGroup.setTitle(value: GROUP_DELIMITER + groupComponents[1] + GROUP_DELIMITER)
         
         guard lines.count > 1 else { return fileGroup }
@@ -129,10 +132,10 @@ struct GitHubParser {
         var afterDiffComma = lineDiffs[2].components(separatedBy: ",")
         
         let bDiffFirst = beforeDiffComma[0]
-        let beforeLineIndex = Int(bDiffFirst.substring(from: bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1))) ?? 1
+        let beforeLineIndex = Int(String(bDiffFirst[bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1)...])) ?? 1
         
         let aDiffFirst = afterDiffComma[0]
-        let afterLineIndex = Int(aDiffFirst.substring(from: aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1))) ?? 1
+        let afterLineIndex = Int(String(aDiffFirst[aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1)...])) ?? 1
         
         let beforeParse = DiffInfo(startingLine: beforeLineIndex, numLines: Int(beforeDiffComma[1]) ?? 0)
         let afterParse = DiffInfo(startingLine: afterLineIndex, numLines: Int(afterDiffComma[1]) ?? 0)

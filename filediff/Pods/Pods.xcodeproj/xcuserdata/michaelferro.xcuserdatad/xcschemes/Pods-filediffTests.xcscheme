@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CDC71257A41A87607B062BA1EC05B488"
+               BlueprintIdentifier = "03295200C07614EB6AA82645DBE76B24"
                BuildableName = "Pods_filediffTests.framework"
                BlueprintName = "Pods-filediffTests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDC71257A41A87607B062BA1EC05B488"
+            BlueprintIdentifier = "03295200C07614EB6AA82645DBE76B24"
             BuildableName = "Pods_filediffTests.framework"
             BlueprintName = "Pods-filediffTests"
             ReferencedContainer = "container:Pods.xcodeproj">
