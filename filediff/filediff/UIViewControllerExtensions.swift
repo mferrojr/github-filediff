@@ -21,8 +21,8 @@ extension UIViewController {
     }
     
     func displayError() {
-        let alert = UIAlertController(title: "Error", message: "Unable to load data", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Error", message: "Unable to load data", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
