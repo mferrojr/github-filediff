@@ -9,7 +9,7 @@ target 'filediff' do
   pod 'Alamofire', '4.8.0'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.3.0'
   pod 'ObjectMapper', '3.4.2'
-  pod 'RealmSwift', '~> 3.13.0'
+  pod 'RealmSwift', '~> 3.20.0'
 
   target 'filediffTests' do
     inherit! :search_paths
