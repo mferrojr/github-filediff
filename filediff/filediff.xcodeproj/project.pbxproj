@@ -529,7 +529,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -546,7 +546,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E244744E5F6675B0CD518F81 /* [CP] Check Pods Manifest.lock */ = {
