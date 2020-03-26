@@ -7,8 +7,6 @@
 //
 
 import Alamofire
-import ObjectMapper
-import AlamofireNetworkActivityIndicator
 import RealmSwift
 
 enum GitHubServiceError : Error {
@@ -25,60 +23,40 @@ final class GitHubService {
     private static let GITHUB_AUTHOR = "raywenderlich"
     private static let GITHUB_REPO = "swift-algorithm-club"
     
-    static func getPullRequests(_ successCB:@escaping (_ response : [RealmGitHubPR]) -> Void, errorCB: @escaping ERROR_CB) -> Request {
-        let request = Alamofire.request(GitHubRouter.getPRs())
-        
-        request.validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                if let obj = Mapper<RealmGitHubPR>().mapArray(JSONObject: value) {
-                    successCB(obj)
-                }
-                else {
-                    errorCB(nil)
-                }
-            case .failure(let error):
-                errorCB(error)
-            }
+    static func getPullRequests(_ completion:@escaping (Result<[GitHubPR], AFError>)->Void) -> Request {
+        let request = AF.request(GitHubRouter.getPRs)
+
+        request.validate()
+        .responseDecodable(of: [GitHubPR].self) { response in
+            completion(response.result)
         }
         
         return request
      }
     
-    static func getPullRequestByNumber(number: PR_NUMBER, successCB:@escaping (_ response : RealmGitHubPR) -> Void, errorCB: @escaping ERROR_CB) -> Request {
-        let request = Alamofire.request(GitHubRouter.getPullRequestByNumber(number))
+    static func getPullRequestByNumber(number: PR_NUMBER, completion:@escaping (Result<GitHubPR, AFError>)->Void) -> Request {
+        let request = AF.request(GitHubRouter.getPullRequestByNumber(number))
         
-        request.validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                if let obj = Mapper<RealmGitHubPR>().map(JSONObject:value) {
-                    successCB(obj)
-                }
-                else {
-                    errorCB(nil)
-                }
-            case .failure(let error):
-                errorCB(error)
-            }
+        request.validate()
+        .responseDecodable(of: GitHubPR.self) { response in
+            completion(response.result)
         }
+
         return request
     }
     
-    static func getPullRequestDiff(diffUrl : String, successCB:@escaping (_ response : String) -> Void, errorCB: @escaping ERROR_CB) -> Request {
+    static func getPullRequestDiff(diffUrl : String, completion:@escaping (Result<String, AFError>)->Void) -> Request {
         let destination = DownloadRequest.suggestedDownloadDestination()
         
-        let request = Alamofire.download(diffUrl, to: destination)
+        let request = AF.download(diffUrl, to: destination)
         
-        request.validate().responseData { response in
+        request.validate()
+        .responseData { response in
             switch response.result {
-            case .success(_):
-                guard let url = response.destinationURL else { errorCB(nil); return }
-                guard let fileText = try? String(contentsOf: url, encoding: String.Encoding.utf8) else { errorCB(nil); return }
-                guard let _ = try? FileManager.default.removeItem(at: url) else { errorCB(nil); return }
-                
-                successCB(fileText)
+            case .success(let data):
+                completion(.success(String(decoding: data, as: UTF8.self)))
             case .failure(let error):
-                errorCB(error)
+                completion(.failure(error))
             }
         }
         return request
@@ -87,7 +65,7 @@ final class GitHubService {
     //MARK: - Private Variables
     fileprivate enum GitHubRouter: URLRequestConvertible {
         
-        case getPRs()
+        case getPRs
         case getPullRequestByNumber(Int)
         
         fileprivate var method: Alamofire.HTTPMethod {
@@ -101,7 +79,7 @@ final class GitHubService {
             let base = "\(GITHUB_AUTHOR)/\(GITHUB_REPO)"
             
             switch self {
-            case .getPRs():
+            case .getPRs:
                 return "\(base)/pulls?state=open"
             case .getPullRequestByNumber(let number):
                 return "\(base)/pulls/\(number)"

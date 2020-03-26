@@ -44,7 +44,7 @@ struct GitHubParser {
         var ghFile = GitHubFile()
         
         // Get File Title
-        var lines = file.components(separatedBy: ROW_DELIMITER)
+        let lines = file.components(separatedBy: ROW_DELIMITER)
         if let index = lines[0].range(of: "/", options: .backwards)?.lowerBound {
             ghFile.setName(value: String(lines[0][lines[0].index(index, offsetBy: 1)...]))
         }
@@ -63,7 +63,7 @@ struct GitHubParser {
     
     fileprivate static func processGroup(group : String) -> GitHubFileGroup {
         // Break up into each line
-        var lines = group.components(separatedBy: ROW_DELIMITER)
+        let lines = group.components(separatedBy: ROW_DELIMITER)
         
         // New group
         var fileGroup = GitHubFileGroup()
@@ -127,9 +127,9 @@ struct GitHubParser {
     
     // Parse "@@ -31,22 +31,17 @@" to extract line diffs
     fileprivate static func parseLines(input : String) -> (DiffInfo,DiffInfo){
-        var lineDiffs = input.components(separatedBy: " ")
-        var beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
-        var afterDiffComma = lineDiffs[2].components(separatedBy: ",")
+        let lineDiffs = input.components(separatedBy: " ")
+        let beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
+        let afterDiffComma = lineDiffs[2].components(separatedBy: ",")
         
         let bDiffFirst = beforeDiffComma[0]
         let beforeLineIndex = Int(String(bDiffFirst[bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1)...])) ?? 1

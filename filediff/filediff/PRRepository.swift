@@ -17,11 +17,11 @@ class PRRepository: Repository {
     }
     
     func getAll() -> [GitHubPR] {
-        return realm.objects(RealmGitHubPR.self).map { $0.entity }
+        return realm.objects(GitHubPR.self).map { $0.entity }
     }
     
     func getById(id: Int) -> GitHubPR? {
-        return realm.objects(RealmGitHubPR.self).filter("id == %@", id).first?.entity
+        return realm.objects(GitHubPR.self).first(where: {$0.id == id })?.entity
     }
     
     func insert(item: GitHubPR) {

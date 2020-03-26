@@ -55,7 +55,7 @@ class BaseOperation : Operation {
     }
     
     //MARK: Persistence Functions
-    func saveArrayToRealm<T>(_ data : [T]?) where T:GitHubObject, T:GitHubRealmBase {
+    func saveArrayToRealm<T>(_ data : [T]?) where T:Object, T:GitHubRealmBase {
         guard let data = data, !self.isCancelled else {
             done()
             return
@@ -68,7 +68,7 @@ class BaseOperation : Operation {
                 
                 try realm.write {
                     // Save list to realm
-                    realm.add(data, update: true)
+                    realm.add(data, update: .all)
                     
                     // First assume we are clearing all
                     var datas = realm.objects(T.self)
@@ -88,7 +88,7 @@ class BaseOperation : Operation {
         done()
     }
     
-    func saveToRealm<T>(_ data : T?) where T:GitHubObject, T:GitHubRealmBase {
+    func saveToRealm<T>(_ data : T?) where T:Object, T:GitHubRealmBase {
         guard let data = data, !self.isCancelled else {
             done()
             return
@@ -101,7 +101,7 @@ class BaseOperation : Operation {
                 
                 // Add/Update
                 try realm.write {
-                    realm.add(data, update: true)
+                    realm.add(data, update: .all)
                 }
             } catch {
                 print("Error saving data for \(self.name!)")

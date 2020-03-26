@@ -6,6 +6,7 @@
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
 class SyncPRsOperation : BaseOperation {
@@ -16,11 +17,14 @@ class SyncPRsOperation : BaseOperation {
     }
     
     private func getPRs(){
-        self.request = GitHubService.getPullRequests(successCB, errorCB: errorCB)
-    }
-    
-    private func successCB(_ response : [RealmGitHubPR]) {
-        self.saveArrayToRealm(response)
+        self.request = GitHubService.getPullRequests() { result in
+            switch result {
+            case .success(let results):
+                self.saveArrayToRealm(results)
+            case .failure(let error):
+                self.errorCB(error.underlyingError)
+            }
+        }
     }
 
 }

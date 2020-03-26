@@ -6,25 +6,43 @@
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 
-import ObjectMapper
+import Realm
 import RealmSwift
 
-struct GitHubUser {
-    var id = 0
-    var login = ""
-    var avatar_url = ""
-}
-final class RealmGitHubUser : GitHubObject, GitHubRealmBase {
+@objcMembers
+final class GitHubUser: Object, GitHubRealmBase, Decodable {
     
     //MARK: - Varibales
-    @objc dynamic var id = 0
-    @objc dynamic var login = ""
-    @objc dynamic var avatar_url = ""
+    dynamic var id = 0
+    dynamic var login = ""
+    dynamic var avatar_url = ""
     
-    override func mapping(map: Map) {
-        id <- map["id"]
-        login <- map["login"]
-        avatar_url <- map["avatar_url"]
+    enum CodingKeys: String, CodingKey {
+        case id
+        case login
+        case avatar_url
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self, forKey: .id)
+        login = try container.decode(String.self, forKey: .login)
+        avatar_url = try container.decode(String.self, forKey: .avatar_url)
+        
+        super.init()
+    }
+    
+    required init() {
+        super.init()
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
     }
     
     override static func primaryKey() -> String? {
@@ -32,7 +50,11 @@ final class RealmGitHubUser : GitHubObject, GitHubRealmBase {
     }
     
     var entity: GitHubUser {
-        return GitHubUser(id: id,login: login,avatar_url: avatar_url)
+        let user = GitHubUser()
+        user.id = self.id
+        user.login = self.login
+        user.avatar_url = self.avatar_url
+        return user
     }
     
 }

@@ -6,56 +6,76 @@
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 
-import ObjectMapper
+import Realm
 import RealmSwift
 
-struct GitHubPR {
-    var id = 0
-    var number = 0
-    var diff_url = ""
-    var state = ""
-    var title = ""
-    var created_at = ""
-    var body = ""
-    var user : GitHubUser?
-}
-
-final class RealmGitHubPR : GitHubObject, GitHubRealmBase {
+@objcMembers
+final class GitHubPR: Object, GitHubRealmBase, Decodable {
     
     //MARK: - Varibales
-    @objc dynamic var id = 0
-    @objc dynamic var number = 0
-    @objc dynamic var diff_url = ""
-    @objc dynamic var state = ""
-    @objc dynamic var title = ""
-    @objc dynamic var body = ""
-    @objc dynamic var created_at = ""
-    @objc dynamic var user : RealmGitHubUser?
+    dynamic var id = 0
+    dynamic var number = 0
+    dynamic var diff_url = ""
+    dynamic var state = ""
+    dynamic var title = ""
+    dynamic var body = ""
+    dynamic var created_at = ""
+    dynamic var user: GitHubUser?
     
-    override func mapping(map: Map) {
-        id <- map["id"]
-        number <- map["number"]
-        diff_url <- map["diff_url"]
-        state <- map["state"]
-        title <- map["title"]
-        body <- map["body"]
-        created_at <- map["created_at"]
-        user <- map["user"]
+    enum CodingKeys: String, CodingKey {
+        case id
+        case number
+        case diff_url
+        case state
+        case title
+        case body
+        case created_at
+        case user
     }
     
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(Int.self, forKey: .id)
+        number = try container.decode(Int.self, forKey: .number)
+        diff_url = try container.decode(String.self, forKey: .diff_url)
+        state = try container.decode(String.self, forKey: .state)
+        title = try container.decode(String.self, forKey: .title)
+        body = try container.decode(String.self, forKey: .body)
+        created_at = try container.decode(String.self, forKey: .created_at)
+        
+        user = try container.decode(GitHubUser.self, forKey: .user)
+        
+        super.init()
+    }
+
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    required init() {
+        super.init()
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
     var entity: GitHubPR {
-        return GitHubPR(id: id,
-                    number: number,
-                    diff_url: diff_url,
-                    state: state,
-                    title: title,
-                    created_at: created_at,
-                    body: body,
-                    user: user?.entity)
+        let pr = GitHubPR()
+        pr.id = self.id
+        pr.number = self.number
+        pr.diff_url = self.diff_url
+        pr.state = self.state
+        pr.title = self.title
+        pr.created_at = self.created_at
+        pr.body = self.body
+        pr.user = self.user?.entity
+        return pr
     }
     
 }
