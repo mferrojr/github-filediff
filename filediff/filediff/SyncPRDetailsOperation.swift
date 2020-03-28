@@ -19,12 +19,12 @@ class SyncPRDetailsOperation : BaseOperation {
     }
     
     private func getPRDetail(){
-        self.request = GitHubService.getPullRequestByNumber(number: prNumber) { result in
+        self.dataTask = GitHubService.getPullRequestByNumber(number: prNumber) { result in
             switch result {
             case .success(let data):
                 self.saveToRealm(data)
             case .failure(let error):
-                self.errorCB(error.underlyingError)
+                self.errorCB(error)
             }
         }
     }

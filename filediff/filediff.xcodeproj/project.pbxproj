@@ -33,6 +33,8 @@
 		01C5985F1F16E44E00B93E48 /* GitHubFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5985E1F16E44E00B93E48 /* GitHubFile.swift */; };
 		01C598611F16E4B600B93E48 /* FileDiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598601F16E4B600B93E48 /* FileDiffTableViewCell.swift */; };
 		01C598631F16F12E00B93E48 /* SyncPRDiffOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C598621F16F12E00B93E48 /* SyncPRDiffOperation.swift */; };
+		746598BC242FCC9C0099BF6B /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746598BB242FCC9C0099BF6B /* HTTPRequest.swift */; };
+		746598BE242FCF100099BF6B /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746598BD242FCF100099BF6B /* HttpClient.swift */; };
 		747306EE242C0663004D975C /* GitHubRealmBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747306ED242C0663004D975C /* GitHubRealmBase.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		BBBF6A501F277D75007ABCCB /* FileDiffQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBF6A4F1F277D75007ABCCB /* FileDiffQueue.swift */; };
@@ -99,6 +101,8 @@
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A3F954AE982C1FEBAB2879 /* Pods-filediffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffUITests/Pods-filediffUITests.release.xcconfig"; sourceTree = "<group>"; };
+		746598BB242FCC9C0099BF6B /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		746598BD242FCF100099BF6B /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		747306ED242C0663004D975C /* GitHubRealmBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRealmBase.swift; sourceTree = "<group>"; };
 		919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.release.xcconfig"; sourceTree = "<group>"; };
 		95B7E9B4290C25065452A654 /* Pods-filediffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				017A14711F131165004E9EE6 /* GitHubService.swift */,
+				746598BB242FCC9C0099BF6B /* HTTPRequest.swift */,
+				746598BD242FCF100099BF6B /* HttpClient.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -530,13 +536,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -573,6 +577,7 @@
 				BBEED5C21F1813AE0025661E /* StringExtensions.swift in Sources */,
 				01C598541F15944000B93E48 /* UIViewControllerExtensions.swift in Sources */,
 				BBEED5C51F19239E0025661E /* AppUtility.swift in Sources */,
+				746598BC242FCC9C0099BF6B /* HTTPRequest.swift in Sources */,
 				BBBF6A521F2783DF007ABCCB /* GitHubParserOperation.swift in Sources */,
 				BBBF6A501F277D75007ABCCB /* FileDiffQueue.swift in Sources */,
 				01C598351F14476C00B93E48 /* PRDiffViewController.swift in Sources */,
@@ -592,6 +597,7 @@
 				01C5984E1F1576FB00B93E48 /* ArrayExtensions.swift in Sources */,
 				01C5985D1F16E40C00B93E48 /* PRDiffDataSource.swift in Sources */,
 				01C5984B1F15727100B93E48 /* BaseOperation.swift in Sources */,
+				746598BE242FCF100099BF6B /* HttpClient.swift in Sources */,
 				01C598461F156A3900B93E48 /* RealmGitHubUser.swift in Sources */,
 				01C598441F15697000B93E48 /* RealmGitHubPR.swift in Sources */,
 				01C598401F15685D00B93E48 /* Repository.swift in Sources */,
