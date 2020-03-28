@@ -25,19 +25,19 @@ class SyncPRDiffOperation : BaseOperation {
     }
     
     private func getPRDiff(){
-        self.request = GitHubService.getPullRequestDiff(diffUrl: diffUrl) { result in
-            switch result {
-            case .success(let result):
-                self.context.fileText = result
-                self.done()
-            case .failure(let error):
-                self.errorCB(error.underlyingError)
+        do {
+            self.dataTask = try GitHubService.getPullRequestDiff(diffUrl: diffUrl) { result in
+                switch result {
+                case .success(let result):
+                    self.context.fileText = result
+                    self.done()
+                case .failure(let error):
+                    self.errorCB(error)
+                }
             }
+        } catch {
+            self.errorCB(error)
         }
-    }
-    
-    private func successCB(_ response : String) {
-        
     }
     
 }

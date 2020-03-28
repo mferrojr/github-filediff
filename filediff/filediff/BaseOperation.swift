@@ -7,12 +7,11 @@
 //
 
 import RealmSwift
-import Alamofire
 
 class BaseOperation : Operation {
     
     var errorCallback: ((Error?) -> Void)?
-    var request : Request?
+    var dataTask : URLSessionDataTask?
     
     //MARK: - Private Variables
     fileprivate var _executing = false
@@ -51,7 +50,7 @@ class BaseOperation : Operation {
         guard !self.isCancelled else { return }
         
         completionBlock = nil
-        request?.cancel()
+        dataTask?.cancel()
     }
     
     //MARK: Persistence Functions
