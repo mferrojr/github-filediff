@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-//import RealmSwift
 
 // VC to show PR Details
 final class PRDetailsViewController : UIViewController {
@@ -88,9 +87,6 @@ final class PRDetailsViewController : UIViewController {
     }
     
     private func updateView() {
-        //guard let realm = try? Realm() else { return }
-        
-        //let repo = PRRepository(realm)
         guard let pr = gitHubPREntityService.fetchBy(prNumber: prId) else { return }
     
         titleLabel.text = pr.title
