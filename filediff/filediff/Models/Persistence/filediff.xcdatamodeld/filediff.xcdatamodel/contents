@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GitHubPR" representedClassName=".GitHubPR" syncable="YES">
+        <attribute name="body" attributeType="String"/>
+        <attribute name="created_at" attributeType="String"/>
+        <attribute name="diff_url" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="number" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="state" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GitHubUser" inverseName="pullRequests" inverseEntity="GitHubUser"/>
+    </entity>
+    <entity name="GitHubUser" representedClassName=".GitHubUser" syncable="YES">
+        <attribute name="avatar_url" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="login" attributeType="String"/>
+        <relationship name="pullRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GitHubPR" inverseName="user" inverseEntity="GitHubPR"/>
+    </entity>
+    <elements>
+        <element name="GitHubPR" positionX="-36" positionY="9" width="128" height="163"/>
+        <element name="GitHubUser" positionX="0" positionY="99" width="128" height="103"/>
+    </elements>
+</model>
