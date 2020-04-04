@@ -10,9 +10,14 @@ import Foundation
 
 class SyncPRDetailsOperation : BaseOperation {
     
-    //MARK: - Public Variables
-    var prNumber = 0
+    // MARK: - Variables
     
+    //MARK: Public
+    var prNumber = 0
+
+    // MARK: Private
+    private let gitHubPREntityService = GitHubPREntityService()
+
     override func main() {
         super.main()
         getPRDetail()
@@ -22,7 +27,8 @@ class SyncPRDetailsOperation : BaseOperation {
         self.dataTask = GitHubService.getPullRequestByNumber(number: prNumber) { result in
             switch result {
             case .success(let data):
-                self.saveToRealm(data)
+                try? self.gitHubPREntityService.createPR(entity: data.toEntity())
+                self.done()
             case .failure(let error):
                 self.errorCB(error)
             }

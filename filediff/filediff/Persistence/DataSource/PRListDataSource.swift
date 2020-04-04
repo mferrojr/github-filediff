@@ -8,18 +8,15 @@
 
 import Foundation
 import UIKit
-import RealmSwift
 
 class PRListDataSource : NSObject, UITableViewDataSource {
     
-    private(set) var datas = [GitHubPR]()
+    private(set) var datas = [GitHubPREntity]()
+    private let gitHubPREntityService = GitHubPREntityService()
     
     //MARK: - Public Functions
     func refresh(){
-        guard let realm = try? Realm() else { return }
-        
-        let repo = PRRepository(realm)
-        datas = repo.getAll()
+        datas = gitHubPREntityService.fetchAll()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

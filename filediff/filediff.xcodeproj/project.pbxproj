@@ -13,13 +13,11 @@
 		017A14491F13109E004E9EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017A14471F13109E004E9EE6 /* LaunchScreen.storyboard */; };
 		017A14541F13109E004E9EE6 /* filediffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A14531F13109E004E9EE6 /* filediffTests.swift */; };
 		017A145F1F13109E004E9EE6 /* filediffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A145E1F13109E004E9EE6 /* filediffUITests.swift */; };
-		745CCA412432519700183977 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3C2432519700183977 /* ArrayExtensions.swift */; };
-		745CCA422432519700183977 /* UIStackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3D2432519700183977 /* UIStackViewExtensions.swift */; };
-		745CCA432432519700183977 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3E2432519700183977 /* StringExtensions.swift */; };
-		745CCA442432519700183977 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3F2432519700183977 /* UITableViewCellExtensions.swift */; };
-		745CCA452432519700183977 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA402432519700183977 /* UIViewControllerExtensions.swift */; };
-		745CCA502432520800183977 /* PRRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA482432520800183977 /* PRRepository.swift */; };
-		745CCA512432520800183977 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA492432520800183977 /* Repository.swift */; };
+		745CCA412432519700183977 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3C2432519700183977 /* Array+Extensions.swift */; };
+		745CCA422432519700183977 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3D2432519700183977 /* UIStackView+Extensions.swift */; };
+		745CCA432432519700183977 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3E2432519700183977 /* String+Extensions.swift */; };
+		745CCA442432519700183977 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3F2432519700183977 /* UITableViewCell+Extensions.swift */; };
+		745CCA452432519700183977 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA402432519700183977 /* UIViewController+Extensions.swift */; };
 		745CCA522432520800183977 /* FileDiffQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4B2432520800183977 /* FileDiffQueue.swift */; };
 		745CCA532432520800183977 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4D2432520800183977 /* GitHubService.swift */; };
 		745CCA542432520800183977 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4E2432520800183977 /* HTTPRequest.swift */; };
@@ -38,10 +36,32 @@
 		745CCA7A2432542300183977 /* PRDiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA722432542300183977 /* PRDiffViewController.swift */; };
 		745CCA7B2432542300183977 /* PRListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA732432542300183977 /* PRListViewController.swift */; };
 		745CCA7C2432542300183977 /* PRDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA742432542300183977 /* PRDetailsViewController.swift */; };
-		745CCA7D2432542300183977 /* RealmGitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA762432542300183977 /* RealmGitHubUser.swift */; };
-		745CCA7E2432542300183977 /* GitHubRealmBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA772432542300183977 /* GitHubRealmBase.swift */; };
-		745CCA7F2432542300183977 /* RealmGitHubPR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA782432542300183977 /* RealmGitHubPR.swift */; };
-		745CCA802432542300183977 /* GitHubFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA792432542300183977 /* GitHubFile.swift */; };
+		745CCAB32432628100183977 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAB22432628100183977 /* Datastore.swift */; };
+		745CCAB5243262AB00183977 /* DatastoreCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAB4243262AB00183977 /* DatastoreCoreData.swift */; };
+		745CCAB82432652600183977 /* GitHubPRResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAB72432652600183977 /* GitHubPRResponse.swift */; };
+		745CCABA2432673400183977 /* GitHubUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAB92432673400183977 /* GitHubUserResponse.swift */; };
+		745CCABE243267F100183977 /* GitHubIdentifible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCABC243267F100183977 /* GitHubIdentifible.swift */; };
+		745CCABF243267F100183977 /* GitHubFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCABD243267F100183977 /* GitHubFile.swift */; };
+		745CCAC82432682900183977 /* GitHubPR+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC22432682900183977 /* GitHubPR+CoreDataClass.swift */; };
+		745CCAC92432682900183977 /* filediff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC32432682900183977 /* filediff.xcdatamodeld */; };
+		745CCACA2432682900183977 /* GitHubUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC52432682900183977 /* GitHubUser+CoreDataClass.swift */; };
+		7499FC9D24365A45002B2AF4 /* StorageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FC9C24365A45002B2AF4 /* StorageContext.swift */; };
+		7499FC9F24365A6D002B2AF4 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FC9E24365A6D002B2AF4 /* Storable.swift */; };
+		7499FCA124365AD3002B2AF4 /* ConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCA024365AD3002B2AF4 /* ConfigurationType.swift */; };
+		7499FCA324365AF3002B2AF4 /* Sorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCA224365AF3002B2AF4 /* Sorted.swift */; };
+		7499FCA5243671AD002B2AF4 /* CoreDataStorageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCA4243671AD002B2AF4 /* CoreDataStorageContext.swift */; };
+		7499FCA924367306002B2AF4 /* CoreDataStoreCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCA824367306002B2AF4 /* CoreDataStoreCoordinator.swift */; };
+		7499FCAB243673AC002B2AF4 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCAA243673AC002B2AF4 /* Mappable.swift */; };
+		7499FCAD24367425002B2AF4 /* GitHubPREntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCAC24367425002B2AF4 /* GitHubPREntity.swift */; };
+		7499FCAF24367431002B2AF4 /* GitHubUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCAE24367431002B2AF4 /* GitHubUserEntity.swift */; };
+		7499FCB124367453002B2AF4 /* DomainBaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB024367453002B2AF4 /* DomainBaseEntity.swift */; };
+		7499FCB324367591002B2AF4 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB224367591002B2AF4 /* BaseDao.swift */; };
+		7499FCBA2436779C002B2AF4 /* GitHubPREntityDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */; };
+		7499FCBC2436780F002B2AF4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCBB2436780F002B2AF4 /* DBManager.swift */; };
+		7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCBD24367BB3002B2AF4 /* GitHubPREntityService.swift */; };
+		749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */; };
+		749C8C1E24380CDB006C570B /* GitHubUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */; };
+		749C8C202438F7CA006C570B /* GitHubUserEntityDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */; };
 		84CCDF7D2DA8B65F9442B0BA /* Pods_filediffTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76138EE9A39238E978DFD38 /* Pods_filediffTests.framework */; };
 		C0C91F8B2CA8DA53E454B5B3 /* Pods_filediffUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */; };
 		E7FD34D5E88734164278922E /* Pods_filediff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */; };
@@ -81,13 +101,11 @@
 		0F79219821AD9FBD5AAC8F65 /* Pods_filediff.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediff.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E66F6C4C78A44F9DB1275D /* Pods_filediffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_filediffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A3F954AE982C1FEBAB2879 /* Pods-filediffUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffUITests/Pods-filediffUITests.release.xcconfig"; sourceTree = "<group>"; };
-		745CCA3C2432519700183977 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
-		745CCA3D2432519700183977 /* UIStackViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensions.swift; sourceTree = "<group>"; };
-		745CCA3E2432519700183977 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		745CCA3F2432519700183977 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
-		745CCA402432519700183977 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		745CCA482432520800183977 /* PRRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRRepository.swift; sourceTree = "<group>"; };
-		745CCA492432520800183977 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		745CCA3C2432519700183977 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		745CCA3D2432519700183977 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		745CCA3E2432519700183977 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		745CCA3F2432519700183977 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		745CCA402432519700183977 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		745CCA4B2432520800183977 /* FileDiffQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDiffQueue.swift; sourceTree = "<group>"; };
 		745CCA4D2432520800183977 /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		745CCA4E2432520800183977 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
@@ -106,10 +124,32 @@
 		745CCA722432542300183977 /* PRDiffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffViewController.swift; sourceTree = "<group>"; };
 		745CCA732432542300183977 /* PRListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListViewController.swift; sourceTree = "<group>"; };
 		745CCA742432542300183977 /* PRDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDetailsViewController.swift; sourceTree = "<group>"; };
-		745CCA762432542300183977 /* RealmGitHubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGitHubUser.swift; sourceTree = "<group>"; };
-		745CCA772432542300183977 /* GitHubRealmBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRealmBase.swift; sourceTree = "<group>"; };
-		745CCA782432542300183977 /* RealmGitHubPR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGitHubPR.swift; sourceTree = "<group>"; };
-		745CCA792432542300183977 /* GitHubFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubFile.swift; sourceTree = "<group>"; };
+		745CCAB22432628100183977 /* Datastore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
+		745CCAB4243262AB00183977 /* DatastoreCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatastoreCoreData.swift; sourceTree = "<group>"; };
+		745CCAB72432652600183977 /* GitHubPRResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPRResponse.swift; sourceTree = "<group>"; };
+		745CCAB92432673400183977 /* GitHubUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserResponse.swift; sourceTree = "<group>"; };
+		745CCABC243267F100183977 /* GitHubIdentifible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubIdentifible.swift; sourceTree = "<group>"; };
+		745CCABD243267F100183977 /* GitHubFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubFile.swift; sourceTree = "<group>"; };
+		745CCAC22432682900183977 /* GitHubPR+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubPR+CoreDataClass.swift"; sourceTree = "<group>"; };
+		745CCAC42432682900183977 /* filediff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = filediff.xcdatamodel; sourceTree = "<group>"; };
+		745CCAC52432682900183977 /* GitHubUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7499FC9C24365A45002B2AF4 /* StorageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContext.swift; sourceTree = "<group>"; };
+		7499FC9E24365A6D002B2AF4 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		7499FCA024365AD3002B2AF4 /* ConfigurationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationType.swift; sourceTree = "<group>"; };
+		7499FCA224365AF3002B2AF4 /* Sorted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorted.swift; sourceTree = "<group>"; };
+		7499FCA4243671AD002B2AF4 /* CoreDataStorageContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageContext.swift; sourceTree = "<group>"; };
+		7499FCA824367306002B2AF4 /* CoreDataStoreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreCoordinator.swift; sourceTree = "<group>"; };
+		7499FCAA243673AC002B2AF4 /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		7499FCAC24367425002B2AF4 /* GitHubPREntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntity.swift; sourceTree = "<group>"; };
+		7499FCAE24367431002B2AF4 /* GitHubUserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntity.swift; sourceTree = "<group>"; };
+		7499FCB024367453002B2AF4 /* DomainBaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainBaseEntity.swift; sourceTree = "<group>"; };
+		7499FCB224367591002B2AF4 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
+		7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntityDao.swift; sourceTree = "<group>"; };
+		7499FCBB2436780F002B2AF4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		7499FCBD24367BB3002B2AF4 /* GitHubPREntityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntityService.swift; sourceTree = "<group>"; };
+		749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubPR+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntityDao.swift; sourceTree = "<group>"; };
 		919501C01BCF493D5073DD00 /* Pods-filediff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.release.xcconfig"; sourceTree = "<group>"; };
 		95B7E9B4290C25065452A654 /* Pods-filediffTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediffTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-filediffTests/Pods-filediffTests.release.xcconfig"; sourceTree = "<group>"; };
 		D08528B728A852EF94BBD054 /* Pods-filediff.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filediff.debug.xcconfig"; path = "Pods/Target Support Files/Pods-filediff/Pods-filediff.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +214,7 @@
 				745CCA712432542300183977 /* Controllers */,
 				745CCA3B2432519700183977 /* Extensions */,
 				745CCA752432542300183977 /* Models */,
+				74A69A0824368766005A3E49 /* Networking */,
 				745CCA462432520800183977 /* Persistence */,
 				01C598491F156FD900B93E48 /* Resources */,
 				745CCA6A2432538200183977 /* Utils */,
@@ -221,14 +262,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7416F1EB24369B92004A344F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7499FCA4243671AD002B2AF4 /* CoreDataStorageContext.swift */,
+				7499FCA824367306002B2AF4 /* CoreDataStoreCoordinator.swift */,
+				745CCAB4243262AB00183977 /* DatastoreCoreData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		745CCA3B2432519700183977 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA3C2432519700183977 /* ArrayExtensions.swift */,
-				745CCA3D2432519700183977 /* UIStackViewExtensions.swift */,
-				745CCA3E2432519700183977 /* StringExtensions.swift */,
-				745CCA3F2432519700183977 /* UITableViewCellExtensions.swift */,
-				745CCA402432519700183977 /* UIViewControllerExtensions.swift */,
+				745CCA3C2432519700183977 /* Array+Extensions.swift */,
+				745CCA3E2432519700183977 /* String+Extensions.swift */,
+				745CCA3D2432519700183977 /* UIStackView+Extensions.swift */,
+				745CCA3F2432519700183977 /* UITableViewCell+Extensions.swift */,
+				745CCA402432519700183977 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,19 +290,24 @@
 				745CCA562432521D00183977 /* DataSource */,
 				745CCA572432523400183977 /* Operations */,
 				745CCA4A2432520800183977 /* Queues */,
-				745CCA472432520800183977 /* Repositories */,
 				745CCA4C2432520800183977 /* Services */,
+				745CCA472432520800183977 /* Storage */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		745CCA472432520800183977 /* Repositories */ = {
+		745CCA472432520800183977 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA482432520800183977 /* PRRepository.swift */,
-				745CCA492432520800183977 /* Repository.swift */,
+				7416F1EB24369B92004A344F /* CoreData */,
+				749C8C2224390EDE006C570B /* Dao */,
+				7499FCA024365AD3002B2AF4 /* ConfigurationType.swift */,
+				745CCAB22432628100183977 /* Datastore.swift */,
+				7499FCBB2436780F002B2AF4 /* DBManager.swift */,
+				7499FC9E24365A6D002B2AF4 /* Storable.swift */,
+				7499FC9C24365A45002B2AF4 /* StorageContext.swift */,
 			);
-			path = Repositories;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		745CCA4A2432520800183977 /* Queues */ = {
@@ -265,9 +321,7 @@
 		745CCA4C2432520800183977 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA4D2432520800183977 /* GitHubService.swift */,
-				745CCA4E2432520800183977 /* HTTPRequest.swift */,
-				745CCA4F2432520800183977 /* HttpClient.swift */,
+				7499FCBD24367BB3002B2AF4 /* GitHubPREntityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,9 +376,9 @@
 		745CCA712432542300183977 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				745CCA742432542300183977 /* PRDetailsViewController.swift */,
 				745CCA722432542300183977 /* PRDiffViewController.swift */,
 				745CCA732432542300183977 /* PRListViewController.swift */,
-				745CCA742432542300183977 /* PRDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -332,12 +386,66 @@
 		745CCA752432542300183977 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA762432542300183977 /* RealmGitHubUser.swift */,
-				745CCA772432542300183977 /* GitHubRealmBase.swift */,
-				745CCA782432542300183977 /* RealmGitHubPR.swift */,
-				745CCA792432542300183977 /* GitHubFile.swift */,
+				745CCABB243267F100183977 /* Domain */,
+				745CCAC02432682900183977 /* Persistence */,
+				745CCAB6243264F600183977 /* Remote */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		745CCAB6243264F600183977 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				745CCAB72432652600183977 /* GitHubPRResponse.swift */,
+				745CCAB92432673400183977 /* GitHubUserResponse.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		745CCABB243267F100183977 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7499FCB024367453002B2AF4 /* DomainBaseEntity.swift */,
+				745CCABD243267F100183977 /* GitHubFile.swift */,
+				745CCABC243267F100183977 /* GitHubIdentifible.swift */,
+				7499FCAC24367425002B2AF4 /* GitHubPREntity.swift */,
+				7499FCAE24367431002B2AF4 /* GitHubUserEntity.swift */,
+				7499FCAA243673AC002B2AF4 /* Mappable.swift */,
+				7499FCA224365AF3002B2AF4 /* Sorted.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		745CCAC02432682900183977 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				745CCAC32432682900183977 /* filediff.xcdatamodeld */,
+				745CCAC22432682900183977 /* GitHubPR+CoreDataClass.swift */,
+				749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */,
+				745CCAC52432682900183977 /* GitHubUser+CoreDataClass.swift */,
+				749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		749C8C2224390EDE006C570B /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				7499FCB224367591002B2AF4 /* BaseDao.swift */,
+				7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */,
+				749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		74A69A0824368766005A3E49 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				745CCA4D2432520800183977 /* GitHubService.swift */,
+				745CCA4F2432520800183977 /* HttpClient.swift */,
+				745CCA4E2432520800183977 /* HTTPRequest.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		B7EC659CB96EA2EE215A3B86 /* Pods */ = {
@@ -364,13 +472,14 @@
 				017A14371F13109D004E9EE6 /* Sources */,
 				017A14381F13109D004E9EE6 /* Frameworks */,
 				017A14391F13109D004E9EE6 /* Resources */,
-				2ADFEC56BDA53650AFF08C54 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = filediff;
+			packageProductDependencies = (
+			);
 			productName = filediff;
 			productReference = 017A143B1F13109D004E9EE6 /* filediff.app */;
 			productType = "com.apple.product-type.application";
@@ -454,6 +563,8 @@
 				Base,
 			);
 			mainGroup = 017A14321F13109D004E9EE6;
+			packageReferences = (
+			);
 			productRefGroup = 017A143C1F13109D004E9EE6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -529,26 +640,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2ADFEC56BDA53650AFF08C54 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filediff/Pods-filediff-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E244744E5F6675B0CD518F81 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -574,35 +665,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				745CCABF243267F100183977 /* GitHubFile.swift in Sources */,
 				745CCA612432534900183977 /* GitHubParserOperation.swift in Sources */,
-				745CCA432432519700183977 /* StringExtensions.swift in Sources */,
+				745CCA432432519700183977 /* String+Extensions.swift in Sources */,
+				7499FCBC2436780F002B2AF4 /* DBManager.swift in Sources */,
+				749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */,
 				745CCA702432538200183977 /* GitHubParser.swift in Sources */,
-				745CCA502432520800183977 /* PRRepository.swift in Sources */,
+				7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */,
 				745CCA5A2432532700183977 /* PRDiffDataSource.swift in Sources */,
-				745CCA442432519700183977 /* UITableViewCellExtensions.swift in Sources */,
-				745CCA7F2432542300183977 /* RealmGitHubPR.swift in Sources */,
-				745CCA512432520800183977 /* Repository.swift in Sources */,
-				745CCA802432542300183977 /* GitHubFile.swift in Sources */,
-				745CCA7D2432542300183977 /* RealmGitHubUser.swift in Sources */,
+				7499FCAF24367431002B2AF4 /* GitHubUserEntity.swift in Sources */,
+				745CCA442432519700183977 /* UITableViewCell+Extensions.swift in Sources */,
 				745CCA652432534900183977 /* SyncPRDetailsOperation.swift in Sources */,
+				7499FCB324367591002B2AF4 /* BaseDao.swift in Sources */,
+				7499FCAD24367425002B2AF4 /* GitHubPREntity.swift in Sources */,
+				749C8C202438F7CA006C570B /* GitHubUserEntityDao.swift in Sources */,
+				7499FCA924367306002B2AF4 /* CoreDataStoreCoordinator.swift in Sources */,
+				745CCABA2432673400183977 /* GitHubUserResponse.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
+				745CCAB82432652600183977 /* GitHubPRResponse.swift in Sources */,
+				7499FCBA2436779C002B2AF4 /* GitHubPREntityDao.swift in Sources */,
 				745CCA6F2432538200183977 /* AppUtility.swift in Sources */,
-				745CCA7E2432542300183977 /* GitHubRealmBase.swift in Sources */,
+				7499FCA324365AF3002B2AF4 /* Sorted.swift in Sources */,
 				745CCA5B2432532700183977 /* PRListDataSource.swift in Sources */,
+				7499FCAB243673AC002B2AF4 /* Mappable.swift in Sources */,
+				749C8C1E24380CDB006C570B /* GitHubUser+CoreDataProperties.swift in Sources */,
 				745CCA6D2432538200183977 /* FileDiffTableViewCell.swift in Sources */,
 				745CCA632432534900183977 /* BaseOperation.swift in Sources */,
-				745CCA422432519700183977 /* UIStackViewExtensions.swift in Sources */,
+				7499FC9D24365A45002B2AF4 /* StorageContext.swift in Sources */,
+				745CCA422432519700183977 /* UIStackView+Extensions.swift in Sources */,
 				745CCA7B2432542300183977 /* PRListViewController.swift in Sources */,
+				745CCAC92432682900183977 /* filediff.xcdatamodeld in Sources */,
+				745CCAB32432628100183977 /* Datastore.swift in Sources */,
 				745CCA522432520800183977 /* FileDiffQueue.swift in Sources */,
+				745CCACA2432682900183977 /* GitHubUser+CoreDataClass.swift in Sources */,
+				7499FC9F24365A6D002B2AF4 /* Storable.swift in Sources */,
 				745CCA552432520800183977 /* HttpClient.swift in Sources */,
+				745CCAC82432682900183977 /* GitHubPR+CoreDataClass.swift in Sources */,
 				745CCA6E2432538200183977 /* PRTableViewCell.swift in Sources */,
-				745CCA412432519700183977 /* ArrayExtensions.swift in Sources */,
+				7499FCB124367453002B2AF4 /* DomainBaseEntity.swift in Sources */,
+				7499FCA124365AD3002B2AF4 /* ConfigurationType.swift in Sources */,
+				745CCA412432519700183977 /* Array+Extensions.swift in Sources */,
+				745CCABE243267F100183977 /* GitHubIdentifible.swift in Sources */,
 				745CCA622432534900183977 /* SyncPRDiffOperation.swift in Sources */,
-				745CCA452432519700183977 /* UIViewControllerExtensions.swift in Sources */,
+				745CCAB5243262AB00183977 /* DatastoreCoreData.swift in Sources */,
+				745CCA452432519700183977 /* UIViewController+Extensions.swift in Sources */,
 				745CCA642432534900183977 /* SyncPRsOperation.swift in Sources */,
 				745CCA542432520800183977 /* HTTPRequest.swift in Sources */,
 				745CCA7A2432542300183977 /* PRDiffViewController.swift in Sources */,
 				745CCA532432520800183977 /* GitHubService.swift in Sources */,
+				7499FCA5243671AD002B2AF4 /* CoreDataStorageContext.swift in Sources */,
 				745CCA7C2432542300183977 /* PRDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,6 +1018,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		745CCAC32432682900183977 /* filediff.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				745CCAC42432682900183977 /* filediff.xcdatamodel */,
+			);
+			currentVersion = 745CCAC42432682900183977 /* filediff.xcdatamodel */;
+			path = filediff.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 017A14331F13109D004E9EE6 /* Project object */;
 }

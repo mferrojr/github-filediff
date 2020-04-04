@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
 
 enum GitHubServiceError : Error {
     case MalFormedUrl
@@ -20,14 +20,14 @@ final class GitHubService {
 
     private static let apiBaseURL = URL(string: "https://api.github.com/repos/raywenderlich/swift-algorithm-club")!
     
-    static func getPullRequests(_ completion:@escaping (Result<[GitHubPR], Error>)->Void) -> URLSessionDataTask? {
+    static func getPullRequests(_ completion:@escaping (Result<[GitHubPRResponse], Error>)->Void) -> URLSessionDataTask? {
         let request = HTTPRequest(method: .get, baseURL: apiBaseURL, path: "pulls")
         request.queryItems = [ URLQueryItem(name: "state", value: "open") ]
 
         return HTTPClient().perform(request) { result in
             switch result {
             case .success(let response):
-                if let response = try? response.decode(to: [GitHubPR].self) {
+                if let response = try? response.decode(to: [GitHubPRResponse].self) {
                     completion(.success(response.body))
                 } else {
                     completion(.failure(GitHubServiceError.InvalidResponse))
@@ -38,13 +38,13 @@ final class GitHubService {
         }
      }
     
-    static func getPullRequestByNumber(number: PR_NUMBER, completion:@escaping (Result<GitHubPR, Error>)->Void) -> URLSessionDataTask? {
+    static func getPullRequestByNumber(number: PR_NUMBER, completion:@escaping (Result<GitHubPRResponse, Error>)->Void) -> URLSessionDataTask? {
         let request = HTTPRequest(method: .get, baseURL: apiBaseURL, path: "pulls/\(number)")
 
         return HTTPClient().perform(request) { result in
             switch result {
             case .success(let response):
-                if let response = try? response.decode(to: GitHubPR.self) {
+                if let response = try? response.decode(to: GitHubPRResponse.self) {
                     completion(.success(response.body))
                 } else {
                     completion(.failure(GitHubServiceError.InvalidResponse))

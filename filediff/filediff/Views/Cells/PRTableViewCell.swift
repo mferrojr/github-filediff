@@ -9,7 +9,7 @@
 import UIKit
 
 struct PRTableViewModel {
-    var title = ""
+    var title: String?
     var subTitle = ""
 }
 

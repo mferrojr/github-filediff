@@ -1,0 +1,84 @@
+//
+//  CoreDataStorageContext.swift
+//  filediff
+//
+//  Created by Michael Ferro, Jr. on 4/2/20.
+//  Copyright © 2020 Michael Ferro. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+class CoreDataStorageContext: StorageContext {
+
+    var managedContext: NSManagedObjectContext?
+
+    required init(configuration: ConfigurationType = .basic(identifier: "filediff")) {
+        switch configuration {
+        case .basic:
+            initDB(modelName: configuration.identifier(), storeType: .sqLiteStoreType)
+        case .inMemory:
+            initDB(storeType: .inMemoryStoreType)
+        }
+    }
+
+    private func initDB(modelName: String? = nil, storeType: StoreType) {
+        let coordinator = CoreDataStoreCoordinator.persistentStoreCoordinator(modelName: modelName, storeType: storeType)
+        self.managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        self.managedContext?.persistentStoreCoordinator = coordinator
+    }
+}
+
+import CoreData
+
+extension CoreDataStorageContext {
+
+    func create<DBEntity: Storable>(_ model: DBEntity.Type) -> DBEntity? {
+        let entityDescription =  NSEntityDescription.entity(forEntityName: String.init(describing: model.self),
+                                                            in: managedContext!)
+        let entity = NSManagedObject(entity: entityDescription!,
+                                     insertInto: managedContext)
+        return entity as? DBEntity
+    }
+
+    func save(object: Storable) throws {
+    }
+
+    func saveAll(objects: [Storable]) throws {
+    }
+
+    func update(object: Storable) throws {
+    }
+
+    func delete(object: Storable) throws {
+    }
+
+    func deleteAll(_ model: Storable.Type) throws {
+    }
+
+    func fetch(_ model: Storable.Type, predicate: NSPredicate?, sorted: Sorted?) -> [Storable] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String.init(describing: model.self))
+
+        fetchRequest.predicate = predicate
+        
+        var results = [Storable]()
+        do {
+            results = try (managedContext!.fetch(fetchRequest) as? [Storable])!
+        } catch let error as NSError {
+          print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return results
+    }
+
+    func objectWithObjectId<DBEntity: Storable>(objectId: NSManagedObjectID) -> DBEntity? {
+        do {
+            let result = try managedContext!.existingObject(with: objectId)
+            return result as? DBEntity
+        } catch {
+            print("Failure")
+        }
+
+        return nil
+    }
+}
