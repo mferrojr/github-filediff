@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension Array where Element : GitHubRealmBase {
+extension Array where Element : GitHubIdentifible {
     
     func getIds() -> [Int] {
-        return self.map { $0.id }
+        return self.map { Int($0.id) }
     }
     
 }

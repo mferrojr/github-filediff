@@ -52,15 +52,17 @@ final class PRListViewController : UIViewController {
             guard let row = self.prTableView.indexPathForSelectedRow?.row else { return }
             
             let model = dataSource.datas[row]
-            destVC.prId = model.id
-            destVC.prNumber = model.number
+            destVC.prId = Int(model.id)
+            destVC.prNumber = Int(model.number)
         default:
             break
         }
     }
     
-    //MARK: - Private Functions
-    fileprivate func setUpTable(){
+    //MARK: - Functions
+    
+    //MARK: Private
+    private func setUpTable(){
         self.prTableView.delegate = self
         self.prTableView.dataSource = dataSource
         self.prTableView.tableHeaderView = UIView(frame: .zero)
@@ -69,11 +71,11 @@ final class PRListViewController : UIViewController {
     }
     
     @objc
-    fileprivate func reload(_ refreshControl: UIRefreshControl) {
+    private func reload(_ refreshControl: UIRefreshControl) {
         fetchData()
     }
     
-    fileprivate func fetchData() {
+    private func fetchData() {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
         
@@ -100,12 +102,12 @@ final class PRListViewController : UIViewController {
         }
     }
     
-    fileprivate func showLoading(){
+    private func showLoading(){
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
     
-    fileprivate func stopLoading(){
+    private func stopLoading(){
         refreshCtrl.endRefreshing()
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true

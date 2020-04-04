@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum FileDiffCell : String {
+enum FileDiffCell: String {
     case prCell = "prCell"
     case fileDiffCell = "fileDiffCell"
 }

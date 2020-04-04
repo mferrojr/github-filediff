@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import RealmSwift
+//import RealmSwift
 
 // VC to show PR Details
 final class PRDetailsViewController : UIViewController {
@@ -20,14 +20,15 @@ final class PRDetailsViewController : UIViewController {
     //MARK: - Private Variables
     
     //MARK: IBOutlets
-    @IBOutlet weak fileprivate var titleLabel: UILabel!
-    @IBOutlet weak fileprivate var stackView: UIStackView!
-    @IBOutlet weak fileprivate var descriptionLabel: UILabel!
-    @IBOutlet weak fileprivate var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var stackView: UIStackView!
+    @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     
-    fileprivate var prDetailOperation : SyncPRDetailsOperation?
-    fileprivate var diffUrl : String?
-    fileprivate let MARGIN : CGFloat = 20
+    private var prDetailOperation : SyncPRDetailsOperation?
+    private var diffUrl : String?
+    private let MARGIN : CGFloat = 20
+    private let gitHubPREntityService = GitHubPREntityService()
     
     //MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +62,7 @@ final class PRDetailsViewController : UIViewController {
     }
     
     //MARK: - Private Functions
-    fileprivate func fetchData() {
+    private func fetchData() {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
         
@@ -86,11 +87,11 @@ final class PRDetailsViewController : UIViewController {
         }
     }
     
-    fileprivate func updateView() {
-        guard let realm = try? Realm() else { return }
+    private func updateView() {
+        //guard let realm = try? Realm() else { return }
         
-        let repo = PRRepository(realm)
-        guard let pr = repo.getById(id: prId) else { return }
+        //let repo = PRRepository(realm)
+        guard let pr = gitHubPREntityService.fetchBy(prNumber: prId) else { return }
     
         titleLabel.text = pr.title
         descriptionLabel.text = pr.body
@@ -99,18 +100,18 @@ final class PRDetailsViewController : UIViewController {
         diffUrl = pr.diff_url
     }
     
-    fileprivate func showLoading(){
+    private func showLoading(){
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
     
-    fileprivate func stopLoading(){
+    private func stopLoading(){
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         stackView.isHidden = false
     }
     
-    fileprivate func setUpStackView() {
+    private func setUpStackView() {
         stackView.layoutMargins = UIEdgeInsets(top: MARGIN, left: MARGIN, bottom: MARGIN, right: MARGIN)
         stackView.isLayoutMarginsRelativeArrangement = true
     }
