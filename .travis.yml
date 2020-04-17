@@ -1,7 +1,7 @@
 language: swift
 xcode_project: filediff.xcodeproj
 xcode_scheme: filediff
-xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone 11 Pro
+xcode_destination: platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro
 
 os:
     - osx
