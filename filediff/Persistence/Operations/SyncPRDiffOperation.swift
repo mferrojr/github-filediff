@@ -11,10 +11,10 @@ import Foundation
 class SyncPRDiffOperation : BaseOperation {
     
     //MARK: - Public Variables
-    fileprivate var diffUrl = ""
-    fileprivate var context : FileDiffQueueContext!
+    fileprivate var diffUrl: URL
+    fileprivate var context: FileDiffQueueContext!
     
-    required init(diffUrl : String, context : FileDiffQueueContext) {
+    required init(diffUrl : URL, context : FileDiffQueueContext) {
         self.diffUrl = diffUrl
         self.context = context
     }
@@ -25,19 +25,23 @@ class SyncPRDiffOperation : BaseOperation {
     }
     
     private func getPRDiff(){
-        do {
-            self.dataTask = try GitHubService.getPullRequestDiff(diffUrl: diffUrl) { result in
-                switch result {
-                case .success(let result):
+        self.subscription =
+            GithubAPI.pullRequestBy(diffUrl: diffUrl)
+            .sink(
+                receiveCompletion: { result in
+                    switch result {
+                    case .finished:
+                       break
+                    case .failure(let error):
+                       self.errorCB(error)
+                    }
+                    self.done()
+                },
+                receiveValue: { result in
                     self.context.fileText = result
                     self.done()
-                case .failure(let error):
-                    self.errorCB(error)
                 }
-            }
-        } catch {
-            self.errorCB(error)
-        }
+            )
     }
     
 }

@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Combine
 
 class BaseOperation: Operation {
     
     var errorCallback: ((Error?) -> Void)?
     var dataTask : URLSessionDataTask?
+    var subscription: AnyCancellable?
     
     //MARK: - Private Variables
     fileprivate var _executing = false

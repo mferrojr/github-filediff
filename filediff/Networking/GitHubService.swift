@@ -8,11 +8,13 @@
 
 import Foundation
 
+@available(swift, deprecated: 1.1.0)
 enum GitHubServiceError : Error {
-    case MalFormedUrl
-    case InvalidResponse
+    case malformedUrl
+    case invalidResponse
 }
 
+@available(swift, deprecated: 1.1.0)
 final class GitHubService {
     
     typealias PR_NUMBER = Int
@@ -21,8 +23,12 @@ final class GitHubService {
     private static let apiBaseURL = URL(string: "https://api.github.com/repos/raywenderlich/swift-algorithm-club")!
     
     static func getPullRequests(_ completion:@escaping (Result<[GitHubPRResponse], Error>)->Void) -> URLSessionDataTask? {
-        let request = HTTPRequest(method: .get, baseURL: apiBaseURL, path: "pulls")
-        request.queryItems = [ URLQueryItem(name: "state", value: "open") ]
+        let request = HTTPRequest(
+            method: .get,
+            baseURL: apiBaseURL,
+            path: "pulls",
+            queryItems: [ URLQueryItem(name: "state", value: "open") ]
+        )
 
         return HTTPClient().perform(request) { result in
             switch result {
@@ -30,7 +36,7 @@ final class GitHubService {
                 if let response = try? response.decode(to: [GitHubPRResponse].self) {
                     completion(.success(response.body))
                 } else {
-                    completion(.failure(GitHubServiceError.InvalidResponse))
+                    completion(.failure(GitHubServiceError.invalidResponse))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -47,7 +53,7 @@ final class GitHubService {
                 if let response = try? response.decode(to: GitHubPRResponse.self) {
                     completion(.success(response.body))
                 } else {
-                    completion(.failure(GitHubServiceError.InvalidResponse))
+                    completion(.failure(GitHubServiceError.invalidResponse))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -57,7 +63,7 @@ final class GitHubService {
     
     static func getPullRequestDiff(diffUrl : String, completion:@escaping (Result<String, Error>)->Void) throws -> URLSessionDataTask? {
         guard let url = URL(string: diffUrl) else {
-            throw GitHubServiceError.MalFormedUrl
+            throw GitHubServiceError.malformedUrl
         }
         
         let request = HTTPRequest(method: .get, baseURL: url, path: "")
@@ -68,7 +74,7 @@ final class GitHubService {
                 if let body = response.body, let result = String(data: body, encoding: .utf8) {
                     completion(.success(result))
                 } else {
-                    completion(.failure(GitHubServiceError.InvalidResponse))
+                    completion(.failure(GitHubServiceError.invalidResponse))
                 }
             case .failure(let error):
                 completion(.failure(error))

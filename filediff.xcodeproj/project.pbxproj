@@ -62,6 +62,8 @@
 		749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */; };
 		749C8C1E24380CDB006C570B /* GitHubUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */; };
 		749C8C202438F7CA006C570B /* GitHubUserEntityDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */; };
+		74B922F9244FBB3600A6DD7A /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B922F8244FBB3600A6DD7A /* GithubAPI.swift */; };
+		74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B922FA244FBB5500A6DD7A /* Agent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,8 @@
 		749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubPR+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntityDao.swift; sourceTree = "<group>"; };
+		74B922F8244FBB3600A6DD7A /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
+		74B922FA244FBB5500A6DD7A /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +426,8 @@
 		74A69A0824368766005A3E49 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				74B922FA244FBB5500A6DD7A /* Agent.swift */,
+				74B922F8244FBB3600A6DD7A /* GithubAPI.swift */,
 				745CCA4D2432520800183977 /* GitHubService.swift */,
 				745CCA4F2432520800183977 /* HttpClient.swift */,
 				745CCA4E2432520800183977 /* HTTPRequest.swift */,
@@ -578,11 +584,13 @@
 				745CCA432432519700183977 /* String+Extensions.swift in Sources */,
 				7499FCBC2436780F002B2AF4 /* DBManager.swift in Sources */,
 				749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */,
+				74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */,
 				745CCA702432538200183977 /* GitHubParser.swift in Sources */,
 				7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */,
 				745CCA5A2432532700183977 /* PRDiffDataSource.swift in Sources */,
 				7499FCAF24367431002B2AF4 /* GitHubUserEntity.swift in Sources */,
 				745CCA442432519700183977 /* UITableViewCell+Extensions.swift in Sources */,
+				74B922F9244FBB3600A6DD7A /* GithubAPI.swift in Sources */,
 				745CCA652432534900183977 /* SyncPRDetailsOperation.swift in Sources */,
 				7499FCB324367591002B2AF4 /* BaseDao.swift in Sources */,
 				7499FCAD24367425002B2AF4 /* GitHubPREntity.swift in Sources */,
@@ -727,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -781,7 +789,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -796,9 +804,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -812,9 +822,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

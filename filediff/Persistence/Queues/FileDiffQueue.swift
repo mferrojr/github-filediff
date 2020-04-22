@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 class FileDiffQueueContext {
     var fileText: String? {
@@ -42,6 +43,10 @@ class FileDiffQueueContext {
     private let lock = NSLock()
 }
 
+enum FileDiffQueueResultError: Error {
+    case malformedUrl
+}
+
 enum FileDiffQueueResult {
     case success([GitHubFile]?)
     case error(Error?)
@@ -49,13 +54,23 @@ enum FileDiffQueueResult {
 
 class FileDiffQueue {
     
+    //MARK: - Variables
+    
+    //MARK: Private
     private let queue = OperationQueue()
+    private var subscriptions = Set<AnyCancellable?>()
     
     func getFileDiff(diffUrl: String, completion : @escaping (FileDiffQueueResult) -> Void) {
         let context = FileDiffQueueContext()
         
         // Get file diff
-        let prDiffOperation = SyncPRDiffOperation(diffUrl: diffUrl,context: context)
+        guard let url = URL(string: diffUrl) else {
+            completion(.error(FileDiffQueueResultError.malformedUrl))
+            return
+        }
+        
+        let prDiffOperation = SyncPRDiffOperation(diffUrl: url, context: context)
+        self.subscriptions.insert(prDiffOperation.subscription)
         prDiffOperation.errorCallback = { error in
             completion(.error(error))
         }
