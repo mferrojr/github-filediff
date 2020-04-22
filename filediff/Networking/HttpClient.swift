@@ -8,11 +8,13 @@
 
 import Foundation
 
+@available(swift, deprecated: 1.1.0)
 struct HTTPResponse<Body> {
     let statusCode: Int
     let body: Body
 }
 
+@available(swift, deprecated: 1.1.0)
 extension HTTPResponse where Body == Data? {
     func decode<BodyType: Decodable>(to type: BodyType.Type) throws -> HTTPResponse<BodyType> {
         guard let data = body else {
@@ -24,17 +26,21 @@ extension HTTPResponse where Body == Data? {
     }
 }
 
+@available(swift, deprecated: 1.1.0)
 enum HTTPError: Error {
     case invalidURL
     case requestFailed
     case decodingFailure
+    case statusCode
 }
 
+@available(swift, deprecated: 1.1.0)
 enum HTTPResult<Body> {
     case success(HTTPResponse<Body>)
     case failure(HTTPError)
 }
 
+@available(swift, deprecated: 1.1.0)
 struct HTTPClient {
 
     typealias HTTPClientCompletion = (HTTPResult<Data?>) -> Void

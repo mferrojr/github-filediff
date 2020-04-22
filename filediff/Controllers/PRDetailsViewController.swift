@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 // VC to show PR Details
 final class PRDetailsViewController : UIViewController {
@@ -17,6 +18,7 @@ final class PRDetailsViewController : UIViewController {
     var prNumber = 0
     
     //MARK: - Private Variables
+    private var subscriptions = Set<AnyCancellable?>()
     
     //MARK: IBOutlets
     @IBOutlet weak private var titleLabel: UILabel!
@@ -67,6 +69,7 @@ final class PRDetailsViewController : UIViewController {
         
         prDetailOperation = SyncPRDetailsOperation()
         prDetailOperation?.prNumber = prNumber
+        self.subscriptions.insert(prDetailOperation?.subscription)
         prDetailOperation?.completionBlock = {
             // UI Changes on the main queue
             DispatchQueue.main.async { [unowned self] in
@@ -80,7 +83,7 @@ final class PRDetailsViewController : UIViewController {
                 self.displayError()
             }
         }
-        
+    
         if let op = prDetailOperation {
             queue.addOperation(op)
         }

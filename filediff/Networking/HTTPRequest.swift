@@ -24,24 +24,50 @@ struct HTTPHeader {
     let value: String
 }
 
-class HTTPRequest {
+struct HTTPRequest {
+    // MARK: - Variables
+    
+    // MARK: Public
     let baseURL: URL
-    let method: HTTPMethod
     let path: String
     var queryItems: [URLQueryItem]?
+    let method: HTTPMethod
     var headers: [HTTPHeader]?
     var body: Data?
+    
+    var requestURL: URLRequest {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = self.baseURL.scheme
+        urlComponents.host = self.baseURL.host
+        urlComponents.path = self.baseURL.path
+        urlComponents.queryItems = self.queryItems
+        
+        let url = urlComponents.url!.appendingPathComponent(self.path)
 
-    init(method: HTTPMethod, baseURL: URL, path: String) {
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = self.method.rawValue
+        urlRequest.httpBody = self.body
+
+        self.headers?.forEach { urlRequest.addValue($0.value, forHTTPHeaderField: $0.field) }
+        
+        return urlRequest
+    }
+}
+
+extension HTTPRequest {
+    
+    init(method: HTTPMethod, baseURL: URL, path: String = "", queryItems: [URLQueryItem]? = nil) {
         self.method = method
         self.baseURL = baseURL
         self.path = path
+        self.queryItems = queryItems
     }
 
-    init<Body: Encodable>(method: HTTPMethod, baseURL: URL, path: String, body: Body) throws {
+    init<Body: Encodable>(method: HTTPMethod, baseURL: URL, path: String = "", body: Body) throws {
         self.method = method
         self.baseURL = baseURL
         self.path = path
         self.body = try JSONEncoder().encode(body)
     }
+
 }

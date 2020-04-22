@@ -24,15 +24,23 @@ class SyncPRsOperation : BaseOperation {
     
     // MARK: Private
     private func getPRs(){
-        self.dataTask = GitHubService.getPullRequests() { result in
-            switch result {
-            case .success(let results):
-                try? self.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
-                self.done()
-            case .failure(let error):
-                self.errorCB(error)
-            }
-        }
+        self.subscription =
+            GithubAPI.pullRequests()
+            .sink(
+                receiveCompletion: { result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.errorCB(error)
+                    }
+                    self.done()
+                },
+                receiveValue: { results in
+                    try? self.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
+                    self.done()
+                }
+            )
     }
 
 }

@@ -8,13 +8,17 @@
 
 import Foundation
 import UIKit
+import Combine
 
 // VC to list PRs
 final class PRListViewController : UIViewController {
     
-    //MARK: - Private Variables
-    fileprivate let dataSource = PRListDataSource()
-    fileprivate var prOperation : SyncPRsOperation?
+    //MARK: - Variables
+    
+    //MARK: Private
+    private let dataSource = PRListDataSource()
+    private var prOperation : SyncPRsOperation?
+    private var subscriptions = Set<AnyCancellable?>()
     
     //MARK: IBOutlets
     @IBOutlet weak fileprivate var prTableView: UITableView!
@@ -80,6 +84,7 @@ final class PRListViewController : UIViewController {
         queue.qualityOfService = .userInitiated
         
         prOperation = SyncPRsOperation()
+        self.subscriptions.insert(prOperation?.subscription)
         prOperation?.completionBlock = { [unowned self] in
             self.prOperation = nil
             self.dataSource.refresh()
@@ -97,6 +102,7 @@ final class PRListViewController : UIViewController {
                 self.displayError()
             }
         }
+        
         if let op = prOperation {
             queue.addOperation(op)
         }
