@@ -31,16 +31,6 @@ extension GithubAPI {
         
         return runForJson(httpRequest.requestURL)
     }
-
-    static func pullRequestBy(number: Int) -> AnyPublisher<GitHubPRResponse, Error> {
-        let httpRequest = HTTPRequest(
-            method: .get,
-            baseURL: base,
-            path: "pulls/\(number)"
-        )
-        
-        return runForJson(httpRequest.requestURL)
-    }
     
     static func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error> {
         let httpRequest = HTTPRequest(

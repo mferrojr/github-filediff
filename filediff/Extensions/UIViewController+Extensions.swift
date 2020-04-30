@@ -9,16 +9,7 @@
 import Foundation
 import UIKit
 
-enum FileDiffSegue : String {
-    case showPRDetails = "showPRDetails"
-    case displayPRDiff = "displayPRDiff"
-}
-
 extension UIViewController {
-    
-    func performSegaue(_ segue : FileDiffSegue) {
-        self.performSegue(withIdentifier: segue.rawValue, sender: self)
-    }
     
     func displayError() {
         let alert = UIAlertController(title: "Error", message: "Unable to load data", preferredStyle: UIAlertController.Style.alert)

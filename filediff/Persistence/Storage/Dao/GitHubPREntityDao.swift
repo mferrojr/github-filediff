@@ -14,8 +14,8 @@ class GitHubPREntityDao: BaseDao<GitHubPREntity, GitHubPR> {
         return super.fetch(predicate: NSPredicate(format: "id = \(id)")).last
     }
     
-    func fetchAll() -> [GitHubPREntity] {
-        return super.fetch(predicate: nil)
+    func fetchAll(sorted: Sorted? = nil) -> [GitHubPREntity] {
+        return super.fetch(predicate: nil, sorted: sorted)
     }
 
 }

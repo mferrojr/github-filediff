@@ -60,7 +60,7 @@ class FileDiffQueue {
     private let queue = OperationQueue()
     private var subscriptions = Set<AnyCancellable?>()
     
-    func getFileDiff(diffUrl: String, completion : @escaping (FileDiffQueueResult) -> Void) {
+    func getFileDiff(diffUrl: String, completion: @escaping (FileDiffQueueResult) -> Void) {
         let context = FileDiffQueueContext()
         
         // Get file diff

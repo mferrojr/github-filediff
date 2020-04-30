@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  filediff
+
+  Created by Michael Ferro, Jr. on 4/30/20.
+  Copyright © 2020 Michael Ferro. All rights reserved.
+*/
+
+"PULL REQUESTS"="Pull Requests";
+"PULL TO REFRESH"="Pull to Refresh";
+"VIEW DIFF"="View Diff";

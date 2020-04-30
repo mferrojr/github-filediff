@@ -9,14 +9,16 @@
 import Foundation
 import UIKit
 
-class PRListDataSource : NSObject, UITableViewDataSource {
+class PRListDataSource: NSObject, UITableViewDataSource {
     
     private(set) var datas = [GitHubPREntity]()
     private let gitHubPREntityService = GitHubPREntityService()
     
-    //MARK: - Public Functions
+    // MARK: - Functions
+    
+    // MARK: Public
     func refresh(){
-        datas = gitHubPREntityService.fetchAll()
+        datas = gitHubPREntityService.fetchAll(sorted: Sorted(key: "number", ascending: false))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,18 +26,20 @@ class PRListDataSource : NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FileDiffCell.prCell.rawValue, for: indexPath) as! PRTableViewCell
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PRTableViewCell.ReuseId, for: indexPath) as? PRTableViewCell else {
+            fatalError("Dequeued cell is not the expected type.")
+        }
+    
         let model = datas[indexPath.row]
-        var subTitle = "#\(model.number)"
         
+        var subTitle = "#\(model.number)"
         if let login = model.user?.login {
             subTitle.append(" by \(login)")
         }
-        cell.configure(PRTableViewModel(title: model.title, subTitle: subTitle))
+        cell.configure(PRTableViewCellModel(title: model.title, subTitle: subTitle))
 
         return cell
     }
     
-    //MARK: - Private Functions
+    // MARK: Private
 }

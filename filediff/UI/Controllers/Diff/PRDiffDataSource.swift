@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PRDiffDataSource : NSObject, UITableViewDataSource {
+class PRDiffDataSource: NSObject, UITableViewDataSource {
     
     private(set) var datas = [GitHubFile]()
     
@@ -23,7 +23,7 @@ class PRDiffDataSource : NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FileDiffCell.fileDiffCell.rawValue, for: indexPath) as! FileDiffTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FileDiffTableViewCell.ReuseId, for: indexPath) as! FileDiffTableViewCell
         
         let model = datas[indexPath.row]
         
