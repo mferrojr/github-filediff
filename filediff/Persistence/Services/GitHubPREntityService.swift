@@ -32,8 +32,8 @@ class GitHubPREntityService {
         return DBManager.shared.gitHubPRDao.findById(prNumber)
     }
     
-    func fetchAll() -> [GitHubPREntity] {
-        return DBManager.shared.gitHubPRDao.fetchAll()
+    func fetchAll(sorted: Sorted? = nil) -> [GitHubPREntity] {
+        return DBManager.shared.gitHubPRDao.fetchAll(sorted: sorted)
     }
 
 }

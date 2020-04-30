@@ -60,6 +60,10 @@ extension CoreDataStorageContext {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String.init(describing: model.self))
 
         fetchRequest.predicate = predicate
+        if let sorted = sorted {
+            let sort = NSSortDescriptor(key: sorted.key, ascending: sorted.ascending)
+            fetchRequest.sortDescriptors = [sort]
+        }
         
         var results = [Storable]()
         do {

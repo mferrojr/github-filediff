@@ -33,28 +33,12 @@ final class GitHubService {
         return HTTPClient().perform(request) { result in
             switch result {
             case .success(let response):
-                if let response = try? response.decode(to: [GitHubPRResponse].self) {
-                    completion(.success(response.body))
-                } else {
+                guard let response = try? response.decode(to: [GitHubPRResponse].self) else {
                     completion(.failure(GitHubServiceError.invalidResponse))
+                    return
                 }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-     }
-    
-    static func getPullRequestByNumber(number: PR_NUMBER, completion:@escaping (Result<GitHubPRResponse, Error>)->Void) -> URLSessionDataTask? {
-        let request = HTTPRequest(method: .get, baseURL: apiBaseURL, path: "pulls/\(number)")
-
-        return HTTPClient().perform(request) { result in
-            switch result {
-            case .success(let response):
-                if let response = try? response.decode(to: GitHubPRResponse.self) {
-                    completion(.success(response.body))
-                } else {
-                    completion(.failure(GitHubServiceError.invalidResponse))
-                }
+                
+                completion(.success(response.body))
             case .failure(let error):
                 completion(.failure(error))
             }
