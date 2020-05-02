@@ -18,11 +18,12 @@ class PRListTable: NSObject {
     // MARK: Private
     private weak var owner: PRListViewController?
     private var viewModel: PRListViewModel
-    private let dataSource = PRListDataSource()
+    private let dataSource: PRListDataSource
 
     // MARK: - Initializations
-    init(viewModel: PRListViewModel) {
+    init(viewModel: PRListViewModel, prService: GitHubPREntityServicable) {
         self.viewModel = viewModel
+        self.dataSource = PRListDataSource(prService: prService)
     }
 
     // MARK: - Functions

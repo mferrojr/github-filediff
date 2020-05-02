@@ -11,14 +11,13 @@ import UIKit
 
 class DBManager {
 
-    // MARK: - Private properties
+    // MARK: - Variables
+    
+    // MARK: Private
     private var storageContext: StorageContext?
 
-    // MARK: - Public properties
+    // MARK: Public
     static var shared = DBManager()
-
-    lazy var gitHubPRDao = GitHubPREntityDao(storageContext: storageContextImpl())
-    lazy var gitHubUserDao = GitHubUserEntityDao(storageContext: storageContextImpl())
 
     private init() {
     }
@@ -27,7 +26,7 @@ class DBManager {
         shared.storageContext = storageContext
     }
 
-    private func storageContextImpl() -> StorageContext {
+    func storageContextImpl() -> StorageContext {
         if self.storageContext != nil {
             return self.storageContext!
         }

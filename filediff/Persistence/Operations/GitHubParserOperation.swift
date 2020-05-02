@@ -10,17 +10,26 @@ import Foundation
 
 class GitHubParserOperation : BaseOperation {
     
-    //MARK: - Public Variables
-    fileprivate var context : FileDiffQueueContext!
+    // MARK: - Variables
     
+    // MARK: Private
+    private var context : FileDiffQueueContext!
+    
+    // MARK: - Initialization
     required init(context : FileDiffQueueContext) {
         self.context = context
     }
     
+    // MARK: - Functions
+    
+    // MARK: Public
     override func main() {
         super.main()
         
-        guard let fileText = self.context.fileText else { self.errorCB(nil); return }
+        guard let fileText = self.context.fileText else {
+            self.errorCB(nil)
+            return
+        }
         
         context.files = GitHubParser.parse(fileText: fileText)
         

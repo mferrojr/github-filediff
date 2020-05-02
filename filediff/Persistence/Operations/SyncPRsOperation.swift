@@ -8,13 +8,20 @@
 
 import Foundation
 
-class SyncPRsOperation : BaseOperation {
+class SyncPRsOperation: BaseOperation {
 
     // MARK: - Variables
     
     // MARK: Private
-    private let gitHubPREntityService = GitHubPREntityService()
+    private let gitHubPREntityService: GitHubPREntityServicable
 
+    // MARK: - Functions
+    // MARK: - Initialization
+    required init(prService : GitHubPREntityServicable) {
+       self.gitHubPREntityService = prService
+    }
+    
+    // MARK: Public
     override func main() {
         super.main()
         getPRs()

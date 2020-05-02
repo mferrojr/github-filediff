@@ -20,16 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        let appWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        appWindow.windowScene = windowScene
-
-        let navController = UINavigationController()
-        mainCoordinator = MainCoordinator(navigationController: navController)
-        mainCoordinator.start()
-
-        appWindow.rootViewController = navController
-        appWindow.makeKeyAndVisible()
-        window = appWindow
+        let window = UIWindow(windowScene: windowScene)
+        let coordinator = AppCoordinator(window: window)
+        coordinator.start()
+        self.window = window
     }
 
 }

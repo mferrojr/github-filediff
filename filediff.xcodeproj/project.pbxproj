@@ -10,7 +10,6 @@
 		017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A143E1F13109E004E9EE6 /* AppDelegate.swift */; };
 		017A14461F13109E004E9EE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017A14451F13109E004E9EE6 /* Assets.xcassets */; };
 		017A14491F13109E004E9EE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017A14471F13109E004E9EE6 /* LaunchScreen.storyboard */; };
-		017A14541F13109E004E9EE6 /* filediffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A14531F13109E004E9EE6 /* filediffTests.swift */; };
 		017A145F1F13109E004E9EE6 /* filediffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017A145E1F13109E004E9EE6 /* filediffUITests.swift */; };
 		745877CF24574C2B00E6E078 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745877CE24574C2B00E6E078 /* SceneDelegate.swift */; };
 		745877D124578C9200E6E078 /* PRListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745877D024578C9200E6E078 /* PRListViewModel.swift */; };
@@ -47,6 +46,11 @@
 		745CCAC82432682900183977 /* GitHubPR+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC22432682900183977 /* GitHubPR+CoreDataClass.swift */; };
 		745CCAC92432682900183977 /* filediff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC32432682900183977 /* filediff.xcdatamodeld */; };
 		745CCACA2432682900183977 /* GitHubUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCAC52432682900183977 /* GitHubUser+CoreDataClass.swift */; };
+		7488C51B245D9C2600700F63 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488C51A245D9C2600700F63 /* AppCoordinator.swift */; };
+		7488C51D245D9CF700700F63 /* MasterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488C51C245D9CF700700F63 /* MasterCoordinator.swift */; };
+		7488C51F245DECF800700F63 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488C51E245DECF800700F63 /* Services.swift */; };
+		7488C525245DFAE600700F63 /* PRListDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488C524245DFAE600700F63 /* PRListDataSourceTests.swift */; };
+		7488C527245DFB3A00700F63 /* MockGitHubPREntityServicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488C526245DFB3A00700F63 /* MockGitHubPREntityServicable.swift */; };
 		748F40EF245B617100B23E52 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 748F40F1245B617100B23E52 /* Localizable.strings */; };
 		7499FC9D24365A45002B2AF4 /* StorageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FC9C24365A45002B2AF4 /* StorageContext.swift */; };
 		7499FC9F24365A6D002B2AF4 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FC9E24365A6D002B2AF4 /* Storable.swift */; };
@@ -58,15 +62,15 @@
 		7499FCAD24367425002B2AF4 /* GitHubPREntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCAC24367425002B2AF4 /* GitHubPREntity.swift */; };
 		7499FCAF24367431002B2AF4 /* GitHubUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCAE24367431002B2AF4 /* GitHubUserEntity.swift */; };
 		7499FCB124367453002B2AF4 /* DomainBaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB024367453002B2AF4 /* DomainBaseEntity.swift */; };
-		7499FCB324367591002B2AF4 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB224367591002B2AF4 /* BaseDao.swift */; };
-		7499FCBA2436779C002B2AF4 /* GitHubPREntityDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */; };
-		7499FCBC2436780F002B2AF4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCBB2436780F002B2AF4 /* DBManager.swift */; };
+		7499FCB324367591002B2AF4 /* BaseDaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB224367591002B2AF4 /* BaseDaoService.swift */; };
+		7499FCBA2436779C002B2AF4 /* GitHubPREntityDaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCB92436779C002B2AF4 /* GitHubPREntityDaoService.swift */; };
 		7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7499FCBD24367BB3002B2AF4 /* GitHubPREntityService.swift */; };
 		749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */; };
 		749C8C1E24380CDB006C570B /* GitHubUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */; };
-		749C8C202438F7CA006C570B /* GitHubUserEntityDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */; };
+		749C8C202438F7CA006C570B /* GitHubUserEntityDaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C8C1F2438F7CA006C570B /* GitHubUserEntityDaoService.swift */; };
 		74B922F9244FBB3600A6DD7A /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B922F8244FBB3600A6DD7A /* GithubAPI.swift */; };
 		74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B922FA244FBB5500A6DD7A /* Agent.swift */; };
+		74BE5B46245CB45100C9D75C /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE5B45245CB44700C9D75C /* DBManager.swift */; };
 		74EA8F052458721B00A50A38 /* PRListTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA8F042458721B00A50A38 /* PRListTable.swift */; };
 		74EA8F0C2459F72400A50A38 /* PRDiffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA8F0B2459F72400A50A38 /* PRDiffTable.swift */; };
 /* End PBXBuildFile section */
@@ -95,7 +99,6 @@
 		017A14481F13109E004E9EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017A144A1F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017A144F1F13109E004E9EE6 /* filediffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = filediffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		017A14531F13109E004E9EE6 /* filediffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filediffTests.swift; sourceTree = "<group>"; };
 		017A14551F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017A145A1F13109E004E9EE6 /* filediffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = filediffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A145E1F13109E004E9EE6 /* filediffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filediffUITests.swift; sourceTree = "<group>"; };
@@ -135,6 +138,11 @@
 		745CCAC22432682900183977 /* GitHubPR+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubPR+CoreDataClass.swift"; sourceTree = "<group>"; };
 		745CCAC42432682900183977 /* filediff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = filediff.xcdatamodel; sourceTree = "<group>"; };
 		745CCAC52432682900183977 /* GitHubUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHubUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7488C51A245D9C2600700F63 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		7488C51C245D9CF700700F63 /* MasterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCoordinator.swift; sourceTree = "<group>"; };
+		7488C51E245DECF800700F63 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		7488C524245DFAE600700F63 /* PRListDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRListDataSourceTests.swift; sourceTree = "<group>"; };
+		7488C526245DFB3A00700F63 /* MockGitHubPREntityServicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGitHubPREntityServicable.swift; sourceTree = "<group>"; };
 		748F40EA245B610500B23E52 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		748F40EC245B611B00B23E52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		748F40F0245B617100B23E52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -149,15 +157,15 @@
 		7499FCAC24367425002B2AF4 /* GitHubPREntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntity.swift; sourceTree = "<group>"; };
 		7499FCAE24367431002B2AF4 /* GitHubUserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntity.swift; sourceTree = "<group>"; };
 		7499FCB024367453002B2AF4 /* DomainBaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainBaseEntity.swift; sourceTree = "<group>"; };
-		7499FCB224367591002B2AF4 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
-		7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntityDao.swift; sourceTree = "<group>"; };
-		7499FCBB2436780F002B2AF4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		7499FCB224367591002B2AF4 /* BaseDaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDaoService.swift; sourceTree = "<group>"; };
+		7499FCB92436779C002B2AF4 /* GitHubPREntityDaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntityDaoService.swift; sourceTree = "<group>"; };
 		7499FCBD24367BB3002B2AF4 /* GitHubPREntityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPREntityService.swift; sourceTree = "<group>"; };
 		749C8C1B24380CDB006C570B /* GitHubPR+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubPR+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		749C8C1C24380CDB006C570B /* GitHubUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitHubUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntityDao.swift; sourceTree = "<group>"; };
+		749C8C1F2438F7CA006C570B /* GitHubUserEntityDaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntityDaoService.swift; sourceTree = "<group>"; };
 		74B922F8244FBB3600A6DD7A /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		74B922FA244FBB5500A6DD7A /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		74BE5B45245CB44700C9D75C /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		74EA8F042458721B00A50A38 /* PRListTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRListTable.swift; sourceTree = "<group>"; };
 		74EA8F0B2459F72400A50A38 /* PRDiffTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDiffTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,8 +219,6 @@
 		017A143D1F13109D004E9EE6 /* filediff */ = {
 			isa = PBXGroup;
 			children = (
-				017A143E1F13109E004E9EE6 /* AppDelegate.swift */,
-				745877CE24574C2B00E6E078 /* SceneDelegate.swift */,
 				745CCA3B2432519700183977 /* Extensions */,
 				745CCA752432542300183977 /* Models */,
 				74A69A0824368766005A3E49 /* Networking */,
@@ -227,7 +233,8 @@
 		017A14521F13109E004E9EE6 /* filediffTests */ = {
 			isa = PBXGroup;
 			children = (
-				017A14531F13109E004E9EE6 /* filediffTests.swift */,
+				7488C520245DFAAD00700F63 /* Persistence */,
+				7488C522245DFAAD00700F63 /* UI */,
 				017A14551F13109E004E9EE6 /* Info.plist */,
 			);
 			path = filediffTests;
@@ -245,10 +252,12 @@
 		01C598491F156FD900B93E48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				017A143E1F13109E004E9EE6 /* AppDelegate.swift */,
 				017A14451F13109E004E9EE6 /* Assets.xcassets */,
 				017A144A1F13109E004E9EE6 /* Info.plist */,
 				017A14471F13109E004E9EE6 /* LaunchScreen.storyboard */,
 				748F40F1245B617100B23E52 /* Localizable.strings */,
+				745877CE24574C2B00E6E078 /* SceneDelegate.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,7 +314,9 @@
 		745877D92457929E00E6E078 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA712432542300183977 /* Controllers */,
+				745877D5245791FE00E6E078 /* Details */,
+				745877D82457921200E6E078 /* Diff */,
+				745877D224578CA000E6E078 /* List */,
 				74EA8F062458951100A50A38 /* Navigation */,
 			);
 			path = UI;
@@ -348,7 +359,7 @@
 				749C8C2224390EDE006C570B /* Dao */,
 				7499FCA024365AD3002B2AF4 /* ConfigurationType.swift */,
 				745CCAB22432628100183977 /* Datastore.swift */,
-				7499FCBB2436780F002B2AF4 /* DBManager.swift */,
+				74BE5B45245CB44700C9D75C /* DBManager.swift */,
 				7499FC9E24365A6D002B2AF4 /* Storable.swift */,
 				7499FC9C24365A45002B2AF4 /* StorageContext.swift */,
 			);
@@ -387,18 +398,9 @@
 			children = (
 				745CCA6B2432538200183977 /* AppUtility.swift */,
 				745CCA6C2432538200183977 /* GitHubParser.swift */,
+				7488C51E245DECF800700F63 /* Services.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		745CCA712432542300183977 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				745877D5245791FE00E6E078 /* Details */,
-				745877D82457921200E6E078 /* Diff */,
-				745877D224578CA000E6E078 /* List */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		745CCA752432542300183977 /* Models */ = {
@@ -446,12 +448,44 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		7488C520245DFAAD00700F63 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				7488C521245DFAAD00700F63 /* Services */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7488C521245DFAAD00700F63 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7488C526245DFB3A00700F63 /* MockGitHubPREntityServicable.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7488C522245DFAAD00700F63 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7488C523245DFAAD00700F63 /* List */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7488C523245DFAAD00700F63 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7488C524245DFAE600700F63 /* PRListDataSourceTests.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		749C8C2224390EDE006C570B /* Dao */ = {
 			isa = PBXGroup;
 			children = (
-				7499FCB224367591002B2AF4 /* BaseDao.swift */,
-				7499FCB92436779C002B2AF4 /* GitHubPREntityDao.swift */,
-				749C8C1F2438F7CA006C570B /* GitHubUserEntityDao.swift */,
+				7499FCB224367591002B2AF4 /* BaseDaoService.swift */,
+				7499FCB92436779C002B2AF4 /* GitHubPREntityDaoService.swift */,
+				749C8C1F2438F7CA006C570B /* GitHubUserEntityDaoService.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -473,6 +507,8 @@
 			children = (
 				745877DA2457933A00E6E078 /* Coordinator.swift */,
 				745877DC2457935600E6E078 /* MainCoordinator.swift */,
+				7488C51A245D9C2600700F63 /* AppCoordinator.swift */,
+				7488C51C245D9CF700700F63 /* MasterCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -633,27 +669,29 @@
 				745CCABF243267F100183977 /* GitHubFile.swift in Sources */,
 				745CCA612432534900183977 /* GitHubParserOperation.swift in Sources */,
 				745CCA432432519700183977 /* String+Extensions.swift in Sources */,
-				7499FCBC2436780F002B2AF4 /* DBManager.swift in Sources */,
 				749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */,
+				7488C51D245D9CF700700F63 /* MasterCoordinator.swift in Sources */,
 				74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */,
 				745CCA702432538200183977 /* GitHubParser.swift in Sources */,
 				7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */,
 				745CCA5A2432532700183977 /* PRDiffDataSource.swift in Sources */,
+				7488C51B245D9C2600700F63 /* AppCoordinator.swift in Sources */,
 				7499FCAF24367431002B2AF4 /* GitHubUserEntity.swift in Sources */,
 				74B922F9244FBB3600A6DD7A /* GithubAPI.swift in Sources */,
-				7499FCB324367591002B2AF4 /* BaseDao.swift in Sources */,
+				7499FCB324367591002B2AF4 /* BaseDaoService.swift in Sources */,
 				7499FCAD24367425002B2AF4 /* GitHubPREntity.swift in Sources */,
-				749C8C202438F7CA006C570B /* GitHubUserEntityDao.swift in Sources */,
+				749C8C202438F7CA006C570B /* GitHubUserEntityDaoService.swift in Sources */,
 				74EA8F052458721B00A50A38 /* PRListTable.swift in Sources */,
 				7499FCA924367306002B2AF4 /* CoreDataStoreCoordinator.swift in Sources */,
 				745CCABA2432673400183977 /* GitHubUserResponse.swift in Sources */,
 				017A143F1F13109E004E9EE6 /* AppDelegate.swift in Sources */,
 				745CCAB82432652600183977 /* GitHubPRResponse.swift in Sources */,
-				7499FCBA2436779C002B2AF4 /* GitHubPREntityDao.swift in Sources */,
+				7499FCBA2436779C002B2AF4 /* GitHubPREntityDaoService.swift in Sources */,
 				745CCA6F2432538200183977 /* AppUtility.swift in Sources */,
 				7499FCA324365AF3002B2AF4 /* Sorted.swift in Sources */,
 				745CCA5B2432532700183977 /* PRListDataSource.swift in Sources */,
 				745877D124578C9200E6E078 /* PRListViewModel.swift in Sources */,
+				7488C51F245DECF800700F63 /* Services.swift in Sources */,
 				7499FCAB243673AC002B2AF4 /* Mappable.swift in Sources */,
 				749C8C1E24380CDB006C570B /* GitHubUser+CoreDataProperties.swift in Sources */,
 				745CCA6D2432538200183977 /* FileDiffTableViewCell.swift in Sources */,
@@ -686,6 +724,7 @@
 				745CCA7A2432542300183977 /* PRDiffViewController.swift in Sources */,
 				745CCA532432520800183977 /* GitHubService.swift in Sources */,
 				7499FCA5243671AD002B2AF4 /* CoreDataStorageContext.swift in Sources */,
+				74BE5B46245CB45100C9D75C /* DBManager.swift in Sources */,
 				745CCA7C2432542300183977 /* PRDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,7 +733,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017A14541F13109E004E9EE6 /* filediffTests.swift in Sources */,
+				7488C525245DFAE600700F63 /* PRListDataSourceTests.swift in Sources */,
+				7488C527245DFB3A00700F63 /* MockGitHubPREntityServicable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
