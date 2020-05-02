@@ -10,13 +10,6 @@ import XCTest
 @testable import filediff
 
 class PRListDataSourceTests: XCTestCase {
-    
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
 
     func testRefresh() throws {
         let dataSource = PRListDataSource(prService: MockGitHubPREntityServicable())
@@ -24,6 +17,5 @@ class PRListDataSourceTests: XCTestCase {
         
         XCTAssertEqual(dataSource.datas.count,2)
     }
-
 
 }
