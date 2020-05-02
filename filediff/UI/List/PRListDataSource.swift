@@ -11,8 +11,16 @@ import UIKit
 
 class PRListDataSource: NSObject, UITableViewDataSource {
     
+    // MARK: - Variables
+    
+    // MARK: Private
     private(set) var datas = [GitHubPREntity]()
-    private let gitHubPREntityService = GitHubPREntityService()
+    private let gitHubPREntityService: GitHubPREntityServicable
+    
+    // MARK: - Initialization
+    init(prService: GitHubPREntityServicable) {
+        self.gitHubPREntityService = prService
+    }
     
     // MARK: - Functions
     

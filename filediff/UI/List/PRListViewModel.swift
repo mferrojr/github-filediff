@@ -40,7 +40,7 @@ class PRListViewModel {
     
     // MARK: Public
     func fetchData() {
-        prOperation = SyncPRsOperation()
+        prOperation = SyncPRsOperation(prService: Services.prEntityService)
         self.subscriptions.insert(prOperation?.subscription)
         prOperation?.completionBlock = { [unowned self] in
             self.prOperation = nil

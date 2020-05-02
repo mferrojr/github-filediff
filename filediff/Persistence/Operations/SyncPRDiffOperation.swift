@@ -8,22 +8,29 @@
 
 import Foundation
 
-class SyncPRDiffOperation : BaseOperation {
+class SyncPRDiffOperation: BaseOperation {
     
-    //MARK: - Public Variables
-    fileprivate var diffUrl: URL
-    fileprivate var context: FileDiffQueueContext!
+    // MARK: - Variables
     
+    // MARK: Private
+    private var diffUrl: URL
+    private var context: FileDiffQueueContext!
+    
+    // MARK: - Initialization
     required init(diffUrl : URL, context : FileDiffQueueContext) {
         self.diffUrl = diffUrl
         self.context = context
     }
     
+    // MARK: - Functions
+    
+    // MARK: Public
     override func main() {
         super.main()
         getPRDiff()
     }
     
+    // MARK: Private
     private func getPRDiff(){
         self.subscription =
             GithubAPI.pullRequestBy(diffUrl: diffUrl)

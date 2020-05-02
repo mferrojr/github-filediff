@@ -43,7 +43,7 @@ final class PRListViewController: UIViewController {
     // MARK: - Initialization
     init() {
         self.viewModel = PRListViewModel()
-        self.table = PRListTable(viewModel: viewModel)
+        self.table = PRListTable(viewModel: viewModel, prService: Services.prEntityService)
         
         super.init(nibName: nil, bundle: nil)
     }

@@ -29,8 +29,6 @@ class CoreDataStorageContext: StorageContext {
     }
 }
 
-import CoreData
-
 extension CoreDataStorageContext {
 
     func create<DBEntity: Storable>(_ model: DBEntity.Type) -> DBEntity? {
