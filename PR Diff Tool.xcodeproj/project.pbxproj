@@ -98,9 +98,9 @@
 		017A14451F13109E004E9EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017A14481F13109E004E9EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017A144A1F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		017A144F1F13109E004E9EE6 /* filediffTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = filediffTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		017A144F1F13109E004E9EE6 /* PR Diff ToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PR Diff ToolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A14551F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		017A145A1F13109E004E9EE6 /* filediffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = filediffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		017A145A1F13109E004E9EE6 /* PR Diff ToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PR Diff ToolUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A145E1F13109E004E9EE6 /* filediffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filediffUITests.swift; sourceTree = "<group>"; };
 		017A14601F13109E004E9EE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		745877CE24574C2B00E6E078 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				017A143B1F13109D004E9EE6 /* PR Diff Tool.app */,
-				017A144F1F13109E004E9EE6 /* filediffTests.xctest */,
-				017A145A1F13109E004E9EE6 /* filediffUITests.xctest */,
+				017A144F1F13109E004E9EE6 /* PR Diff ToolTests.xctest */,
+				017A145A1F13109E004E9EE6 /* PR Diff ToolUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -524,9 +524,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		017A143A1F13109D004E9EE6 /* filediff */ = {
+		017A143A1F13109D004E9EE6 /* PR Diff Tool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 017A14631F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediff" */;
+			buildConfigurationList = 017A14631F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff Tool" */;
 			buildPhases = (
 				017A14371F13109D004E9EE6 /* Sources */,
 				017A14381F13109D004E9EE6 /* Frameworks */,
@@ -536,16 +536,16 @@
 			);
 			dependencies = (
 			);
-			name = filediff;
+			name = "PR Diff Tool";
 			packageProductDependencies = (
 			);
 			productName = filediff;
 			productReference = 017A143B1F13109D004E9EE6 /* PR Diff Tool.app */;
 			productType = "com.apple.product-type.application";
 		};
-		017A144E1F13109E004E9EE6 /* filediffTests */ = {
+		017A144E1F13109E004E9EE6 /* PR Diff ToolTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 017A14661F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffTests" */;
+			buildConfigurationList = 017A14661F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff ToolTests" */;
 			buildPhases = (
 				017A144B1F13109E004E9EE6 /* Sources */,
 				017A144C1F13109E004E9EE6 /* Frameworks */,
@@ -556,14 +556,14 @@
 			dependencies = (
 				017A14511F13109E004E9EE6 /* PBXTargetDependency */,
 			);
-			name = filediffTests;
+			name = "PR Diff ToolTests";
 			productName = filediffTests;
-			productReference = 017A144F1F13109E004E9EE6 /* filediffTests.xctest */;
+			productReference = 017A144F1F13109E004E9EE6 /* PR Diff ToolTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		017A14591F13109E004E9EE6 /* filediffUITests */ = {
+		017A14591F13109E004E9EE6 /* PR Diff ToolUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 017A14691F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffUITests" */;
+			buildConfigurationList = 017A14691F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff ToolUITests" */;
 			buildPhases = (
 				017A14561F13109E004E9EE6 /* Sources */,
 				017A14571F13109E004E9EE6 /* Frameworks */,
@@ -574,9 +574,9 @@
 			dependencies = (
 				017A145C1F13109E004E9EE6 /* PBXTargetDependency */,
 			);
-			name = filediffUITests;
+			name = "PR Diff ToolUITests";
 			productName = filediffUITests;
-			productReference = 017A145A1F13109E004E9EE6 /* filediffUITests.xctest */;
+			productReference = 017A145A1F13109E004E9EE6 /* PR Diff ToolUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -611,7 +611,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 017A14361F13109D004E9EE6 /* Build configuration list for PBXProject "filediff" */;
+			buildConfigurationList = 017A14361F13109D004E9EE6 /* Build configuration list for PBXProject "PR Diff Tool" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -627,9 +627,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				017A143A1F13109D004E9EE6 /* filediff */,
-				017A144E1F13109E004E9EE6 /* filediffTests */,
-				017A14591F13109E004E9EE6 /* filediffUITests */,
+				017A143A1F13109D004E9EE6 /* PR Diff Tool */,
+				017A144E1F13109E004E9EE6 /* PR Diff ToolTests */,
+				017A14591F13109E004E9EE6 /* PR Diff ToolUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -751,12 +751,12 @@
 /* Begin PBXTargetDependency section */
 		017A14511F13109E004E9EE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 017A143A1F13109D004E9EE6 /* filediff */;
+			target = 017A143A1F13109D004E9EE6 /* PR Diff Tool */;
 			targetProxy = 017A14501F13109E004E9EE6 /* PBXContainerItemProxy */;
 		};
 		017A145C1F13109E004E9EE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 017A143A1F13109D004E9EE6 /* filediff */;
+			target = 017A143A1F13109D004E9EE6 /* PR Diff Tool */;
 			targetProxy = 017A145B1F13109E004E9EE6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -908,7 +908,7 @@
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.prdiff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
 				PRODUCT_NAME = "PR Diff Tool";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -926,7 +926,7 @@
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.prdiff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
 				PRODUCT_NAME = "PR Diff Tool";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -944,7 +944,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/filediff.app/filediff";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PR Diff Tool.app/PR Diff Tool";
 			};
 			name = Debug;
 		};
@@ -959,7 +959,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/filediff.app/filediff";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PR Diff Tool.app/PR Diff Tool";
 			};
 			name = Release;
 		};
@@ -972,8 +972,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = filediff;
+				TEST_TARGET_NAME = "PR Diff Tool";
 			};
 			name = Debug;
 		};
@@ -986,15 +987,16 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = filediff;
+				TEST_TARGET_NAME = "PR Diff Tool";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		017A14361F13109D004E9EE6 /* Build configuration list for PBXProject "filediff" */ = {
+		017A14361F13109D004E9EE6 /* Build configuration list for PBXProject "PR Diff Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017A14611F13109E004E9EE6 /* Debug */,
@@ -1003,7 +1005,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		017A14631F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediff" */ = {
+		017A14631F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017A14641F13109E004E9EE6 /* Debug */,
@@ -1012,7 +1014,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		017A14661F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffTests" */ = {
+		017A14661F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff ToolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017A14671F13109E004E9EE6 /* Debug */,
@@ -1021,7 +1023,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		017A14691F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "filediffUITests" */ = {
+		017A14691F13109E004E9EE6 /* Build configuration list for PBXNativeTarget "PR Diff ToolUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				017A146A1F13109E004E9EE6 /* Debug */,

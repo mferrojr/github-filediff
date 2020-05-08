@@ -1,6 +1,6 @@
 language: swift
-xcode_project: filediff.xcodeproj
-xcode_scheme: filediff
+xcode_project: PR Diff Tool.xcodeproj
+xcode_scheme: PR Diff Tool
 xcode_destination: platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro
 
 os:
