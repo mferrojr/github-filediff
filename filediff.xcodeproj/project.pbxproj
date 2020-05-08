@@ -93,7 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		017A143B1F13109D004E9EE6 /* filediff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filediff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		017A143B1F13109D004E9EE6 /* PR Diff Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PR Diff Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		017A143E1F13109E004E9EE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017A14451F13109E004E9EE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017A14481F13109E004E9EE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 		017A143C1F13109D004E9EE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				017A143B1F13109D004E9EE6 /* filediff.app */,
+				017A143B1F13109D004E9EE6 /* PR Diff Tool.app */,
 				017A144F1F13109E004E9EE6 /* filediffTests.xctest */,
 				017A145A1F13109E004E9EE6 /* filediffUITests.xctest */,
 			);
@@ -540,7 +540,7 @@
 			packageProductDependencies = (
 			);
 			productName = filediff;
-			productReference = 017A143B1F13109D004E9EE6 /* filediff.app */;
+			productReference = 017A143B1F13109D004E9EE6 /* PR Diff Tool.app */;
 			productType = "com.apple.product-type.application";
 		};
 		017A144E1F13109E004E9EE6 /* filediffTests */ = {
@@ -908,8 +908,8 @@
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.prdiff;
+				PRODUCT_NAME = "PR Diff Tool";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -926,8 +926,8 @@
 				INFOPLIST_FILE = filediff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.filediff;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.samples.prdiff;
+				PRODUCT_NAME = "PR Diff Tool";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
