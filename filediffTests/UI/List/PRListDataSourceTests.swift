@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import filediff
+@testable import PR_Diff_Tool
 
 class PRListDataSourceTests: XCTestCase {
 

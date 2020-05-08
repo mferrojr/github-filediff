@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import filediff
+@testable import PR_Diff_Tool
 
 struct MockGitHubPREntityServicable: GitHubPREntityServicable {
     
