@@ -10,17 +10,27 @@ import Foundation
 import UIKit
 
 final class RootMasterCoordinator: Coordinator {
-    private weak var window: UIWindow?
     
+    // MARK: - Variables
+    
+    // MARK: Private
+    private weak var window: UIWindow?
+    private var mainCoordinator: Coordinator?
+    
+    // MARK: - Initialization
     init(window: UIWindow?) {
         self.window = window
     }
     
+    // MARK: - Functions
+    
+    // MARK: Public
     func start() {
         let navController = UINavigationController()
-        let mainCoordinator = MainCoordinator(navigationController: navController)
-        mainCoordinator.start()
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+        self.mainCoordinator = MainCoordinator(navigationController: navController)
+        self.mainCoordinator?.start()
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
     }
+
 }

@@ -9,13 +9,21 @@
 import UIKit
 
 class MainCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
+    
+    // MARK: - Variables
+    
+    // MARK: Private
+    private var childCoordinators = [Coordinator]()
+    private var navigationController: UINavigationController
 
+    // MARK: - Initialization
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
+    // MARK: - Functions
+    
+    // MARK: Public
     func start() {
         let vc = PRListViewController()
         vc.coordinator = self
