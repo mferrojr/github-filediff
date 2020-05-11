@@ -11,9 +11,3 @@ import UIKit
 protocol Coordinator {
     func start()
 }
-
-extension Coordinator {
-    func coordinate(to coordinator: Coordinator) {
-        coordinator.start()
-    }
-}

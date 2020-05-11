@@ -10,14 +10,23 @@ import Foundation
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    private weak var window: UIWindow?
     
+    // MARK: - Variables
+    
+    // MARK: Private
+    private weak var window: UIWindow?
+    private var rootMasterCoordinator: Coordinator?
+    
+    // MARK: - Initialization
     init(window: UIWindow) {
         self.window = window
     }
     
+    // MARK: - Functions
+    
+    // MARK: Public
     func start() {
-        let coordinator = RootMasterCoordinator(window: window)
-        coordinate(to: coordinator)
+        self.rootMasterCoordinator = RootMasterCoordinator(window: window)
+        self.rootMasterCoordinator?.start()
     }
 }
