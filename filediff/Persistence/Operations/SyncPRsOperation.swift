@@ -15,37 +15,36 @@ class SyncPRsOperation: BaseOperation {
     // MARK: Private
     private let gitHubPREntityService: GitHubPREntityServicable
 
-    // MARK: - Functions
     // MARK: - Initialization
-    required init(prService : GitHubPREntityServicable) {
+    required init(prService: GitHubPREntityServicable) {
        self.gitHubPREntityService = prService
     }
+    
+    // MARK: - Functions
     
     // MARK: Public
     override func main() {
         super.main()
-        getPRs()
+        self.getPRs()
     }
-    
-    // MARK: - Functions
     
     // MARK: Private
     private func getPRs(){
         self.subscription =
             GithubAPI.pullRequests()
             .sink(
-                receiveCompletion: { result in
+                receiveCompletion: { [weak self] result in
                     switch result {
                     case .finished:
                         break
                     case .failure(let error):
-                        self.errorCB(error)
+                        self?.errorCB(error)
                     }
-                    self.done()
+                    self?.done()
                 },
-                receiveValue: { results in
-                    try? self.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
-                    self.done()
+                receiveValue: { [weak self] results in
+                    try? self?.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
+                    self?.done()
                 }
             )
     }

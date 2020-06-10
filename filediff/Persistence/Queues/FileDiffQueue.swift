@@ -60,6 +60,9 @@ class FileDiffQueue {
     private let queue = OperationQueue()
     private var subscriptions = Set<AnyCancellable?>()
     
+    //MARK: - Functions
+       
+    //MARK: Public
     func getFileDiff(diffUrl: String, completion: @escaping (FileDiffQueueResult) -> Void) {
         let context = FileDiffQueueContext()
         
@@ -86,13 +89,13 @@ class FileDiffQueue {
         parseFilesOperation.addDependency(prDiffOperation)
         
         // Add operations to queue
-        queue.qualityOfService = .userInitiated
-        queue.addOperation(prDiffOperation)
-        queue.addOperation(parseFilesOperation)
+        self.queue.qualityOfService = .userInitiated
+        self.queue.addOperation(prDiffOperation)
+        self.queue.addOperation(parseFilesOperation)
     }
     
     func cancel() {
-        queue.cancelAllOperations()
+        self.queue.cancelAllOperations()
     }
     
 }

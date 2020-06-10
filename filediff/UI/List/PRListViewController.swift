@@ -53,11 +53,15 @@ final class PRListViewController: UIViewController {
     }
     
     //MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         self.navigationItem.title = .localize(.pullRequests)
         self.viewModel.delegate = self
         self.table.setup(self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setUpTableView()
         self.setUpActivityIndicator()
         self.viewModel.fetchData()

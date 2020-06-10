@@ -66,7 +66,6 @@ final class PRDetailsViewController: UIViewController {
     // MARK: - Initialization
     init(entity: GitHubPREntity) {
         self.entity = entity
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,18 +74,20 @@ final class PRDetailsViewController: UIViewController {
     }
     
     //MARK: - View Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationItem.title = "PR #\(self.entity.number)"
-        self.titleLabel.text = self.entity.title
-        self.descriptionLabel.text = self.entity.body
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setUpScrollView()
         self.setUpStackView()
         self.setUp(label: self.titleLabel)
         self.setUp(label: self.descriptionLabel, hasTopMargin: false)
         self.setUpViewDiffButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = "PR #\(self.entity.number)"
+        self.titleLabel.text = self.entity.title
+        self.descriptionLabel.text = self.entity.body
     }
     
     // MARK: - Functions

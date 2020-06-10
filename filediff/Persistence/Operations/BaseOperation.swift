@@ -11,11 +11,14 @@ import Combine
 
 class BaseOperation: Operation {
     
+    // MARK: - Variables
+    
+    // MARK: Public
     var errorCallback: ((Error?) -> Void)?
     var dataTask : URLSessionDataTask?
     var subscription: AnyCancellable?
     
-    //MARK: - Private Variables
+    // MARK: Private
     fileprivate var _executing = false
     override var isExecuting: Bool {
         get {

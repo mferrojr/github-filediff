@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GitHubPREntityServicable {
+protocol GitHubPREntityServicable: class {
     func createAllPRs(entities: [GitHubPREntity]) throws
     func createPR(entity: GitHubPREntity) throws
     func updatePR(entity: GitHubPREntity) throws

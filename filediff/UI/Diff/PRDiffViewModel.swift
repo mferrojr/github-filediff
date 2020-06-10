@@ -32,7 +32,7 @@ class PRDiffViewModel {
     
     // MARK: - Initialization
     init() {
-        queue = FileDiffQueue()
+        self.queue = FileDiffQueue()
     }
     
     // MARK: - Functions
@@ -44,18 +44,18 @@ class PRDiffViewModel {
             return
         }
         
-        queue.getFileDiff(diffUrl: diffUrl,
+        self.queue.getFileDiff(diffUrl: diffUrl,
         completion: { result in
             switch result {
             case .success(let value):
                 // UI Changes on the main queue
-                DispatchQueue.main.async { [unowned self] in
+                DispatchQueue.main.async { [weak self] in
                     guard let files = value else {
-                        self.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.filesNotFound))
+                        self?.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.filesNotFound))
                         return
                     }
                     
-                    self.delegate?.requestPRDiffCompleted(with: .success(files))
+                    self?.delegate?.requestPRDiffCompleted(with: .success(files))
                 }
             case .error(let error):
                 guard let error = error else {
@@ -64,8 +64,8 @@ class PRDiffViewModel {
                 }
                 
                 // UI Changes on the main queue
-                DispatchQueue.main.async { [unowned self] in
-                    self.delegate?.requestPRDiffCompleted(with: .failure(error))
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.requestPRDiffCompleted(with: .failure(error))
                 }
             }
         })

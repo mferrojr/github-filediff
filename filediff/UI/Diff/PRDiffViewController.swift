@@ -57,18 +57,21 @@ final class PRDiffViewController: UIViewController {
     }
     
     //MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         self.viewModel.delegate = self
         self.table.setup(self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setUpTableView()
         self.setUpActivityIndicator()
-        self.viewModel.fetchDataFor(entity: self.entity)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.viewModel.fetchDataFor(entity: self.entity)
         AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
     }
     

@@ -32,42 +32,43 @@ class PRListViewModel {
     
     // MARK: - Initialization
     init() {
-        queue = OperationQueue()
-        queue.qualityOfService = .userInitiated
+        self.queue = OperationQueue()
+        self.queue.qualityOfService = .userInitiated
     }
     
     // MARK: - Functions
     
     // MARK: Public
     func fetchData() {
-        prOperation = SyncPRsOperation(prService: Services.prEntityService)
-        self.subscriptions.insert(prOperation?.subscription)
-        prOperation?.completionBlock = { [unowned self] in
-            self.prOperation = nil
+        self.prOperation = SyncPRsOperation(prService: Services.prEntityService)
+        self.subscriptions.insert(self.prOperation?.subscription)
+        self.prOperation?.completionBlock = { [weak self] in
+            self?.prOperation = nil
             
             // UI Changes on the main queue
-            DispatchQueue.main.async { [unowned self] in
-                self.delegate?.requestPRsCompleted(with: .success(()))
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.requestPRsCompleted(with: .success(()))
             }
         }
-        prOperation?.errorCallback = { error in
+        self.prOperation?.errorCallback = { error in
             guard let error = error else {
                 self.delegate?.requestPRsCompleted(with: .failure(PRListViewModelError.unknown))
                 return
             }
             
             // UI Changes on the main queue
-            DispatchQueue.main.async { [unowned self] in
-                self.delegate?.requestPRsCompleted(with: .failure(error))
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.requestPRsCompleted(with: .failure(error))
             }
         }
         
-        guard let op = prOperation else { return }
-        queue.addOperation(op)
+        guard let op = self.prOperation else { return }
+        self.queue.addOperation(op)
     }
     
     func cancelFetchData() {
         self.delegate?.requestPRsCancelled()
+        self.subscriptions.forEach { $0?.cancel() }
         self.prOperation?.cancel()
         self.prOperation = nil
     }
