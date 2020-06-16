@@ -43,8 +43,7 @@ final class PRTableViewCell: UITableViewCell {
        fatalError("init(coder:) has not been implemented")
     }
     
-    override
-    func prepareForReuse() {
+    override func prepareForReuse() {
         self.titleLabel.text = nil
         self.subTitleLabel.text = nil
     }

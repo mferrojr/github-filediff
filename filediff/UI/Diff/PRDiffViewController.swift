@@ -8,7 +8,6 @@
 
 import UIKit
 
-// VC to show PR Diff
 final class PRDiffViewController: UIViewController {
 
     //MARK: - Variables
@@ -56,25 +55,29 @@ final class PRDiffViewController: UIViewController {
        fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func loadView() {
         super.loadView()
         self.viewModel.delegate = self
         self.table.setup(self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpTableView()
         self.setUpActivityIndicator()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.fetchDataFor(entity: self.entity)
         AppUtility.lockOrientation(.landscapeLeft, andRotateTo: .landscapeLeft)
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.viewModel.fetchDataFor(entity: self.entity)
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -83,7 +86,7 @@ final class PRDiffViewController: UIViewController {
         self.viewModel.cancelFetchData()
     }
     
-    //MARK: - Functions
+    // MARK: - Functions
     
     // MARK: Private
     @objc

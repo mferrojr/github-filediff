@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-// VC to show PR Details
 final class PRDetailsViewController: UIViewController {
     
     //MARK: - Variables

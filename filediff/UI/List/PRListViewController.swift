@@ -9,10 +9,9 @@
 import Foundation
 import UIKit
 
-// VC to list PRs
 final class PRListViewController: UIViewController {
     
-    //MARK: - Variables
+    // MARK: - Variables
     
     // MARK: Public
     weak var coordinator: MainCoordinator?
@@ -52,7 +51,7 @@ final class PRListViewController: UIViewController {
        fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func loadView() {
         super.loadView()
         self.navigationItem.title = .localize(.pullRequests)
@@ -64,17 +63,21 @@ final class PRListViewController: UIViewController {
         super.viewDidLoad()
         self.setUpTableView()
         self.setUpActivityIndicator()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.viewModel.fetchData()
     }
 
-    //MARK: - Functions
+    // MARK: - Functions
     
     // MARK: Public
     func pullRequestSelected(_ entity: GitHubPREntity) {
         self.coordinator?.viewPullRequestDetailsBy(entity: entity)
     }
     
-    //MARK: Private
+    // MARK: Private
     private func setUpTableView() {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.tableView)
