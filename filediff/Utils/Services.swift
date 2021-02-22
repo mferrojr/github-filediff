@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Services {
+final class Services {
     
     static let coreDataStorageContext: StorageContext = CoreDataStorageContext()
     static let userEntityDao = GitHubUserEntityDaoService(storageContext: coreDataStorageContext)

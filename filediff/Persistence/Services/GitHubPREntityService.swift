@@ -16,9 +16,9 @@ protocol GitHubPREntityServicable {
     func fetchAll(sorted: Sorted?) -> [GitHubPREntity]
 }
 
-class GitHubPREntityService<A:GitHubUserEntityDao, T:GitHubPREntityDao>: GitHubPREntityServicable {
+final class GitHubPREntityService<A:GitHubUserEntityDao, T:GitHubPREntityDao>: GitHubPREntityServicable {
 
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private let userDao: A
@@ -31,8 +31,6 @@ class GitHubPREntityService<A:GitHubUserEntityDao, T:GitHubPREntityDao>: GitHubP
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func createAllPRs(entities: [T.Domain]) throws {
         for entity in entities {
             try self.createPR(entity: entity)

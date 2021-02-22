@@ -14,8 +14,9 @@ public enum StoreType: String {
     case inMemoryStoreType
 }
 
-class CoreDataStoreCoordinator {
+final class CoreDataStoreCoordinator {
 
+    // MARK: - Functions
     static func persistentStoreCoordinator(modelName: String? = nil, storeType: StoreType = .sqLiteStoreType) -> NSPersistentStoreCoordinator? {
         do {
             return try NSPersistentStoreCoordinator.coordinator(modelName: modelName, storeType: storeType)

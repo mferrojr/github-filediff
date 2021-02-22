@@ -19,8 +19,6 @@ enum GithubAPI {
 extension GithubAPI {
 
     // MARK: - Functions
-    
-    // MARK: Public
     static func pullRequests() -> AnyPublisher<[GitHubPRResponse], Error> {
         let httpRequest = HTTPRequest(
             method: .get,
@@ -41,16 +39,21 @@ extension GithubAPI {
         return runForString(httpRequest.requestURL)
     }
     
-    // MARK: Private
-    private static func runForJson<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+}
+
+// MARK: - Private Functions
+private extension GithubAPI {
+    
+    static func runForJson<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         return agent.runForJson(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
     
-    private static func runForString(_ request: URLRequest, with encoding: String.Encoding = .utf8) -> AnyPublisher<String, Error> {
+    static func runForString(_ request: URLRequest, with encoding: String.Encoding = .utf8) -> AnyPublisher<String, Error> {
         return agent.runForString(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
+    
 }

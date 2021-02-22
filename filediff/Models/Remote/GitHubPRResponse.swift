@@ -9,6 +9,8 @@
 import Foundation
 
 struct GitHubPRResponse {
+    
+    // MARK: - Properties
     var id: Int
     var number: Int
     var diff_url: String

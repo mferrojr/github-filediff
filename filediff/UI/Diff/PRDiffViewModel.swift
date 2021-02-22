@@ -15,16 +15,14 @@ enum PRDiffViewModelError: Error {
     case unknown
 }
 
-protocol PRDiffViewModelDelegate: class {
+protocol PRDiffViewModelDelegate: AnyObject {
     func requestPRDiffCompleted(with result: Result<[GitHubFile], Error>)
     func requestPRDiffCancelled()
 }
 
-class PRDiffViewModel {
+final class PRDiffViewModel {
     
-    // MARK: - Variables
-    
-    // MARK: Public
+    // MARK: - Properties
     weak var delegate: PRDiffViewModelDelegate?
     
     // MARK: Private
@@ -37,7 +35,6 @@ class PRDiffViewModel {
     
     // MARK: - Functions
     
-    // MARK: Public
     func fetchDataFor(entity: GitHubPREntity) {
         guard let diffUrl = entity.diff_url else {
             self.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.invalidDiffUrl))

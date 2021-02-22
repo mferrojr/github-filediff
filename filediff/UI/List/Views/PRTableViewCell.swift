@@ -15,9 +15,7 @@ struct PRTableViewCellModel {
 
 final class PRTableViewCell: UITableViewCell {
 
-    // MARK: - Variables
-
-    // MARK: Public
+    // MARK: - Properties
     static let ReuseId = String(describing: PRTableViewCell.self)
     
     // MARK: Private
@@ -49,15 +47,17 @@ final class PRTableViewCell: UITableViewCell {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func configure(_ model : PRTableViewCellModel) {
         self.titleLabel.text = model.title
         self.subTitleLabel.text = model.subTitle
     }
+
+}
+
+// MARK: - Private Functions
+private extension PRTableViewCell {
     
-    // MARK: Private
-    private func setup() {
+    func setup() {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.titleLabel)
         self.subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,5 +81,5 @@ final class PRTableViewCell: UITableViewCell {
         self.subTitleLabel.bottomAnchor.constraint(
             equalTo: self.contentView.bottomAnchor, constant: -padding).isActive = true
     }
-
+    
 }

@@ -28,8 +28,6 @@ struct Agent {
     private let session = URLSession.shared
 
     // MARK: - Functions
-    
-    // MARK: Public
     func runForJson<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
         return session
             .dataTaskPublisher(for: request)

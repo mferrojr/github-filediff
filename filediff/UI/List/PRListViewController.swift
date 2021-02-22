@@ -11,9 +11,7 @@ import UIKit
 
 final class PRListViewController: UIViewController {
     
-    // MARK: - Variables
-    
-    // MARK: Public
+    // MARK: - Properties
     weak var coordinator: MainCoordinator?
     
     lazy var tableView: UITableView = {
@@ -71,43 +69,8 @@ final class PRListViewController: UIViewController {
     }
 
     // MARK: - Functions
-    
-    // MARK: Public
     func pullRequestSelected(_ entity: GitHubPREntity) {
         self.coordinator?.viewPullRequestDetailsBy(entity: entity)
-    }
-    
-    // MARK: Private
-    private func setUpTableView() {
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.tableView)
-        
-        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
-        self.tableView.tableHeaderView = UIView(frame: .zero)
-        self.tableView.tableFooterView = UIView(frame: .zero)
-        self.tableView.addSubview(self.refreshCtrl)
-    }
-    
-    private func setUpActivityIndicator() {
-        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.activityIndicator)
-        self.activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-    }
-    
-    @objc
-    private func reload(_ refreshControl: UIRefreshControl) {
-        self.viewModel.fetchData()
-    }
-    
-    private func stopLoading(){
-        refreshCtrl.endRefreshing()
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
     }
 }
 
@@ -133,4 +96,40 @@ extension PRListViewController: PRListViewModelDelegate {
         self.stopLoading()
     }
     
+}
+
+// MARK: - Private Functions
+private extension PRListViewController {
+    
+    func setUpTableView() {
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.tableView)
+        
+        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        self.tableView.tableHeaderView = UIView(frame: .zero)
+        self.tableView.tableFooterView = UIView(frame: .zero)
+        self.tableView.addSubview(self.refreshCtrl)
+    }
+    
+    func setUpActivityIndicator() {
+        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    }
+    
+    @objc
+    func reload(_ refreshControl: UIRefreshControl) {
+        self.viewModel.fetchData()
+    }
+    
+    func stopLoading(){
+        refreshCtrl.endRefreshing()
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+    }
 }

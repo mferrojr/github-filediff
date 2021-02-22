@@ -45,8 +45,12 @@ struct HTTPClient {
 
     typealias HTTPClientCompletion = (HTTPResult<Data?>) -> Void
 
+    // MARK: - Properties
+    
+    // MARK: Private
     private let session = URLSession.shared
 
+    // MARK: - Functions
     func perform(_ request: HTTPRequest, _ completion: @escaping HTTPClientCompletion) -> URLSessionDataTask? {
         var urlComponents = URLComponents()
         urlComponents.scheme = request.baseURL.scheme

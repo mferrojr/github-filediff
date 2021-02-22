@@ -9,12 +9,15 @@
 import Foundation
 import CoreData
 
-class GitHubUserEntity: DomainBaseEntity {
+final class GitHubUserEntity: DomainBaseEntity {
+    
+    // MARK: - Properties
     var objectID: NSManagedObjectID?
     var id: Int = 0
     var login: String?
     var avatar_url: String?
     
+    // MARK: - Functions
     func populate(storable: Storable) -> Storable {
         guard let entity = storable as? GitHubUser else {
             return storable

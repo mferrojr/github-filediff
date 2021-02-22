@@ -9,18 +9,16 @@
 import Foundation
 import UIKit
 
-class PRListTable: NSObject {
+final class PRListTable: NSObject {
     
-    // MARK: - Variables
-
-    // MARK: Public
+    // MARK: - Properties
 
     // MARK: Private
     private weak var owner: PRListViewController?
     private var viewModel: PRListViewModel
     private let dataSource: PRListDataSource
 
-    // MARK: - Initializations
+    // MARK: - Initialization
     init(viewModel: PRListViewModel, prService: GitHubPREntityServicable) {
         self.viewModel = viewModel
         self.dataSource = PRListDataSource(prService: prService)

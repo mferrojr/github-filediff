@@ -11,7 +11,7 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private weak var window: UIWindow?
@@ -23,8 +23,6 @@ final class AppCoordinator: Coordinator {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func start() {
         self.rootMasterCoordinator = RootMasterCoordinator(window: window)
         self.rootMasterCoordinator?.start()

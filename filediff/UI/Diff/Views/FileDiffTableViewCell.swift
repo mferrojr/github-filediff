@@ -17,8 +17,6 @@ struct FileDiffTableViewModel {
 final class FileDiffTableViewCell: UITableViewCell {
     
     // MARK: - Variables
-    
-    // MARK: Public
     static let ReuseId = String(describing: FileDiffTableViewCell.self)
     
     //MARK: Private
@@ -96,8 +94,6 @@ final class FileDiffTableViewCell: UITableViewCell {
     }
     
     //MARK: - Functions
-    
-    //MARK: Public
     func configure(_ model : FileDiffTableViewModel) {
         self.model =  model
         
@@ -130,8 +126,12 @@ final class FileDiffTableViewCell: UITableViewCell {
         return height
     }
     
-    //MARK: Private
-    private func setup() {
+}
+
+// MARK: - functions
+private extension FileDiffTableViewCell {
+    
+    func setup() {
         self.contentView.addSubview(self.containerView)
         self.containerView.addSubview(self.containerStackView)
         self.containerStackView.addSubview(self.nameLabel)
@@ -145,7 +145,7 @@ final class FileDiffTableViewCell: UITableViewCell {
         self.containerDiffStackView.addArrangedSubview(self.afterStackView)
     }
     
-    private func setupContainerView() {
+    func setupContainerView() {
         self.containerView.leadingAnchor.constraint(
             equalTo: self.contentView.leadingAnchor).isActive = true
         self.containerView.trailingAnchor.constraint(
@@ -156,7 +156,7 @@ final class FileDiffTableViewCell: UITableViewCell {
             equalTo: self.contentView.bottomAnchor).isActive = true
     }
     
-    private func setupContainerScrollView() {
+    func setupContainerScrollView() {
         self.containerStackView.leadingAnchor.constraint(
             equalTo: self.containerView.leadingAnchor).isActive = true
         self.containerStackView.trailingAnchor.constraint(
@@ -167,7 +167,7 @@ final class FileDiffTableViewCell: UITableViewCell {
             equalTo: self.containerView.bottomAnchor).isActive = true
     }
     
-    private func setUpNameLabel() {
+    func setUpNameLabel() {
         self.nameLabel.leadingAnchor.constraint(
             equalTo: containerStackView.leadingAnchor, constant: MARGIN).isActive = true
         self.nameLabel.trailingAnchor.constraint(
@@ -178,7 +178,7 @@ final class FileDiffTableViewCell: UITableViewCell {
             equalTo: containerDiffStackView.topAnchor, constant: -MARGIN).isActive = true
     }
     
-    private func setupDiffContainerScrollView() {
+    func setupDiffContainerScrollView() {
         self.containerDiffStackView.leadingAnchor.constraint(
            equalTo: self.containerStackView.leadingAnchor).isActive = true
         self.containerDiffStackView.trailingAnchor.constraint(
@@ -189,7 +189,7 @@ final class FileDiffTableViewCell: UITableViewCell {
            equalTo: self.containerStackView.bottomAnchor).isActive = true
     }
     
-    private func addGroupRow(title: String){
+    func addGroupRow(title: String){
         //Add Before
         if let textLabel = createLabel(text: title, color: GROUP_COLOR) {
             let textContainer = createGroupContainer(textLabel: textLabel)
@@ -203,25 +203,25 @@ final class FileDiffTableViewCell: UITableViewCell {
         }
     }
     
-    private func addBeforeRow(withDiff diff: GitHubFileDiff){
-        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
+    func addBeforeRow(withDiff diff: GitHubFileDiff){
+        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.lineNumberColor)
         numberLabel?.textAlignment = .center
-        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
+        let textLabel = createLabel(text: diff.text, color: diff.type.diffColor)
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         beforeStackView.addArrangedSubview(container)
     }
     
-    private func addAfterRow(withDiff diff: GitHubFileDiff){
-        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.getLineNumberColor())
+    func addAfterRow(withDiff diff: GitHubFileDiff){
+        let numberLabel = createLabel(text: getLineNumber(number: diff.lineNumber), color: diff.type.lineNumberColor)
         numberLabel?.textAlignment = .center
-        let textLabel = createLabel(text: diff.text, color: diff.type.getDiffColor())
+        let textLabel = createLabel(text: diff.text, color: diff.type.diffColor)
         
         let container = createRowContainer(numberLabel: numberLabel, textLabel: textLabel)
         afterStackView.addArrangedSubview(container)
     }
     
-    private func createGroupContainer(textLabel : UILabel) -> UIView {
+    func createGroupContainer(textLabel : UILabel) -> UIView {
         let container = UIView()
         container.addSubview(textLabel)
         
@@ -233,7 +233,7 @@ final class FileDiffTableViewCell: UITableViewCell {
         return container
     }
     
-    private func createLabel(text: String?, color: UIColor) -> UILabel? {
+    func createLabel(text: String?, color: UIColor) -> UILabel? {
         guard let text = text else {
             return nil
         }
@@ -249,9 +249,9 @@ final class FileDiffTableViewCell: UITableViewCell {
         return textLabel
     }
     
-    private func createRowContainer(numberLabel : UILabel?, textLabel: UILabel?) -> UIView {
+    func createRowContainer(numberLabel : UILabel?, textLabel: UILabel?) -> UIView {
         let view = UIView()
-        view.backgroundColor = GitHubFileDiffType.blank.getDiffColor()
+        view.backgroundColor = GitHubFileDiffType.blank.diffColor
         
         if let numberLabel = numberLabel {
             view.addSubview(numberLabel)
@@ -272,12 +272,12 @@ final class FileDiffTableViewCell: UITableViewCell {
         return view
     }
     
-    private func clearArrangedSubviews(){
+    func clearArrangedSubviews(){
         beforeStackView.removeSubviews()
         afterStackView.removeSubviews()
     }
     
-    private func getLineNumber(number : Int?) -> String? {
+    func getLineNumber(number : Int?) -> String? {
         return number != nil ? String(number!) : nil
     }
     

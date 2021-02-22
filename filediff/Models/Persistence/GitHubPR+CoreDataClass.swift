@@ -11,7 +11,6 @@ import Foundation
 import CoreData
 
 public class GitHubPR: NSManagedObject {
-    
 }
 
 extension GitHubPR: Storable {

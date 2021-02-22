@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 struct GitHubFile {
+    
+    // MARK: - Properties
     var name = ""
     var groups = [GitHubFileGroup]()
     var cellHeight : CGFloat?
@@ -28,8 +30,9 @@ struct GitHubFile {
 }
 
 struct GitHubFileGroup {
-    var title = ""
     
+    // MARK: - Properties
+    var title = ""
     var beforeDiffs = [GitHubFileDiff]()
     var afterDiffs = [GitHubFileDiff]()
     
@@ -47,6 +50,8 @@ struct GitHubFileGroup {
 }
 
 struct GitHubFileDiff {
+    
+    // MARK: - Properties
     var type : GitHubFileDiffType = .same
     var text : String?
     var lineNumber : Int?
@@ -67,7 +72,7 @@ struct GitHubFileDiff {
 enum GitHubFileDiffType {
     case same, blank, remove, add
     
-    func getDiffColor() -> UIColor {
+    var diffColor: UIColor {
         switch self {
         case .same:
             return .white
@@ -80,12 +85,12 @@ enum GitHubFileDiffType {
         }
     }
     
-    func getLineNumberColor() -> UIColor {
+    var lineNumberColor: UIColor {
         switch self {
         case .same:
             return .white
         case .blank:
-            return getDiffColor()
+            return self.diffColor
         case .remove:
             return UIColor(red: 1, green: 0.863, blue: 0.878, alpha: 1)
         case .add:

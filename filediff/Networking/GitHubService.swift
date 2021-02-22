@@ -20,8 +20,12 @@ final class GitHubService {
     typealias PR_NUMBER = Int
     typealias ERROR_CB = (Error?) -> Void
 
+    // MARK: - Properties
+    
+    // MARK: Private
     private static let apiBaseURL = URL(string: "https://api.github.com/repos/raywenderlich/swift-algorithm-club")!
     
+    // MARK: - Functions
     static func getPullRequests(_ completion:@escaping (Result<[GitHubPRResponse], Error>)->Void) -> URLSessionDataTask? {
         let request = HTTPRequest(
             method: .get,

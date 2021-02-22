@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SyncPRDiffOperation: BaseOperation {
+final class SyncPRDiffOperation: BaseOperation {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private var diffUrl: URL
@@ -23,32 +23,31 @@ class SyncPRDiffOperation: BaseOperation {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     override func main() {
         super.main()
         getPRDiff()
     }
     
-    // MARK: Private
-    private func getPRDiff(){
-        self.subscription =
-            GithubAPI.pullRequestBy(diffUrl: diffUrl)
-            .sink(
-                receiveCompletion: { result in
-                    switch result {
-                    case .finished:
-                       break
-                    case .failure(let error):
-                       self.errorCB(error)
-                    }
-                    self.done()
-                },
-                receiveValue: { result in
-                    self.context.fileText = result
-                    self.done()
-                }
-            )
-    }
+}
+
+// MARK: - Private Functions
+private extension SyncPRDiffOperation {
     
+    func getPRDiff(){
+        self.subscription = GithubAPI.pullRequestBy(diffUrl: diffUrl).sink(
+            receiveCompletion: { result in
+                switch result {
+                case .finished:
+                   break
+                case .failure(let error):
+                   self.errorCB(error)
+                }
+                self.done()
+            },
+            receiveValue: { result in
+                self.context.fileText = result
+                self.done()
+            }
+        )
+    }
 }

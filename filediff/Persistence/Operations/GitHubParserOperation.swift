@@ -8,9 +8,9 @@
 
 import Foundation
 
-class GitHubParserOperation : BaseOperation {
+final class GitHubParserOperation : BaseOperation {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private var context : FileDiffQueueContext!
@@ -21,8 +21,6 @@ class GitHubParserOperation : BaseOperation {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     override func main() {
         super.main()
         

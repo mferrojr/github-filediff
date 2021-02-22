@@ -15,10 +15,10 @@ private struct DiffInfo {
 
 struct GitHubParser {
     
-    //MARK: - Private Variables
-    fileprivate static let FILE_DELIMITER = "diff --git "
-    fileprivate static let GROUP_DELIMITER = "@@"
-    fileprivate static let ROW_DELIMITER = "\n"
+    //MARK: - Variables
+    private static let FILE_DELIMITER = "diff --git "
+    private static let GROUP_DELIMITER = "@@"
+    private static let ROW_DELIMITER = "\n"
     
     static func parse(fileText : String) -> [GitHubFile]{
         var datas = [GitHubFile]()
@@ -33,14 +33,18 @@ struct GitHubParser {
         
         return datas
     }
+
+}
+
+// MARK: - Private Functions
+private extension GitHubParser {
     
-    //MARK: - Private Functions
-    fileprivate static func preProcess(input : String) -> [String] {
+    static func preProcess(input : String) -> [String] {
         let text = input.replacingOccurrences(of: "\t", with: "    ")
         return text.components(separatedBy: FILE_DELIMITER)
     }
     
-    fileprivate static func processFile(file : String) -> GitHubFile {
+    static func processFile(file : String) -> GitHubFile {
         var ghFile = GitHubFile()
         
         // Get File Title
@@ -61,7 +65,7 @@ struct GitHubParser {
         return ghFile
     }
     
-    fileprivate static func processGroup(group : String) -> GitHubFileGroup {
+    static func processGroup(group : String) -> GitHubFileGroup {
         // Break up into each line
         let lines = group.components(separatedBy: ROW_DELIMITER)
         
@@ -126,7 +130,7 @@ struct GitHubParser {
     }
     
     // Parse "@@ -31,22 +31,17 @@" to extract line diffs
-    fileprivate static func parseLines(input : String) -> (DiffInfo,DiffInfo){
+    static func parseLines(input : String) -> (DiffInfo,DiffInfo){
         let lineDiffs = input.components(separatedBy: " ")
         let beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
         let afterDiffComma = lineDiffs[2].components(separatedBy: ",")
@@ -143,8 +147,7 @@ struct GitHubParser {
         return (beforeParse,afterParse)
     }
     
-    fileprivate static func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType? {
-        
+    static func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType? {
         guard !line.isEmpty else { return nil }
         
         // Adding line
@@ -185,7 +188,7 @@ struct GitHubParser {
         }
     }
     
-    fileprivate static func fillInBlanks(fileGroup : inout GitHubFileGroup, addBeforeLines: Int, addingAfterLines : Int){
+    static func fillInBlanks(fileGroup : inout GitHubFileGroup, addBeforeLines: Int, addingAfterLines : Int){
         // Fill in before blank rows
         if addBeforeLines > 0 {
             for _ in 1...addBeforeLines {

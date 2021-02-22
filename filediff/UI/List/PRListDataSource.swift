@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class PRListDataSource: NSObject, UITableViewDataSource {
+final class PRListDataSource: NSObject, UITableViewDataSource {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private(set) var datas = [GitHubPREntity]()
@@ -23,8 +23,6 @@ class PRListDataSource: NSObject, UITableViewDataSource {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func refresh(){
         datas = gitHubPREntityService.fetchAll(sorted: Sorted(key: "number", ascending: false))
     }
@@ -48,6 +46,4 @@ class PRListDataSource: NSObject, UITableViewDataSource {
 
         return cell
     }
-    
-    // MARK: Private
 }

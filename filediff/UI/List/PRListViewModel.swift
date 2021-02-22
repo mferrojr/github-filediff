@@ -13,16 +13,14 @@ enum PRListViewModelError: Error {
     case unknown
 }
 
-protocol PRListViewModelDelegate: class {
+protocol PRListViewModelDelegate: AnyObject {
     func requestPRsCompleted(with result: Result<Void, Error>)
     func requestPRsCancelled()
 }
 
-class PRListViewModel {
+final class PRListViewModel {
     
-    // MARK: - Variables
-    
-    // MARK: Public
+    // MARK: - Properties
     weak var delegate: PRListViewModelDelegate?
     
     // MARK: Private
@@ -37,8 +35,6 @@ class PRListViewModel {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func fetchData() {
         self.prOperation = SyncPRsOperation(prService: Services.prEntityService)
         self.subscriptions.insert(self.prOperation?.subscription)
@@ -72,6 +68,4 @@ class PRListViewModel {
         self.prOperation?.cancel()
         self.prOperation = nil
     }
-    
-    // MARK: Private
 }

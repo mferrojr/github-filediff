@@ -11,7 +11,7 @@ import UIKit
 
 final class RootMasterCoordinator: Coordinator {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private weak var window: UIWindow?
@@ -23,8 +23,6 @@ final class RootMasterCoordinator: Coordinator {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func start() {
         let navController = UINavigationController()
         self.mainCoordinator = MainCoordinator(navigationController: navController)

@@ -9,7 +9,9 @@
 import Foundation
 import CoreData
 
-class GitHubPREntity: DomainBaseEntity, HasStorable {
+final class GitHubPREntity: DomainBaseEntity, HasStorable {
+    
+    // MARK: - Properties
     var storable: Storable?
     var objectID: NSManagedObjectID?
     var id: Int = 0
@@ -21,6 +23,7 @@ class GitHubPREntity: DomainBaseEntity, HasStorable {
     var created_at: String?
     var user: GitHubUserEntity?
     
+    // MARK: - Functions
     func populate(storable: Storable) -> Storable {
         guard let entity = storable as? GitHubPR else {
             return storable

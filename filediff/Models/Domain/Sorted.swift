@@ -9,6 +9,8 @@
 import Foundation
 
 public struct Sorted {
+    
+    // MARK: - Properties
     var key: String
-    var ascending: Bool = true
+    var ascending = true
 }

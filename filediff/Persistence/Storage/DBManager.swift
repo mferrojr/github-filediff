@@ -9,19 +9,20 @@
 import Foundation
 import UIKit
 
-class DBManager {
+final class DBManager {
 
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private var storageContext: StorageContext?
 
-    // MARK: Public
     static var shared = DBManager()
 
+    // MARK: - Initialization
     private init() {
     }
 
+    // MARK: - Functions
     static func setup(storageContext: StorageContext) {
         shared.storageContext = storageContext
     }

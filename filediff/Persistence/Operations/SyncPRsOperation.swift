@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SyncPRsOperation: BaseOperation {
+final class SyncPRsOperation: BaseOperation {
 
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     private let gitHubPREntityService: GitHubPREntityServicable
@@ -21,32 +21,31 @@ class SyncPRsOperation: BaseOperation {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     override func main() {
         super.main()
         self.getPRs()
     }
-    
-    // MARK: Private
-    private func getPRs(){
-        self.subscription =
-            GithubAPI.pullRequests()
-            .sink(
-                receiveCompletion: { [weak self] result in
-                    switch result {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self?.errorCB(error)
-                    }
-                    self?.done()
-                },
-                receiveValue: { [weak self] results in
-                    try? self?.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
-                    self?.done()
-                }
-            )
-    }
 
+}
+
+// MARK: - Private Functions
+private extension SyncPRsOperation {
+    
+    func getPRs(){
+        self.subscription = GithubAPI.pullRequests().sink(
+            receiveCompletion: { [weak self] result in
+                switch result {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.errorCB(error)
+                }
+                self?.done()
+            },
+            receiveValue: { [weak self] results in
+                try? self?.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
+                self?.done()
+            }
+        )
+    }
 }

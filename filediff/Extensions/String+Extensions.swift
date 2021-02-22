@@ -16,9 +16,8 @@ extension String {
         case viewDiff = "VIEW DIFF"
     }
 
-    static func localize(_ localKey: LocalKey,
-                         withComment comment: String? = nil) -> String {
-        return NSLocalizedString(localKey.rawValue, comment: comment ?? "")
+    static func localize(_ localKey: LocalKey, with comment: String = "") -> String {
+        return NSLocalizedString(localKey.rawValue, comment: comment)
     }
     
     //https://stackoverflow.com/questions/42476395/how-to-split-string-using-regex-expressions

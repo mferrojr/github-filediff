@@ -9,7 +9,15 @@
 import Foundation
 import Combine
 
-class FileDiffQueueContext {
+final class FileDiffQueueContext {
+    
+    // MARK: - Properties
+    
+    // MARK: Private
+    private var _fileText: String?
+    private var _files: [GitHubFile]?
+    private let lock = NSLock()
+    
     var fileText: String? {
         set {
             lock.lock()
@@ -37,10 +45,6 @@ class FileDiffQueueContext {
             return result
         }
     }
-    
-    private var _fileText: String?
-    private var _files: [GitHubFile]?
-    private let lock = NSLock()
 }
 
 enum FileDiffQueueResultError: Error {
@@ -52,17 +56,15 @@ enum FileDiffQueueResult {
     case error(Error?)
 }
 
-class FileDiffQueue {
+final class FileDiffQueue {
     
-    //MARK: - Variables
+    //MARK: - Properties
     
     //MARK: Private
     private let queue = OperationQueue()
     private var subscriptions = Set<AnyCancellable?>()
     
     //MARK: - Functions
-       
-    //MARK: Public
     func getFileDiff(diffUrl: String, completion: @escaping (FileDiffQueueResult) -> Void) {
         let context = FileDiffQueueContext()
         

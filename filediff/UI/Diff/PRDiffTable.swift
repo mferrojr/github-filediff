@@ -9,12 +9,10 @@
 import Foundation
 import UIKit
 
-class PRDiffTable: NSObject {
+final class PRDiffTable: NSObject {
     
-    // MARK: - Variables
-
-    // MARK: Public
-
+    // MARK: - Properties
+    
     // MARK: Private
     private weak var owner: PRDiffViewController?
     private var viewModel: PRDiffViewModel
@@ -26,8 +24,6 @@ class PRDiffTable: NSObject {
     }
 
     // MARK: - Functions
-    
-    // MARK: Public
     func setup(_ owner: PRDiffViewController) {
         self.owner = owner
         let tableView = owner.tableView

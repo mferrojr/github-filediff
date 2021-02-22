@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
+final class MainCoordinator: Coordinator {
     
-    // MARK: - Variables
+    // MARK: - Properites
     
     // MARK: Private
     private var childCoordinators = [Coordinator]()
@@ -22,8 +22,6 @@ class MainCoordinator: Coordinator {
     }
 
     // MARK: - Functions
-    
-    // MARK: Public
     func start() {
         let vc = PRListViewController()
         vc.coordinator = self

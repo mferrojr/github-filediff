@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-class PRDiffDataSource: NSObject, UITableViewDataSource {
+final class PRDiffDataSource: NSObject, UITableViewDataSource {
     
+    // MARK: - Properties
     private(set) var datas = [GitHubFile]()
     
-    //MARK: - Public Functions
+    //MARK: - Functions
     func refresh(files: [GitHubFile]){
         self.datas = files
     }

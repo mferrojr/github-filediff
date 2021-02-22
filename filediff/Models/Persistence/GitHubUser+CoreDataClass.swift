@@ -11,7 +11,6 @@ import Foundation
 import CoreData
 
 public class GitHubUser: NSManagedObject {
-
 }
 
 extension GitHubUser: Storable {

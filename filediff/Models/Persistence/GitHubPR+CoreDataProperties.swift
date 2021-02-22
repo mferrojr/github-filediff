@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension GitHubPR {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<GitHubPR> {

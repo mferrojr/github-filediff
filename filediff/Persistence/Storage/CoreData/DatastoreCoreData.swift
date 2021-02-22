@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 
-class DatastoreCoreData: Datastore {
+final class DatastoreCoreData: Datastore {
     
+    // MARK: - Properties
     private var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "filediff")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -21,6 +22,7 @@ class DatastoreCoreData: Datastore {
         return container
     }()
     
+    // MARK: - Functions
     func save() {
         let context = persistentContainer.viewContext
         guard context.hasChanges else { return }

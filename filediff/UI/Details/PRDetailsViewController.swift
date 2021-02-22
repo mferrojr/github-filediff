@@ -11,9 +11,7 @@ import UIKit
 
 final class PRDetailsViewController: UIViewController {
     
-    //MARK: - Variables
-    
-    //MARK: Public
+    //MARK: - Properties
     weak var coordinator: MainCoordinator?
 
     //MARK: Private
@@ -89,17 +87,19 @@ final class PRDetailsViewController: UIViewController {
         self.descriptionLabel.text = self.entity.body
     }
     
-    // MARK: - Functions
-    
     // MARK: Public
     
-    // MARK: Private
+}
+
+// MARK: - functions
+private extension PRDetailsViewController {
+    
     @objc
-    private func viewDiffPressed(_ sender: UIButton) {
+    func viewDiffPressed(_ sender: UIButton) {
         self.coordinator?.viewPullRequestDiff(entity: self.entity)
     }
     
-    private func setUpScrollView() {
+    func setUpScrollView() {
         self.view.addSubview(self.scrollView)
         
         self.scrollView.leadingAnchor.constraint(
@@ -112,7 +112,7 @@ final class PRDetailsViewController: UIViewController {
             equalTo: self.view.bottomAnchor).isActive = true
     }
     
-    private func setUpStackView() {
+    func setUpStackView() {
         self.scrollView.addSubview(self.stackView)
         
         self.stackView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor).isActive = true
@@ -122,11 +122,11 @@ final class PRDetailsViewController: UIViewController {
         self.stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
     }
 
-    private func setUpViewDiffButton() {
+    func setUpViewDiffButton() {
         self.stackView.addArrangedSubview(self.viewDiffBtn)
     }
     
-    private func setUp(label: UILabel, hasTopMargin: Bool = true) {
+    func setUp(label: UILabel, hasTopMargin: Bool = true) {
         let containerView = UIView()
         
         containerView.addSubview(label)
@@ -144,5 +144,3 @@ final class PRDetailsViewController: UIViewController {
     }
     
 }
-
-// MARK: - Extensions

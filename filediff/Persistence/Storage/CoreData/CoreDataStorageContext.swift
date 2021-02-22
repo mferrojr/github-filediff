@@ -9,23 +9,17 @@
 import Foundation
 import CoreData
 
-class CoreDataStorageContext: StorageContext {
+final class CoreDataStorageContext: StorageContext {
 
     var managedContext: NSManagedObjectContext?
 
     required init(configuration: ConfigurationType = .basic(identifier: "filediff")) {
         switch configuration {
         case .basic:
-            initDB(modelName: configuration.identifier(), storeType: .sqLiteStoreType)
+            initDB(modelName: configuration.identifier, storeType: .sqLiteStoreType)
         case .inMemory:
             initDB(storeType: .inMemoryStoreType)
         }
-    }
-
-    private func initDB(modelName: String? = nil, storeType: StoreType) {
-        let coordinator = CoreDataStoreCoordinator.persistentStoreCoordinator(modelName: modelName, storeType: storeType)
-        self.managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        self.managedContext?.persistentStoreCoordinator = coordinator
     }
 }
 
@@ -83,4 +77,15 @@ extension CoreDataStorageContext {
 
         return nil
     }
+}
+
+// MARK: - Private Functions
+private extension CoreDataStorageContext {
+    
+    func initDB(modelName: String? = nil, storeType: StoreType) {
+        let coordinator = CoreDataStoreCoordinator.persistentStoreCoordinator(modelName: modelName, storeType: storeType)
+        self.managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        self.managedContext?.persistentStoreCoordinator = coordinator
+    }
+    
 }

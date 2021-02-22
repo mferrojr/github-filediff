@@ -25,9 +25,7 @@ struct HTTPHeader {
 }
 
 struct HTTPRequest {
-    // MARK: - Variables
-    
-    // MARK: Public
+    // MARK: - Properties
     let baseURL: URL
     let path: String
     var queryItems: [URLQueryItem]?

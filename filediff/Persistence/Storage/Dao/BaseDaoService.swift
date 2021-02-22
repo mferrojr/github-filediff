@@ -26,8 +26,6 @@ protocol BaseDao {
 extension BaseDao {
     
     // MARK: - Functions
-    
-    // MARK: Public
     func create() -> Domain? {
         let dbEntity: DB? = storageContext?.create(DB.self)
         return mapToDomain(dbEntity: dbEntity!)
@@ -80,19 +78,22 @@ extension BaseDao {
         return mapToDomain(dbEntities: dbEntities)
     }
     
-    // MARK: Private
-    private func mapToDomain(dbEntity: DB) -> Domain {
+}
+
+// MARK: - Private Functions
+private extension BaseDao {
+    
+    func mapToDomain(dbEntity: DB) -> Domain {
         return dbEntity.toMappable() as! Domain
     }
 
-    private func mapToDomain(dbEntities: [DB]?) -> [Domain] {
+    func mapToDomain(dbEntities: [DB]?) -> [Domain] {
        var domainEntities = [Domain]()
        for dbEntity in dbEntities! {
            domainEntities.append(mapToDomain(dbEntity: dbEntity))
        }
        return domainEntities
     }
-    
 }
 
 class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
@@ -100,7 +101,7 @@ class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
     typealias Domain = DomainEntity
     typealias DB = DBEntity
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Private
     internal var storageContext: StorageContext?
@@ -111,8 +112,6 @@ class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
     }
     
     // MARK: - Functions
-    
-    // MARK: Public
     func create() -> DomainEntity? {
         let dbEntity: DBEntity? = storageContext?.create(DBEntity.self)
         return mapToDomain(dbEntity: dbEntity!)
@@ -165,12 +164,16 @@ class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
         return mapToDomain(dbEntities: dbEntities)
     }
     
-    // MARK: Private
-    private func mapToDomain<DBEntity: Storable>(dbEntity: DBEntity) -> DomainEntity {
+}
+
+// MARK: - Private Functions
+private extension BaseDaoService {
+    
+    func mapToDomain<DBEntity: Storable>(dbEntity: DBEntity) -> DomainEntity {
         return dbEntity.toMappable() as! DomainEntity
     }
 
-    private func mapToDomain<DBEntity: Storable>(dbEntities: [DBEntity]?) -> [DomainEntity] {
+    func mapToDomain<DBEntity: Storable>(dbEntities: [DBEntity]?) -> [DomainEntity] {
        var domainEntities = [DomainEntity]()
        for dbEntity in dbEntities! {
            domainEntities.append(mapToDomain(dbEntity: dbEntity))
@@ -178,4 +181,3 @@ class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
        return domainEntities
     }
 }
-
