@@ -30,10 +30,9 @@ final class PRListViewController: UIViewController {
         return indicator
     }()
     
-    lazy var refreshCtrl: UIRefreshControl = { [weak self] in
+    lazy var refreshCtrl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: .localize(.pullToRefresh))
-        refreshControl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         return refreshControl
     }()
     
@@ -53,6 +52,7 @@ final class PRListViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.navigationItem.title = .localize(.pullRequests)
+        self.refreshCtrl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         self.viewModel.delegate = self
         self.table.setup(self)
     }

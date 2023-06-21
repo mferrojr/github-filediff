@@ -32,13 +32,12 @@ final class PRDiffViewController: UIViewController {
         return indicator
     }()
     
-    lazy var refreshCtrl: UIRefreshControl = { [weak self] in
+    lazy var refreshCtrl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         let title = NSLocalizedString("Pull To Refresh", comment: "Pull to refresh")
         refreshControl.attributedTitle = NSAttributedString(string: title)
-        refreshControl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         return refreshControl
-        }()
+    }()
     
     // MARK: - Initialization
     init(entity: GitHubPREntity) {
@@ -57,6 +56,7 @@ final class PRDiffViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.viewModel.delegate = self
+        self.refreshCtrl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         self.table.setup(self)
     }
 
