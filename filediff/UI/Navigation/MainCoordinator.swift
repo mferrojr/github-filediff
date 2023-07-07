@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class MainCoordinator: Coordinator {
     
@@ -23,15 +24,15 @@ final class MainCoordinator: Coordinator {
 
     // MARK: - Functions
     func start() {
-        let vc = PRListViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        let listView = PRListView(coordinator: self, viewModel: PRListViewModel())
+        let view = UIHostingController(rootView: listView)
+        navigationController.pushViewController(view, animated: false)
     }
     
     func viewPullRequestDetailsBy(entity: GitHubPREntity) {
-        let vc = PRDetailsViewController(entity: entity)
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        let detailsView = PRDetailsView(model: PRDetailsViewModel(entity: entity), coordinator: self)
+        let view = UIHostingController(rootView: detailsView)
+        navigationController.pushViewController(view, animated: false)
     }
     
     func viewPullRequestDiff(entity: GitHubPREntity) {

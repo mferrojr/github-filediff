@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GitHubPRResponse {
+struct GitHubPRResponse: Identifiable {
     
     // MARK: - Properties
     var id: Int

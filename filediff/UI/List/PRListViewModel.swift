@@ -9,63 +9,42 @@
 import Foundation
 import Combine
 
-enum PRListViewModelError: Error {
-    case unknown
-}
-
-protocol PRListViewModelDelegate: AnyObject {
-    func requestPRsCompleted(with result: Result<Void, Error>)
-    func requestPRsCancelled()
-}
-
-final class PRListViewModel {
-    
+final class PRListViewModel: ObservableObject {
     // MARK: - Properties
-    weak var delegate: PRListViewModelDelegate?
+    @Published var entities: [GitHubPREntity] = []
+    @Published var title: String = "Welcome"
     
     // MARK: Private
-    private var prOperation: SyncPRsOperation?
-    private var subscriptions = Set<AnyCancellable?>()
-    private let queue: OperationQueue
+    private var gitHubAPIable: GitHubAPIable?
+    private var cancellableSet: Set<AnyCancellable> = []
+    
+    private lazy var fetchDataPublisher: AnyPublisher<[GitHubPRResponse], Error>? = {
+        self.gitHubAPIable?.pullRequests()
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }()
     
     // MARK: - Initialization
-    init() {
-        self.queue = OperationQueue()
-        self.queue.qualityOfService = .userInitiated
+    init(title: String, entities: [GitHubPREntity]) {
+        self.title = title
+        self.entities = entities
+    }
+    
+    init(gitHubAPIable: GitHubAPIable = Services.gitHubAPIable) {
+        self.gitHubAPIable = gitHubAPIable
+        self.refreshData()
     }
     
     // MARK: - Functions
-    func fetchData() {
-        self.prOperation = SyncPRsOperation(prService: Services.prEntityService)
-        self.subscriptions.insert(self.prOperation?.subscription)
-        self.prOperation?.completionBlock = { [weak self] in
-            self?.prOperation = nil
-            
-            // UI Changes on the main queue
-            DispatchQueue.main.async { [weak self] in
-                self?.delegate?.requestPRsCompleted(with: .success(()))
+    func refreshData() {
+        self.fetchDataPublisher?
+            .catch({ (error) -> Just<[GitHubPRResponse]> in
+                return Just([GitHubPRResponse]())
+            })
+            .map { responses -> [GitHubPREntity] in
+                responses.map { $0.toEntity() }
             }
-        }
-        self.prOperation?.errorCallback = { error in
-            guard let error = error else {
-                self.delegate?.requestPRsCompleted(with: .failure(PRListViewModelError.unknown))
-                return
-            }
-            
-            // UI Changes on the main queue
-            DispatchQueue.main.async { [weak self] in
-                self?.delegate?.requestPRsCompleted(with: .failure(error))
-            }
-        }
-        
-        guard let op = self.prOperation else { return }
-        self.queue.addOperation(op)
-    }
-    
-    func cancelFetchData() {
-        self.delegate?.requestPRsCancelled()
-        self.subscriptions.forEach { $0?.cancel() }
-        self.prOperation?.cancel()
-        self.prOperation = nil
+            .assign(to: \.entities, on: self)
+            .store(in: &cancellableSet)
     }
 }
