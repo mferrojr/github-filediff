@@ -39,6 +39,11 @@ final class MainCoordinator: Coordinator {
         let vc = PRDiffViewController(entity: entity)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
+        
+        /*let diffView = FileDiffView(viewModel: PRDiffViewModel(entity: entity))
+        let view = UIHostingController(rootView: diffView)
+        navigationController.pushViewController(view, animated: false)
+         */
     }
     
 }

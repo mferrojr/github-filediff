@@ -29,7 +29,6 @@
 		745CCA632432534900183977 /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA5E2432534900183977 /* BaseOperation.swift */; };
 		745CCA642432534900183977 /* SyncPRsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA5F2432534900183977 /* SyncPRsOperation.swift */; };
 		745CCA6D2432538200183977 /* FileDiffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA682432538200183977 /* FileDiffTableViewCell.swift */; };
-		745CCA6E2432538200183977 /* PRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA692432538200183977 /* PRTableViewCell.swift */; };
 		745CCA6F2432538200183977 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA6B2432538200183977 /* AppUtility.swift */; };
 		745CCA702432538200183977 /* GitHubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA6C2432538200183977 /* GitHubParser.swift */; };
 		745CCA7A2432542300183977 /* PRDiffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA722432542300183977 /* PRDiffViewController.swift */; };
@@ -69,6 +68,8 @@
 		74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B922FA244FBB5500A6DD7A /* Agent.swift */; };
 		74BE5B46245CB45100C9D75C /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BE5B45245CB44700C9D75C /* DBManager.swift */; };
 		74EA8F0C2459F72400A50A38 /* PRDiffTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EA8F0B2459F72400A50A38 /* PRDiffTable.swift */; };
+		74F95C7F2A680FD700A13BDE /* FileDiffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F95C7E2A680FD700A13BDE /* FileDiffView.swift */; };
+		74F95C812A68106A00A13BDE /* PRRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F95C802A68106A00A13BDE /* PRRowViewModel.swift */; };
 		74FADB692A49BAB600DDCF35 /* PRRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FADB682A49BAB600DDCF35 /* PRRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,7 +119,6 @@
 		745CCA5E2432534900183977 /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
 		745CCA5F2432534900183977 /* SyncPRsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncPRsOperation.swift; sourceTree = "<group>"; };
 		745CCA682432538200183977 /* FileDiffTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDiffTableViewCell.swift; sourceTree = "<group>"; };
-		745CCA692432538200183977 /* PRTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRTableViewCell.swift; sourceTree = "<group>"; };
 		745CCA6B2432538200183977 /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		745CCA6C2432538200183977 /* GitHubParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubParser.swift; sourceTree = "<group>"; };
 		745CCA722432542300183977 /* PRDiffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffViewController.swift; sourceTree = "<group>"; };
@@ -156,11 +156,13 @@
 		749C8C1F2438F7CA006C570B /* GitHubUserEntityDaoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserEntityDaoService.swift; sourceTree = "<group>"; };
 		74A6D9A92A4C5BD9000D6581 /* PRDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDetailsView.swift; sourceTree = "<group>"; };
 		74A6D9AB2A4C5C5C000D6581 /* PRDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDetailsViewModel.swift; sourceTree = "<group>"; };
-		74A6D9AD2A4DAA4D000D6581 /* PRListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PRListView.swift; path = Views/PRListView.swift; sourceTree = "<group>"; };
+		74A6D9AD2A4DAA4D000D6581 /* PRListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRListView.swift; sourceTree = "<group>"; };
 		74B922F8244FBB3600A6DD7A /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		74B922FA244FBB5500A6DD7A /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		74BE5B45245CB44700C9D75C /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		74EA8F0B2459F72400A50A38 /* PRDiffTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRDiffTable.swift; sourceTree = "<group>"; };
+		74F95C7E2A680FD700A13BDE /* FileDiffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDiffView.swift; sourceTree = "<group>"; };
+		74F95C802A68106A00A13BDE /* PRRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRRowViewModel.swift; sourceTree = "<group>"; };
 		74FADB682A49BAB600DDCF35 /* PRRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,9 +278,8 @@
 		745877D224578CA000E6E078 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				74F95C822A68108B00A13BDE /* ViewModels */,
 				745877DE245797D200E6E078 /* Views */,
-				745877D024578C9200E6E078 /* PRListViewModel.swift */,
-				74A6D9AD2A4DAA4D000D6581 /* PRListView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -286,8 +287,8 @@
 		745877D5245791FE00E6E078 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				74A6D9A92A4C5BD9000D6581 /* PRDetailsView.swift */,
-				74A6D9AB2A4C5C5C000D6581 /* PRDetailsViewModel.swift */,
+				74F95C842A68111E00A13BDE /* ViewModels */,
+				74F95C832A68111700A13BDE /* Views */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -295,10 +296,10 @@
 		745877D82457921200E6E078 /* Diff */ = {
 			isa = PBXGroup;
 			children = (
+				74F95C852A68113600A13BDE /* ViewModels */,
 				74EA8F0D2459F89A00A50A38 /* Views */,
 				745CCA582432532700183977 /* PRDiffDataSource.swift */,
 				745CCA722432542300183977 /* PRDiffViewController.swift */,
-				745877D62457920E00E6E078 /* PRDiffViewModel.swift */,
 				74EA8F0B2459F72400A50A38 /* PRDiffTable.swift */,
 			);
 			path = Diff;
@@ -307,6 +308,7 @@
 		745877D92457929E00E6E078 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7467B98D2A6F58AE00672C59 /* Search */,
 				745877D5245791FE00E6E078 /* Details */,
 				745877D82457921200E6E078 /* Diff */,
 				745877D224578CA000E6E078 /* List */,
@@ -318,7 +320,7 @@
 		745877DE245797D200E6E078 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				745CCA692432538200183977 /* PRTableViewCell.swift */,
+				74A6D9AD2A4DAA4D000D6581 /* PRListView.swift */,
 				74FADB682A49BAB600DDCF35 /* PRRowView.swift */,
 			);
 			path = Views;
@@ -440,6 +442,29 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		7467B98D2A6F58AE00672C59 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7467B98F2A6F597900672C59 /* ViewModel */,
+				7467B98E2A6F58CC00672C59 /* Views */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		7467B98E2A6F58CC00672C59 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7467B98F2A6F597900672C59 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7488C520245DFAAD00700F63 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,9 +532,43 @@
 		74EA8F0D2459F89A00A50A38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				74F95C7E2A680FD700A13BDE /* FileDiffView.swift */,
 				745CCA682432538200183977 /* FileDiffTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		74F95C822A68108B00A13BDE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				74F95C802A68106A00A13BDE /* PRRowViewModel.swift */,
+				745877D024578C9200E6E078 /* PRListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		74F95C832A68111700A13BDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74A6D9A92A4C5BD9000D6581 /* PRDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		74F95C842A68111E00A13BDE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				74A6D9AB2A4C5C5C000D6581 /* PRDetailsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		74F95C852A68113600A13BDE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				745877D62457920E00E6E078 /* PRDiffViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -658,11 +717,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A6D9AC2A4C5C5C000D6581 /* PRDetailsViewModel.swift in Sources */,
+				74F95C812A68106A00A13BDE /* PRRowViewModel.swift in Sources */,
 				745CCABF243267F100183977 /* GitHubFile.swift in Sources */,
 				745CCA612432534900183977 /* GitHubParserOperation.swift in Sources */,
 				745CCA432432519700183977 /* String+Extensions.swift in Sources */,
 				749C8C1D24380CDB006C570B /* GitHubPR+CoreDataProperties.swift in Sources */,
 				7488C51D245D9CF700700F63 /* MasterCoordinator.swift in Sources */,
+				74F95C7F2A680FD700A13BDE /* FileDiffView.swift in Sources */,
 				74B922FB244FBB5500A6DD7A /* Agent.swift in Sources */,
 				745CCA702432538200183977 /* GitHubParser.swift in Sources */,
 				7499FCBE24367BB3002B2AF4 /* GitHubPREntityService.swift in Sources */,
@@ -700,7 +761,6 @@
 				745CCAC82432682900183977 /* GitHubPR+CoreDataClass.swift in Sources */,
 				745877DD2457935600E6E078 /* MainCoordinator.swift in Sources */,
 				74A6D9AE2A4DAA4D000D6581 /* PRListView.swift in Sources */,
-				745CCA6E2432538200183977 /* PRTableViewCell.swift in Sources */,
 				7499FCB124367453002B2AF4 /* DomainBaseEntity.swift in Sources */,
 				7499FCA124365AD3002B2AF4 /* ConfigurationType.swift in Sources */,
 				745877DB2457933A00E6E078 /* Coordinator.swift in Sources */,

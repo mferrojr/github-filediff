@@ -17,7 +17,10 @@ struct PRListView: View {
         NavigationStack {
             VStack {
                 List(viewModel.entities) { entity in
-                    PRRowView(model: PRTableViewCellModel(entity: entity))
+                    PRRowView(model: PRRowViewModel(entity: entity))
+                    .onTapGesture {
+                        coordinator?.viewPullRequestDetailsBy(entity: entity)
+                    }
                 }
             }
             .refreshable {

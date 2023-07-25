@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PRRowView: View {
-    var model: PRTableViewCellModel
+    var model: PRRowViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,6 +26,6 @@ struct PRRowView: View {
 
 struct PRRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PRRowView(model: PRTableViewCellModel(title: "title", subTitle: "subTitle"))
+        PRRowView(model: PRRowViewModel(title: "title", subTitle: "subTitle"))
     }
 }

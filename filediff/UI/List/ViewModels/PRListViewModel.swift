@@ -44,7 +44,9 @@ final class PRListViewModel: ObservableObject {
             .map { responses -> [GitHubPREntity] in
                 responses.map { $0.toEntity() }
             }
-            .assign(to: \.entities, on: self)
+            .sink(receiveValue: { [weak self] value in
+                self?.entities.append(contentsOf: value)
+            })
             .store(in: &cancellableSet)
     }
 }
