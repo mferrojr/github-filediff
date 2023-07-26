@@ -20,47 +20,6 @@ protocol PRDiffViewModelDelegate: AnyObject {
     func requestPRDiffCancelled()
 }
 
-/*
-
-final class PRDiffViewModel: ObservableObject {
-    
-    // MARK: Private
-    private var gitHubAPIable: GitHubAPIable?
-    private var diffURL: URL?
-    private var cancellableSet: Set<AnyCancellable> = []
-    
-    private lazy var fetchDataPublisher: AnyPublisher<String, Error>? = {
-        guard let diffURL = diffURL else {
-            return Fail(error: PRDiffViewModelError.invalidDiffUrl)
-                .eraseToAnyPublisher()
-        }
-        return self.gitHubAPIable?.pullRequestBy(diffUrl: diffURL)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }()
-    
-    // MARK: - Initialization
-    init(gitHubAPIable: GitHubAPIable = Services.gitHubAPIable, entity: GitHubPREntity) {
-        self.gitHubAPIable = gitHubAPIable
-        self.diffURL = entity.diff_url
-        self.refreshData()
-    }
-    
-    // MARK: - Functions
-    func refreshData() {
-        self.fetchDataPublisher?
-            .catch({ (error) -> Just<String> in
-                return Just(String())
-            })
-            .sink(receiveValue: { [weak self] value in
-                GitHubParser.parse(fileText: value)
-            })
-            .store(in: &cancellableSet)
-    }
-    
-}
-*/
-
 final class PRDiffViewModel {
     
     // MARK: - Properties

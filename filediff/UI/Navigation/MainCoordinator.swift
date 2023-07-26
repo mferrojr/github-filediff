@@ -24,13 +24,19 @@ final class MainCoordinator: Coordinator {
 
     // MARK: - Functions
     func start() {
-        let listView = PRListView(coordinator: self, viewModel: PRListViewModel())
+        let searchView = RepoSearchView(coordinator: self, viewModel: RepoSearchViewModel())
+        let view = UIHostingController(rootView: searchView)
+        navigationController.pushViewController(view, animated: false)
+    }
+    
+    func viewPullRequestsFor(repo: GitHubRepoEntity) {
+        let listView = PRListView(coordinator: self, viewModel: PRListViewModel(repo: repo))
         let view = UIHostingController(rootView: listView)
         navigationController.pushViewController(view, animated: false)
     }
     
     func viewPullRequestDetailsBy(entity: GitHubPREntity) {
-        let detailsView = PRDetailsView(model: PRDetailsViewModel(entity: entity), coordinator: self)
+        let detailsView = PRDetailsView(coordinator: self, viewModel: PRDetailsViewModel(entity: entity))
         let view = UIHostingController(rootView: detailsView)
         navigationController.pushViewController(view, animated: false)
     }
@@ -39,11 +45,6 @@ final class MainCoordinator: Coordinator {
         let vc = PRDiffViewController(entity: entity)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
-        
-        /*let diffView = FileDiffView(viewModel: PRDiffViewModel(entity: entity))
-        let view = UIHostingController(rootView: diffView)
-        navigationController.pushViewController(view, animated: false)
-         */
     }
     
 }

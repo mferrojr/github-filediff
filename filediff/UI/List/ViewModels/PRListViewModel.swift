@@ -12,32 +12,37 @@ import Combine
 final class PRListViewModel: ObservableObject {
     // MARK: - Properties
     @Published var entities: [GitHubPREntity] = []
-    @Published var title: String = "Welcome"
+    @Published var repo: GitHubRepoEntity
     
     // MARK: Private
     private var gitHubAPIable: GitHubAPIable?
     private var cancellableSet: Set<AnyCancellable> = []
     
-    private lazy var fetchDataPublisher: AnyPublisher<[GitHubPRResponse], Error>? = {
-        self.gitHubAPIable?.pullRequests()
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }()
-    
     // MARK: - Initialization
-    init(title: String, entities: [GitHubPREntity]) {
-        self.title = title
+    init(repo: GitHubRepoEntity, entities: [GitHubPREntity]) {
+        self.repo = repo
         self.entities = entities
     }
     
-    init(gitHubAPIable: GitHubAPIable = Services.gitHubAPIable) {
+    init(repo: GitHubRepoEntity, gitHubAPIable: GitHubAPIable = Services.gitHubAPIable) {
+        self.repo = repo
         self.gitHubAPIable = gitHubAPIable
-        self.refreshData()
+        self.searchData(repo: repo)
     }
     
-    // MARK: - Functions
+    /// Refreshes all pull requests for the selected repository
     func refreshData() {
-        self.fetchDataPublisher?
+        self.searchData(repo: repo)
+    }
+}
+
+// MARK: - Private Function
+private extension PRListViewModel {
+
+    /// Fetches pull requests for a given repository
+    func searchData(repo: GitHubRepoEntity) {
+        self.gitHubAPIable?.pullRequests(for: repo)
+            .receive(on: DispatchQueue.main)
             .catch({ (error) -> Just<[GitHubPRResponse]> in
                 return Just([GitHubPRResponse]())
             })

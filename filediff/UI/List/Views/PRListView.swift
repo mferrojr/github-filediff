@@ -27,17 +27,18 @@ struct PRListView: View {
                 viewModel.refreshData()
             }
         }
-        .navigationTitle(viewModel.title)
+        .navigationTitle(viewModel.repo.name)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct PRListView_Previews: PreviewProvider {
     static var previews: some View {
+        let repo = GitHubRepoEntity(id: 1, name: "Name", fullName: "Full Name")
         var entities = [GitHubPREntity]()
         let entity = GitHubPREntity(body: "body", title: "title", number: 5)
         entities.append(entity)
-        let vm = PRListViewModel(title: "Welcome", entities: entities)
+        let vm = PRListViewModel(repo: repo, entities: entities)
         return PRListView(viewModel: vm)
     }
 }

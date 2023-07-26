@@ -10,6 +10,7 @@ struct PRRowViewModel {
     let title: String?
     let subTitle: String
     
+    // MARK: - Initialization
     init(title: String, subTitle: String) {
         self.title = title
         self.subTitle = subTitle

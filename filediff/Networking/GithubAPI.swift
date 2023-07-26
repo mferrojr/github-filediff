@@ -9,24 +9,34 @@
 import Foundation
 import Combine
 
-/// [Reference](https://github.com/V8tr/SwiftCombineNetworking)
 protocol GitHubAPIable {
-    func pullRequests() -> AnyPublisher<[GitHubPRResponse], Error>
+    func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error>
+    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error>
     func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error>
 }
 struct GithubAPI {
     let agent: Agent = Agent()
-    let base: URL = URL(string: "https://api.github.com/repos/raywenderlich/swift-algorithm-club")!
+    let baseUrl: URL = URL(string: "https://api.github.com")!
 }
 
 extension GithubAPI: GitHubAPIable {
 
     // MARK: - Functions
-    func pullRequests() -> AnyPublisher<[GitHubPRResponse], Error> {
+    func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error> {
         let httpRequest = HTTPRequest(
             method: .get,
-            baseURL: base,
-            path: "pulls",
+            baseURL: baseUrl,
+            path: "/search/repositories",
+            queryItems: [ URLQueryItem(name: "q", value: input) ]
+        )
+        return runForJson(httpRequest.requestURL)
+    }
+    
+    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error> {
+        let httpRequest = HTTPRequest(
+            method: .get,
+            baseURL: baseUrl,
+            path: "repos/\(repo.fullName)/pulls",
             queryItems: [ URLQueryItem(name: "state", value: "open") ]
         )
         return runForJson(httpRequest.requestURL)

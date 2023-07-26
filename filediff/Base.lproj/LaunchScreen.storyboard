@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,36 +21,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cG-bH-1ev" userLabel="Container View">
-                                <rect key="frame" x="89.5" y="308" width="196" height="51.5"/>
+                                <rect key="frame" x="112" y="308" width="151" height="51"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Swift Algorithm Club " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVp-7e-Cwq">
-                                        <rect key="frame" x="0.0" y="30.5" width="196" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub PR Diff Tool:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuo-T4-Ntk">
-                                        <rect key="frame" x="0.0" y="0.0" width="196" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub PR Diff Tool" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuo-T4-Ntk">
+                                        <rect key="frame" x="2.5" y="0.0" width="146.5" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="vVp-7e-Cwq" firstAttribute="top" secondItem="zuo-T4-Ntk" secondAttribute="bottom" constant="10" id="77r-f7-34Z"/>
-                                    <constraint firstItem="vVp-7e-Cwq" firstAttribute="leading" secondItem="8cG-bH-1ev" secondAttribute="leading" id="F9I-ZO-UTE"/>
-                                    <constraint firstItem="zuo-T4-Ntk" firstAttribute="leading" secondItem="8cG-bH-1ev" secondAttribute="leading" id="GOK-1z-2sx"/>
-                                    <constraint firstAttribute="bottom" secondItem="vVp-7e-Cwq" secondAttribute="bottom" id="OC4-Ab-LHe"/>
-                                    <constraint firstAttribute="trailing" secondItem="vVp-7e-Cwq" secondAttribute="trailing" id="UFS-vH-ZK8"/>
-                                    <constraint firstItem="zuo-T4-Ntk" firstAttribute="top" secondItem="8cG-bH-1ev" secondAttribute="top" id="upc-i9-zp4"/>
-                                    <constraint firstAttribute="trailing" secondItem="zuo-T4-Ntk" secondAttribute="trailing" id="xqc-EN-tdO"/>
+                                    <constraint firstItem="zuo-T4-Ntk" firstAttribute="top" secondItem="8cG-bH-1ev" secondAttribute="top" id="2SB-tm-vvg"/>
+                                    <constraint firstItem="zuo-T4-Ntk" firstAttribute="centerY" secondItem="8cG-bH-1ev" secondAttribute="centerY" id="IjG-sx-uqf"/>
+                                    <constraint firstItem="zuo-T4-Ntk" firstAttribute="centerX" secondItem="8cG-bH-1ev" secondAttribute="centerX" id="Yov-3R-Zov"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8cG-bH-1ev" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="96" id="LfT-U5-uHc"/>
                             <constraint firstItem="8cG-bH-1ev" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gR8-Ob-Ljw"/>
+                            <constraint firstItem="8cG-bH-1ev" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="288" id="l1y-WQ-k1X"/>
                             <constraint firstItem="8cG-bH-1ev" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="su0-nA-ful"/>
                         </constraints>
                     </view>
@@ -58,4 +52,9 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
