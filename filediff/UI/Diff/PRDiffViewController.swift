@@ -145,4 +145,3 @@ private extension PRDiffViewController {
     }
     
 }
-

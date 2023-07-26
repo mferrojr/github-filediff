@@ -14,5 +14,6 @@ final class Services {
     static let userEntityDao = GitHubUserEntityDaoService(storageContext: coreDataStorageContext)
     static let prEntityDao = GitHubPREntityDaoService(storageContext: coreDataStorageContext)
     static let prEntityService = GitHubPREntityService(prDao: prEntityDao, userEntityDao: userEntityDao)
+    static let gitHubAPIable: GitHubAPIable = GithubAPI()
     
 }

@@ -32,7 +32,8 @@ final class SyncPRsOperation: BaseOperation {
 private extension SyncPRsOperation {
     
     func getPRs(){
-        self.subscription = GithubAPI.pullRequests().sink(
+        /*
+        self.subscription = GithubAPI().pullRequests().sink(
             receiveCompletion: { [weak self] result in
                 switch result {
                 case .finished:
@@ -46,6 +47,6 @@ private extension SyncPRsOperation {
                 try? self?.gitHubPREntityService.createAllPRs(entities: results.map { $0.toEntity() })
                 self?.done()
             }
-        )
+        )*/
     }
 }

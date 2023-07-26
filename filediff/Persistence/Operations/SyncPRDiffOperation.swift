@@ -34,7 +34,7 @@ final class SyncPRDiffOperation: BaseOperation {
 private extension SyncPRDiffOperation {
     
     func getPRDiff(){
-        self.subscription = GithubAPI.pullRequestBy(diffUrl: diffUrl).sink(
+        self.subscription = GithubAPI().pullRequestBy(diffUrl: diffUrl).sink(
             receiveCompletion: { result in
                 switch result {
                 case .finished:

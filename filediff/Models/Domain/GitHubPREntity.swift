@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class GitHubPREntity: DomainBaseEntity, HasStorable {
+final class GitHubPREntity: DomainBaseEntity, HasStorable, Identifiable {
     
     // MARK: - Properties
     var storable: Storable?
@@ -22,6 +22,16 @@ final class GitHubPREntity: DomainBaseEntity, HasStorable {
     var body: String?
     var created_at: String?
     var user: GitHubUserEntity?
+    
+    // MARK: - Initialization
+    init() {
+    }
+    
+    init(body: String?, title: String?, number: Int) {
+        self.body = body
+        self.title = title
+        self.number = number
+    }
     
     // MARK: - Functions
     func populate(storable: Storable) -> Storable {

@@ -9,33 +9,44 @@
 import Foundation
 import Combine
 
-// Reference: https://github.com/V8tr/SwiftCombineNetworking
-@available(swift, introduced: 1.1.0)
-enum GithubAPI {
-    static let agent = Agent()
-    static let base = URL(string: "https://api.github.com/repos/raywenderlich/swift-algorithm-club")!
+protocol GitHubAPIable {
+    func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error>
+    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error>
+    func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error>
+}
+struct GithubAPI {
+    let agent: Agent = Agent()
+    let baseUrl: URL = URL(string: "https://api.github.com")!
 }
 
-extension GithubAPI {
+extension GithubAPI: GitHubAPIable {
 
     // MARK: - Functions
-    static func pullRequests() -> AnyPublisher<[GitHubPRResponse], Error> {
+    func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error> {
         let httpRequest = HTTPRequest(
             method: .get,
-            baseURL: base,
-            path: "pulls",
-            queryItems: [ URLQueryItem(name: "state", value: "open") ]
+            baseURL: baseUrl,
+            path: "/search/repositories",
+            queryItems: [ URLQueryItem(name: "q", value: input) ]
         )
-        
         return runForJson(httpRequest.requestURL)
     }
     
-    static func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error> {
+    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error> {
+        let httpRequest = HTTPRequest(
+            method: .get,
+            baseURL: baseUrl,
+            path: "repos/\(repo.fullName)/pulls",
+            queryItems: [ URLQueryItem(name: "state", value: "open") ]
+        )
+        return runForJson(httpRequest.requestURL)
+    }
+    
+    func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error> {
         let httpRequest = HTTPRequest(
             method: .get,
             baseURL: diffUrl
         )
-        
         return runForString(httpRequest.requestURL)
     }
     
@@ -44,13 +55,13 @@ extension GithubAPI {
 // MARK: - Private Functions
 private extension GithubAPI {
     
-    static func runForJson<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+    func runForJson<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         return agent.runForJson(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
     
-    static func runForString(_ request: URLRequest, with encoding: String.Encoding = .utf8) -> AnyPublisher<String, Error> {
+    func runForString(_ request: URLRequest, with encoding: String.Encoding = .utf8) -> AnyPublisher<String, Error> {
         return agent.runForString(request)
             .map(\.value)
             .eraseToAnyPublisher()

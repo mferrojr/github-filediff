@@ -14,6 +14,8 @@ extension String {
         case pullRequests = "PULL REQUESTS"
         case pullToRefresh = "PULL TO REFRESH"
         case viewDiff = "VIEW DIFF"
+        case gitHubRepositoryDiffTool = "GitHub Repository Diff Tool"
+        case searchForRepository = "Search for repository..."
     }
 
     static func localize(_ localKey: LocalKey, with comment: String = "") -> String {
