@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 final class RootMasterCoordinator: Coordinator {
     
     // MARK: - Properties
@@ -30,5 +31,4 @@ final class RootMasterCoordinator: Coordinator {
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
-
 }

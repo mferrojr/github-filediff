@@ -21,9 +21,9 @@ final class PRDiffViewController: UIViewController {
     }()
     
     //MARK: Private
-    private var entity: GitHubPREntity
+    private let diffUrl: String
     private let table: PRDiffTable
-    private var viewModel: PRDiffViewModel
+    private let viewModel: PRDiffViewModel
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -40,8 +40,8 @@ final class PRDiffViewController: UIViewController {
     }()
     
     // MARK: - Initialization
-    init(entity: GitHubPREntity) {
-        self.entity = entity
+    init(diffUrl: String) {
+        self.diffUrl = diffUrl
         self.viewModel = PRDiffViewModel()
         self.table = PRDiffTable(viewModel: self.viewModel)
         
@@ -55,7 +55,6 @@ final class PRDiffViewController: UIViewController {
     // MARK: - View Lifecycle
     override func loadView() {
         super.loadView()
-        self.viewModel.delegate = self
         self.refreshCtrl.addTarget(self, action: #selector(reload(_:)), for: .valueChanged)
         self.table.setup(self)
     }
@@ -73,7 +72,7 @@ final class PRDiffViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.viewModel.fetchDataFor(entity: self.entity)
+        self.fetchData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,17 +80,23 @@ final class PRDiffViewController: UIViewController {
         
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
-        self.viewModel.cancelFetchData()
+        Task {
+            await self.viewModel.cancelFetchData()
+            self.stopLoading()
+        }
+        
     }
-    
-    // MARK: - Functions
-
 }
 
-// MARK: - Extensions
-
-// MARK: PRDiffViewModelDelegate
-extension PRDiffViewController: PRDiffViewModelDelegate {
+// MARK: Private Functions
+private extension PRDiffViewController {
+    
+    func fetchData() {
+        Task {
+            let result = await self.viewModel.fetchDataFor(diffUrl: diffUrl)
+            self.requestPRDiffCompleted(with: result)
+        }
+    }
     
     func requestPRDiffCompleted(with result: Result<[GitHubFile], Error>) {
         switch result {
@@ -105,20 +110,11 @@ extension PRDiffViewController: PRDiffViewModelDelegate {
         }
     }
     
-    func requestPRDiffCancelled() {
-        self.stopLoading()
-    }
-    
-}
-
-// MARK: Private Functions
-private extension PRDiffViewController {
-    
     @objc
     func reload(_ refreshControl: UIRefreshControl) {
-        self.viewModel.fetchDataFor(entity: self.entity)
+        self.fetchData()
     }
-    
+
     func stopLoading(){
         refreshCtrl.endRefreshing()
         activityIndicator.stopAnimating()

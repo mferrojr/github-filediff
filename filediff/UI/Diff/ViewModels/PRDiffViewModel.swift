@@ -9,24 +9,19 @@
 import Foundation
 import Combine
 
-enum PRDiffViewModelError: Error {
+enum PRDiffViewModelError: Error, Sendable {
     case invalidDiffUrl
     case filesNotFound
     case unknown
 }
 
-protocol PRDiffViewModelDelegate: AnyObject {
-    func requestPRDiffCompleted(with result: Result<[GitHubFile], Error>)
-    func requestPRDiffCancelled()
-}
-
+@MainActor
 final class PRDiffViewModel {
     
     // MARK: - Properties
-    weak var delegate: PRDiffViewModelDelegate?
     
     // MARK: Private
-    private let queue: FileDiffQueue
+    private var queue: FileDiffQueue
     
     // MARK: - Initialization
     init() {
@@ -34,41 +29,20 @@ final class PRDiffViewModel {
     }
     
     // MARK: - Functions
-    
-    func fetchDataFor(entity: GitHubPREntity) {
-        guard let diffUrl = entity.diff_url else {
-            self.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.invalidDiffUrl))
-            return
-        }
-        
-        self.queue.getFileDiff(diffUrl: diffUrl,
-        completion: { result in
-            switch result {
-            case .success(let value):
-                // UI Changes on the main queue
-                DispatchQueue.main.async { [weak self] in
-                    guard let files = value else {
-                        self?.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.filesNotFound))
-                        return
-                    }
-                    
-                    self?.delegate?.requestPRDiffCompleted(with: .success(files))
-                }
-            case .error(let error):
-                guard let error = error else {
-                    self.delegate?.requestPRDiffCompleted(with: .failure(PRDiffViewModelError.unknown))
-                    return
-                }
-                
-                // UI Changes on the main queue
-                DispatchQueue.main.async { [weak self] in
-                    self?.delegate?.requestPRDiffCompleted(with: .failure(error))
-                }
+    func fetchDataFor(diffUrl: String) async -> Result<[GitHubFile], Error> {
+        let result = await self.queue.getFileDiff(diffUrl: diffUrl)
+        switch result {
+        case .success(let value):
+            guard let files = value else {
+                return .failure(PRDiffViewModelError.filesNotFound)
             }
-        })
+            return .success(files)
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
-    func cancelFetchData() {
+    func cancelFetchData() async {
         self.queue.cancel()
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 final class AppCoordinator: Coordinator {
     
     // MARK: - Properties

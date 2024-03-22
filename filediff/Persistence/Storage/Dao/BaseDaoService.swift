@@ -169,14 +169,14 @@ class BaseDaoService<DomainEntity: Mappable, DBEntity: Storable>: BaseDao {
 // MARK: - Private Functions
 private extension BaseDaoService {
     
-    func mapToDomain<DBEntity: Storable>(dbEntity: DBEntity) -> DomainEntity {
-        return dbEntity.toMappable() as! DomainEntity
+    func mapToDomain<StoreEntity: Storable>(storeEntity: StoreEntity) -> DomainEntity {
+        return storeEntity.toMappable() as! DomainEntity
     }
 
-    func mapToDomain<DBEntity: Storable>(dbEntities: [DBEntity]?) -> [DomainEntity] {
+    func mapToDomain<StoreEntity: Storable>(storeEntities: [StoreEntity]?) -> [DomainEntity] {
        var domainEntities = [DomainEntity]()
-       for dbEntity in dbEntities! {
-           domainEntities.append(mapToDomain(dbEntity: dbEntity))
+       for storeEntity in storeEntities! {
+           domainEntities.append(mapToDomain(storeEntity: storeEntity))
        }
        return domainEntities
     }

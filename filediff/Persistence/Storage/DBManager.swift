@@ -16,15 +16,9 @@ final class DBManager {
     // MARK: Private
     private var storageContext: StorageContext?
 
-    static var shared = DBManager()
-
     // MARK: - Initialization
-    private init() {
-    }
-
-    // MARK: - Functions
-    static func setup(storageContext: StorageContext) {
-        shared.storageContext = storageContext
+    init(storageContext: StorageContext) {
+        self.storageContext = storageContext
     }
 
     func storageContextImpl() -> StorageContext {

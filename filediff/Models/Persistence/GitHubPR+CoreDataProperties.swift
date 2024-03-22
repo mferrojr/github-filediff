@@ -18,7 +18,7 @@ extension GitHubPR {
 
     @NSManaged public var body: String?
     @NSManaged public var created_at: String?
-    @NSManaged public var diff_url: String?
+    @NSManaged public var diff_url: String
     @NSManaged public var id: Int32
     @NSManaged public var number: Int32
     @NSManaged public var state: String?

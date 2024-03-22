@@ -16,7 +16,7 @@ final class GitHubPREntity: DomainBaseEntity, HasStorable, Identifiable {
     var objectID: NSManagedObjectID?
     var id: Int = 0
     var number: Int = 0
-    var diff_url: String?
+    var diff_url: String = ""
     var state: String?
     var title: String?
     var body: String?

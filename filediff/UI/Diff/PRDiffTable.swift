@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 final class PRDiffTable: NSObject {
     
     // MARK: - Properties

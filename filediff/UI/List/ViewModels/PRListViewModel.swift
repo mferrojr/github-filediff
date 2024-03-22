@@ -15,7 +15,7 @@ final class PRListViewModel: ObservableObject {
     @Published var repo: GitHubRepoEntity
     
     // MARK: Private
-    private var gitHubAPIable: GitHubAPIable?
+    private var services: Services?
     private var cancellableSet: Set<AnyCancellable> = []
     
     // MARK: - Initialization
@@ -24,9 +24,9 @@ final class PRListViewModel: ObservableObject {
         self.entities = entities
     }
     
-    init(repo: GitHubRepoEntity, gitHubAPIable: GitHubAPIable = Services.gitHubAPIable) {
+    init(repo: GitHubRepoEntity, services: Services = .shared) {
         self.repo = repo
-        self.gitHubAPIable = gitHubAPIable
+        self.services = services
         self.searchData(repo: repo)
     }
     
@@ -41,7 +41,7 @@ private extension PRListViewModel {
 
     /// Fetches pull requests for a given repository
     func searchData(repo: GitHubRepoEntity) {
-        self.gitHubAPIable?.pullRequests(for: repo)
+        self.services?.gitHubAPIable.pullRequests(for: repo)
             .receive(on: DispatchQueue.main)
             .catch({ (error) -> Just<[GitHubPRResponse]> in
                 return Just([GitHubPRResponse]())

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,7 +20,6 @@
 		745CCA432432519700183977 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA3E2432519700183977 /* String+Extensions.swift */; };
 		745CCA452432519700183977 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA402432519700183977 /* UIViewController+Extensions.swift */; };
 		745CCA522432520800183977 /* FileDiffQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4B2432520800183977 /* FileDiffQueue.swift */; };
-		745CCA532432520800183977 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4D2432520800183977 /* GitHubService.swift */; };
 		745CCA542432520800183977 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4E2432520800183977 /* HTTPRequest.swift */; };
 		745CCA552432520800183977 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA4F2432520800183977 /* HttpClient.swift */; };
 		745CCA5A2432532700183977 /* PRDiffDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745CCA582432532700183977 /* PRDiffDataSource.swift */; };
@@ -118,7 +117,6 @@
 		745CCA3E2432519700183977 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		745CCA402432519700183977 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		745CCA4B2432520800183977 /* FileDiffQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDiffQueue.swift; sourceTree = "<group>"; };
-		745CCA4D2432520800183977 /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		745CCA4E2432520800183977 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		745CCA4F2432520800183977 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		745CCA582432532700183977 /* PRDiffDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRDiffDataSource.swift; sourceTree = "<group>"; };
@@ -536,7 +534,6 @@
 			children = (
 				74B922FA244FBB5500A6DD7A /* Agent.swift */,
 				74B922F8244FBB3600A6DD7A /* GithubAPI.swift */,
-				745CCA4D2432520800183977 /* GitHubService.swift */,
 				745CCA4F2432520800183977 /* HttpClient.swift */,
 				745CCA4E2432520800183977 /* HTTPRequest.swift */,
 			);
@@ -659,8 +656,9 @@
 		017A14331F13109D004E9EE6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "Michael Ferro";
 				TargetAttributes = {
 					017A143A1F13109D004E9EE6 = {
@@ -804,7 +802,6 @@
 				745CCA642432534900183977 /* SyncPRsOperation.swift in Sources */,
 				745CCA542432520800183977 /* HTTPRequest.swift in Sources */,
 				745CCA7A2432542300183977 /* PRDiffViewController.swift in Sources */,
-				745CCA532432520800183977 /* GitHubService.swift in Sources */,
 				7499FCA5243671AD002B2AF4 /* CoreDataStorageContext.swift in Sources */,
 				74BE5B46245CB45100C9D75C /* DBManager.swift in Sources */,
 			);
@@ -868,6 +865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -901,6 +899,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -921,6 +920,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -929,6 +929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -962,6 +963,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -973,7 +975,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -988,8 +992,11 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediff/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.prdifftool;
 				PRODUCT_NAME = "PR Diff Tool";
@@ -1007,8 +1014,11 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediff/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mferrojr.prdifftool;
 				PRODUCT_NAME = "PR Diff Tool";
@@ -1024,8 +1034,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediffTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1040,8 +1054,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediffTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1055,8 +1073,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediffUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1071,8 +1093,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = D3D8DSFWDT;
 				INFOPLIST_FILE = filediffUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.procore.challenge.filediffUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

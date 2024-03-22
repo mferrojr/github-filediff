@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 
+@MainActor
 final class MainCoordinator: Coordinator {
     
     // MARK: - Properites
@@ -42,7 +43,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func viewPullRequestDiff(entity: GitHubPREntity) {
-        let vc = PRDiffViewController(entity: entity)
+        let vc = PRDiffViewController(diffUrl: entity.diff_url)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

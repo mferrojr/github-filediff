@@ -17,7 +17,7 @@ struct RepoSearchView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 TextField(String.localize(.searchForRepository), text: $name)
-                    .onChange(of: name) { newValue in
+                    .onChange(of: name) {
                         viewModel.searchRepos(with: name)
                     }
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 5, trailing: 20))

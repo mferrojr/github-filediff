@@ -43,15 +43,13 @@ enum HTTPResult<Body> {
 @available(swift, deprecated: 1.1.0)
 struct HTTPClient {
 
-    typealias HTTPClientCompletion = (HTTPResult<Data?>) -> Void
-
     // MARK: - Properties
     
     // MARK: Private
     private let session = URLSession.shared
 
     // MARK: - Functions
-    func perform(_ request: HTTPRequest, _ completion: @escaping HTTPClientCompletion) -> URLSessionDataTask? {
+    func perform(_ request: HTTPRequest, _ completion: @Sendable @escaping (HTTPResult<Data?>) -> Void) -> URLSessionDataTask? {
         var urlComponents = URLComponents()
         urlComponents.scheme = request.baseURL.scheme
         urlComponents.host = request.baseURL.host

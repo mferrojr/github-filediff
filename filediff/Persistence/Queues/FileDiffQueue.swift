@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-final class FileDiffQueueContext {
+final class FileDiffQueueContext: @unchecked Sendable {
     
     // MARK: - Properties
     
@@ -31,7 +31,6 @@ final class FileDiffQueueContext {
             return result
         }
     }
-    
     var files: [GitHubFile]? {
         set {
             lock.lock()
@@ -49,6 +48,7 @@ final class FileDiffQueueContext {
 
 enum FileDiffQueueResultError: Error {
     case malformedUrl
+    case unknown
 }
 
 enum FileDiffQueueResult {
@@ -56,48 +56,43 @@ enum FileDiffQueueResult {
     case error(Error?)
 }
 
-final class FileDiffQueue {
+final class FileDiffQueue: Sendable {
     
     //MARK: - Properties
     
     //MARK: Private
     private let queue = OperationQueue()
-    private var subscriptions = Set<AnyCancellable?>()
     
     //MARK: - Functions
-    func getFileDiff(diffUrl: String, completion: @escaping (FileDiffQueueResult) -> Void) {
-        let context = FileDiffQueueContext()
-        
-        // Get file diff
+    func getFileDiff(diffUrl: String) async -> Result<[GitHubFile]?, Error> {
         guard let url = URL(string: diffUrl) else {
-            completion(.error(FileDiffQueueResultError.malformedUrl))
-            return
+            return .failure(FileDiffQueueResultError.malformedUrl)
         }
         
+        let context = FileDiffQueueContext()
         let prDiffOperation = SyncPRDiffOperation(diffUrl: url, context: context)
-        self.subscriptions.insert(prDiffOperation.subscription)
-        prDiffOperation.errorCallback = { error in
-            completion(.error(error))
+        return await withCheckedContinuation { continuation in
+            prDiffOperation.errorCallback = { error1 in
+                continuation.resume(returning: .failure(error1 ?? FileDiffQueueResultError.unknown))
+            }
+            // Parse the files
+            let parseFilesOperation = GitHubParserOperation(context: context)
+            parseFilesOperation.errorCallback = { error2 in
+                continuation.resume(returning: .failure(error2 ?? FileDiffQueueResultError.unknown))
+            }
+            parseFilesOperation.completionBlock = {
+                continuation.resume(returning: .success(context.files))
+            }
+            parseFilesOperation.addDependency(prDiffOperation)
+            
+            // Add operations to queue
+            self.queue.qualityOfService = .userInitiated
+            self.queue.addOperation(prDiffOperation)
+            self.queue.addOperation(parseFilesOperation)
         }
-        
-        // Parse the files
-        let parseFilesOperation = GitHubParserOperation(context: context)
-        parseFilesOperation.errorCallback = { error in
-            completion(.error(error))
-        }
-        parseFilesOperation.completionBlock = {
-           completion(.success(context.files))
-        }
-        parseFilesOperation.addDependency(prDiffOperation)
-        
-        // Add operations to queue
-        self.queue.qualityOfService = .userInitiated
-        self.queue.addOperation(prDiffOperation)
-        self.queue.addOperation(parseFilesOperation)
     }
     
     func cancel() {
         self.queue.cancelAllOperations()
     }
-    
 }

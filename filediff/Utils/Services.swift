@@ -8,12 +8,20 @@
 
 import Foundation
 
-final class Services {
+final class Services: @unchecked Sendable {
+    let coreDataStorageContext: StorageContext
+    let userEntityDao: GitHubUserEntityDaoService
+    let prEntityDao: GitHubPREntityDaoService
+    let prEntityService: GitHubPREntityService<GitHubUserEntityDaoService, GitHubPREntityDaoService>
+    let gitHubAPIable: GitHubAPIable
     
-    static let coreDataStorageContext: StorageContext = CoreDataStorageContext()
-    static let userEntityDao = GitHubUserEntityDaoService(storageContext: coreDataStorageContext)
-    static let prEntityDao = GitHubPREntityDaoService(storageContext: coreDataStorageContext)
-    static let prEntityService = GitHubPREntityService(prDao: prEntityDao, userEntityDao: userEntityDao)
-    static let gitHubAPIable: GitHubAPIable = GithubAPI()
+    static let shared = Services()
     
+    private init() {
+        coreDataStorageContext = CoreDataStorageContext()
+        userEntityDao = GitHubUserEntityDaoService(storageContext: coreDataStorageContext)
+        prEntityDao = GitHubPREntityDaoService(storageContext: coreDataStorageContext)
+        prEntityService = GitHubPREntityService(prDao: prEntityDao, userEntityDao: userEntityDao)
+        gitHubAPIable = GithubAPI()
+    }
 }

@@ -16,7 +16,7 @@ final class RepoSearchViewModel: ObservableObject {
     @Published var title: String = .localize(.gitHubRepositoryDiffTool)
     
     // MARK: Private
-    private var gitHubAPIable: GitHubAPIable?
+    private var services: Services?
     private var cancellableSet: Set<AnyCancellable> = []
     
     // MARK: - Initialization
@@ -25,8 +25,8 @@ final class RepoSearchViewModel: ObservableObject {
         self.items = entities
     }
     
-    init(gitHubAPIable: GitHubAPIable = Services.gitHubAPIable) {
-        self.gitHubAPIable = gitHubAPIable
+    init(services: Services = .shared) {
+        self.services = services
     }
     
     /// Searchs for repositories
@@ -35,7 +35,7 @@ final class RepoSearchViewModel: ObservableObject {
     func searchRepos(with input: String) {
         self.items.removeAll()
         
-        self.gitHubAPIable?.searchRepo(by: input)
+        self.services?.gitHubAPIable.searchRepo(by: input)
             .receive(on: DispatchQueue.main)
             .catch({ (error) -> Just<GitHubSearchResponse> in
                 return Just(GitHubSearchResponse())
