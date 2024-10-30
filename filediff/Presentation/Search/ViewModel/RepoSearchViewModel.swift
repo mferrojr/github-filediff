@@ -1,0 +1,51 @@
+//
+//  RepoSearchViewModel.swift
+//  PR Diff Tool
+//
+//  Created by Michael Ferro.
+//  Copyright © 2024 Michael Ferro. All rights reserved.
+//
+
+import Foundation
+import Combine
+
+final class RepoSearchViewModel: ObservableObject {
+    
+    // MARK: - Properties
+    @Published var items: [GitHubRepoEntity] = []
+    @Published var title: String = .localize(.gitHubRepositoryDiffTool)
+    
+    // MARK: Private
+    private var services: Services?
+    private var cancellableSet: Set<AnyCancellable> = []
+    
+    // MARK: - Initialization
+    init(title: String, entities: [GitHubRepoEntity]) {
+        self.title = title
+        self.items = entities
+    }
+    
+    init(services: Services = .shared) {
+        self.services = services
+    }
+    
+    /// Searchs for repositories
+    /// - Parameters:
+    ///  - input: repo name to search for
+    func searchRepos(with input: String) {
+        self.items.removeAll()
+        
+        self.services?.gitHubAPIable.searchRepo(by: input)
+            .receive(on: DispatchQueue.main)
+            .catch({ (error) -> Just<GitHubSearchResponse> in
+                return Just(GitHubSearchResponse())
+            })
+            .map { response -> [GitHubRepoEntity] in
+                response.items.map { $0.toEntity() }
+            }
+            .sink(receiveValue: { [weak self] value in
+                self?.items.append(contentsOf: value)
+            })
+            .store(in: &cancellableSet)
+    }
+}
