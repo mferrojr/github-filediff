@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GitHubUserEntityLocalDataSource: BaseDataSource where DB == GitHubUser, Domain == GitHubUserEntity {
+protocol GitHubUserEntityLocalDataSource: LocalDataSource where DB == GitHubUser, Domain == GitHubUserEntity {
 }
 
 struct GitHubUserEntityLocalDataSourceImpl: GitHubUserEntityLocalDataSource {

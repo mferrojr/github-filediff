@@ -9,7 +9,7 @@
 import Foundation
 
 struct PRDetailsViewModel {
-    let entity: GitHubPREntity
+    let entity: GitHubPullRequest
     
     var title: String {
         return "PR #\(self.entity.number)"

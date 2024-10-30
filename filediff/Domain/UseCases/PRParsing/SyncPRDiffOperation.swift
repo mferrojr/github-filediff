@@ -15,11 +15,13 @@ final class SyncPRDiffOperation: BaseOperation, @unchecked Sendable {
     // MARK: Private
     private var diffUrl: URL
     private var context: FileDiffQueueContext!
+    private var prRepo: GitHubPRRepository
     
     // MARK: - Initialization
-    required init(diffUrl : URL, context : FileDiffQueueContext) {
+    required init(diffUrl : URL, context : FileDiffQueueContext, prRepo: GitHubPRRepository = GitHubPRRepositoryImpl.sharedInstance(GitHubRemoteDataSource())) {
         self.diffUrl = diffUrl
         self.context = context
+        self.prRepo = prRepo
     }
     
     // MARK: - Functions
@@ -34,7 +36,7 @@ final class SyncPRDiffOperation: BaseOperation, @unchecked Sendable {
 private extension SyncPRDiffOperation {
     
     func getPRDiff(){
-        self.subscription = GitHubRemoteDataSource().pullRequestBy(diffUrl: diffUrl).sink(
+        self.subscription = prRepo.pullRequestBy(diffUrl: diffUrl).sink(
             receiveCompletion: { result in
                 switch result {
                 case .finished:

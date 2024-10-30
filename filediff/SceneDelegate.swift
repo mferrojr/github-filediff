@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  filediff
 //
-//  Created by Michael Ferro, Jr. on 4/27/20.
-//  Copyright © 2020 Michael Ferro. All rights reserved.
+//  Created by Michael Ferro.
+//  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import Foundation

@@ -9,6 +9,7 @@
 import Combine
 import SwiftUI
 
+/// Adds a delay when entering text
 /// [Reference](https://stackoverflow.com/a/66165075)
 class TextFieldObserver : ObservableObject {
     @Published var debouncedText = ""
@@ -16,9 +17,9 @@ class TextFieldObserver : ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init() {
+    init(milliseconds: Int = 500) {
         $searchText
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .debounce(for: .milliseconds(milliseconds), scheduler: DispatchQueue.main)
             .sink(receiveValue: { [weak self] t in
                 self?.debouncedText = t
             } )

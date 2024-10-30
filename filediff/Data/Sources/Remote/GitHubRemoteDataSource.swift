@@ -16,6 +16,9 @@ struct GitHubRemoteDataSource {
 extension GitHubRemoteDataSource: GitHubDataSource {
 
     // MARK: - Functions
+    
+    /// Searches for GitHub Repositories
+    /// [Reference](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
     func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error> {
         let httpRequest = HTTPRequest(
             method: .get,
@@ -26,7 +29,9 @@ extension GitHubRemoteDataSource: GitHubDataSource {
         return runForJson(httpRequest.requestURL)
     }
     
-    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error> {
+    /// Retrieves all open Pull Requests
+    /// [Reference](https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#list-pull-requests)
+    func pullRequests(for repo: GitHubRepo) -> AnyPublisher<[GitHubPRResponse], Error> {
         let httpRequest = HTTPRequest(
             method: .get,
             baseURL: baseUrl,
@@ -36,6 +41,7 @@ extension GitHubRemoteDataSource: GitHubDataSource {
         return runForJson(httpRequest.requestURL)
     }
     
+    /// Retrieves raw representation of the Pull Request
     func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error> {
         let httpRequest = HTTPRequest(
             method: .get,

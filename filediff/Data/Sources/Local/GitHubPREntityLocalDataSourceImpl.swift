@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol GitHubPREntityLocalDataSource: BaseDataSource where DB == GitHubPR, Domain == GitHubPREntity  {
+protocol GitHubPREntityLocalDataSource: LocalDataSource where DB == GitHubPR, Domain == GitHubPREntity  {
     func findById(_ id: Int) -> Domain?
     func fetchAll(sorted: Sorted?) -> [Domain]
 }

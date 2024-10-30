@@ -35,7 +35,7 @@ extension GitHubRepoResponse: Decodable {
 
 extension GitHubRepoResponse {
     
-    func toEntity() -> GitHubRepoEntity {
-        return GitHubRepoEntity(id: self.id, name: self.name, fullName: self.full_name)
+    func toModel() -> GitHubRepo {
+        return GitHubRepo(id: self.id, name: self.name, fullName: self.full_name)
     }
 }

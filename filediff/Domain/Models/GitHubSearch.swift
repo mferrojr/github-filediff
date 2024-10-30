@@ -9,5 +9,5 @@
 import Foundation
 
 struct GitHubSearch {
-    let items: [GitHubRepoEntity]
+    let items: [GitHubRepo]
 }

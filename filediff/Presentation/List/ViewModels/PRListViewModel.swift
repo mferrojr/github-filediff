@@ -11,27 +11,26 @@ import Combine
 
 final class PRListViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var entities: [GitHubPREntity] = []
-    @Published var repo: GitHubRepoEntity
+    @Published var entities: [GitHubPullRequest] = []
+    @Published var repo: GitHubRepo
+    @Published var navTitle: String
+    @Published var error: Error?
     
     // MARK: Private
-    private var services: Services?
+    private var prRepo: GitHubPRRepository
     private var cancellableSet: Set<AnyCancellable> = []
     
     // MARK: - Initialization
-    init(repo: GitHubRepoEntity, entities: [GitHubPREntity]) {
+    init(repo: GitHubRepo, prRepo: GitHubPRRepository = GitHubPRRepositoryImpl.sharedInstance(GitHubRemoteDataSource())) {
         self.repo = repo
-        self.entities = entities
-    }
-    
-    init(repo: GitHubRepoEntity, services: Services = .shared) {
-        self.repo = repo
-        self.services = services
+        self.prRepo = prRepo
+        self.navTitle = "\(repo.name) \(String.localize(.openPullRequest))"
         self.searchData(repo: repo)
     }
     
     /// Refreshes all pull requests for the selected repository
     func refreshData() {
+        self.error = nil
         self.searchData(repo: repo)
     }
 }
@@ -40,15 +39,13 @@ final class PRListViewModel: ObservableObject {
 private extension PRListViewModel {
 
     /// Fetches pull requests for a given repository
-    func searchData(repo: GitHubRepoEntity) {
-        self.services?.gitHubAPIable.pullRequests(for: repo)
+    func searchData(repo: GitHubRepo) {
+        self.prRepo.pullRequests(for: repo)
             .receive(on: DispatchQueue.main)
-            .catch({ (error) -> Just<[GitHubPRResponse]> in
-                return Just([GitHubPRResponse]())
+            .catch({ (error) -> Just<[GitHubPullRequest]> in
+                self.error = error
+                return Just([GitHubPullRequest]())
             })
-            .map { responses -> [GitHubPREntity] in
-                responses.map { $0.toEntity() }
-            }
             .sink(receiveValue: { [weak self] value in
                 self?.entities.append(contentsOf: value)
             })

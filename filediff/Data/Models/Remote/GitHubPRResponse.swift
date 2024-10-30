@@ -52,16 +52,16 @@ extension GitHubPRResponse: Decodable {
 
 extension GitHubPRResponse {
     
-    func toEntity() -> GitHubPREntity {
-        let entity = GitHubPREntity()
-        entity.id = self.id
-        entity.number = self.number
-        entity.diff_url = self.diff_url
-        entity.state = self.state
-        entity.title = self.title
-        entity.body = self.body
-        entity.created_at = self.created_at
-        entity.user = self.user.toEntity()
-        return entity
+    func toModel() -> GitHubPullRequest {
+        return GitHubPullRequest(
+            id: self.id,
+            body: self.body,
+            created_at: self.created_at,
+            diff_url: self.diff_url,
+            number: self.number,
+            state: self.state,
+            title: self.title,
+            user: self.user.toModel()
+        )
     }
 }

@@ -37,7 +37,15 @@ struct PRDetailsView: View {
 
 struct PRDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        let entity = GitHubPREntity(body: "body", title: "title", number: 5)
+        let entity = GitHubPullRequest(
+            id: 0,
+            body: "body",
+            created_at: "created_at",
+            diff_url: "diff_url",
+            number: 3,
+            state: "state",
+            title: "title",
+            user: nil)
         let model = PRDetailsViewModel(entity: entity)
         PRDetailsView(viewModel: model)
     }

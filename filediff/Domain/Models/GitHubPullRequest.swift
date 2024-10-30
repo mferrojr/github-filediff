@@ -1,5 +1,5 @@
 //
-//  GitHubPR.swift
+//  GitHubPullRequest.swift
 //  PR Diff Tool
 //
 //  Created by Michael Ferro, Jr.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct GitHubPR {
+struct GitHubPullRequest: Identifiable {
+    let id: Int
     let body: String?
     let created_at: String?
     let diff_url: String
-    let id: Int32
-    let number: Int32
+    let number: Int
     let state: String?
     let title: String?
-    let user: GitHubUser?
+    let user: GitHubRepoOwner?
 }

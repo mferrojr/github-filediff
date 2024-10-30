@@ -1,5 +1,5 @@
 //
-//  GitHubPREntityLocalDataSource.swift
+//  GitHubPREntityRepository.swift
 //  filediff
 //
 //  Created by Michael Ferro.
@@ -16,7 +16,7 @@ protocol GitHubPREntityRepository {
     func fetchAll(sorted: Sorted?) -> [GitHubPREntity]
 }
 
-final class GitHubPREntityLocalDataSourceImpl<A:GitHubUserEntityDao, T:GitHubPREntityDao>: GitHubPREntityRepository {
+final class GitHubPREntityRepositoryImpl<A:GitHubUserEntityLocalDataSource, T:GitHubPREntityLocalDataSource>: GitHubPREntityRepository {
 
     // MARK: - Properties
     

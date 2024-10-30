@@ -1,5 +1,5 @@
 //
-//  GitRepoOwnerEntity.swift
+//  GitRepoOwner.swift
 //  PR Diff Tool
 //
 //  Created by Michael Ferro.
@@ -10,5 +10,6 @@ import Foundation
 
 struct GitHubRepoOwner: Identifiable {
     let id: Int
+    let login: String
     let avatarUrl: URL
 }

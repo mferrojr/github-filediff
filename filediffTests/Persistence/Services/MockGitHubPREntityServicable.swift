@@ -2,14 +2,14 @@
 //  MockGitHubPREntityServicable.swift
 //  filediffTests
 //
-//  Created by Michael Ferro, Jr. on 5/2/20.
-//  Copyright © 2020 Michael Ferro. All rights reserved.
+//  Created by Michael Ferro.
+//  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import Foundation
 @testable import PR_Diff_Tool
 
-struct MockGitHubPREntityServicable: GitHubPREntityServicable {
+struct MockGitHubPREntityServicable: GitHubPREntityRepository {
     
     func createAllPRs(entities: [GitHubPREntity]) throws {
     }

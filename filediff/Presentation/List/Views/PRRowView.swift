@@ -20,7 +20,6 @@ struct PRRowView: View {
                 .font(.system(size:12))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(8)
     }
 }
 

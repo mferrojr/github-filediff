@@ -16,10 +16,10 @@ struct PRRowViewModel {
         self.subTitle = subTitle
     }
     
-    init(entity: GitHubPREntity) {
+    init(entity: GitHubPullRequest) {
         var subTitle = "#\(entity.number)"
         if let login = entity.user?.login {
-            subTitle.append(" by \(login)")
+            subTitle.append(" opened by \(login)")
         }
         self.title = entity.title
         self.subTitle = subTitle

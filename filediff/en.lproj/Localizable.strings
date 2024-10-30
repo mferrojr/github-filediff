@@ -2,12 +2,16 @@
   Localizable.strings
   filediff
 
-  Created by Michael Ferro, Jr. on 4/30/20.
-  Copyright © 2020 Michael Ferro. All rights reserved.
+  Created by Michael Ferro.
+  Copyright © 2024 Michael Ferro. All rights reserved.
 */
 
-"PULL REQUESTS"="Pull Requests";
-"PULL TO REFRESH"="Pull to Refresh";
-"VIEW DIFF"="View PR Diff";
+"PULL REQUESTS" = "Pull Requests";
+"PULL TO REFRESH" = "Pull to Refresh";
+"VIEW DIFF" = "View PR Diff";
 "GitHub Repository Diff Tool" = "GitHub Repository Diff Tool";
 "Search for repository..." = "Search for repository...";
+"No open pull requests." = "No open pull requests.";
+"Open Pull Requests" = "Open Pull Requests";
+"Error retrieving pull requests." = "Error retrieving pull requests.";
+"Error retrieving repositories." = "Error retrieving repositories.";

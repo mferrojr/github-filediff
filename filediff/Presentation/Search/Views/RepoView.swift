@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct RepoView: View {
-    let item: GitHubRepoEntity
+    let item: GitHubRepo
     var body: some View {
         VStack(alignment: .leading) {
             Text(item.name)
@@ -23,6 +23,6 @@ struct RepoView: View {
 
 struct RepoView_Previews: PreviewProvider {
     static var previews: some View {
-        RepoView(item: GitHubRepoEntity(id: 1, name: "Test Name", fullName: "Full Name"))
+        RepoView(item: GitHubRepo(id: 1, name: "Test Name", fullName: "Full Name"))
     }
 }

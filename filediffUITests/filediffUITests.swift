@@ -2,8 +2,8 @@
 //  filediffUITests.swift
 //  filediffUITests
 //
-//  Created by Michael Ferro on 7/9/17.
-//  Copyright © 2017 Michael Ferro. All rights reserved.
+//  Created by Michael Ferro.
+//  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import XCTest

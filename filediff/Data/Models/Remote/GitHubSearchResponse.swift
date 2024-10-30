@@ -32,8 +32,8 @@ extension GitHubSearchResponse: Decodable {
 
 extension GitHubSearchResponse {
     
-    func toEntity() -> GitHubSearchEntity {
-        return GitHubSearchEntity(items: items.map { $0.toEntity()} )
+    func toModel() -> GitHubSearch {
+        return GitHubSearch(items: items.map { $0.toModel()} )
     }
 }
 

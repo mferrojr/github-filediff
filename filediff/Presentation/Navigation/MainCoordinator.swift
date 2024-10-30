@@ -30,19 +30,19 @@ final class MainCoordinator: Coordinator {
         navigationController.pushViewController(view, animated: false)
     }
     
-    func viewPullRequestsFor(repo: GitHubRepoEntity) {
+    func viewPullRequestsFor(repo: GitHubRepo) {
         let listView = PRListView(coordinator: self, viewModel: PRListViewModel(repo: repo))
         let view = UIHostingController(rootView: listView)
         navigationController.pushViewController(view, animated: false)
     }
     
-    func viewPullRequestDetailsBy(entity: GitHubPREntity) {
+    func viewPullRequestDetailsBy(entity: GitHubPullRequest) {
         let detailsView = PRDetailsView(coordinator: self, viewModel: PRDetailsViewModel(entity: entity))
         let view = UIHostingController(rootView: detailsView)
         navigationController.pushViewController(view, animated: false)
     }
     
-    func viewPullRequestDiff(entity: GitHubPREntity) {
+    func viewPullRequestDiff(entity: GitHubPullRequest) {
         let vc = PRDiffViewController(diffUrl: entity.diff_url)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)

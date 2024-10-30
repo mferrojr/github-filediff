@@ -10,10 +10,12 @@ import Foundation
 
 struct GitRepoOwnerReponse {
     let id: Int
+    let login: String
     let avatar_url: URL
     
     enum CodingKeys: String, CodingKey {
         case id
+        case login
         case avatar_url
     }
 }
@@ -25,6 +27,7 @@ extension GitRepoOwnerReponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decode(Int.self, forKey: .id)
+        login = try container.decode(String.self, forKey: .login)
         avatar_url = try container.decode(URL.self, forKey: .avatar_url)
     }
 
@@ -32,7 +35,7 @@ extension GitRepoOwnerReponse: Decodable {
 
 extension GitRepoOwnerReponse {
     
-    func toEntity() -> GitHubRepoOwnerEntity {
-        return GitHubRepoOwnerEntity(id: self.id, avatarUrl: self.avatar_url)
+    func toModel() -> GitHubRepoOwner {
+        return GitHubRepoOwner(id: self.id, login: self.login, avatarUrl: self.avatar_url)
     }
 }

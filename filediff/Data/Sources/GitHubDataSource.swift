@@ -11,6 +11,6 @@ import Combine
 
 protocol GitHubDataSource {
     func searchRepo(by input: String) -> AnyPublisher<GitHubSearchResponse, Error>
-    func pullRequests(for repo: GitHubRepoEntity) -> AnyPublisher<[GitHubPRResponse], Error>
+    func pullRequests(for repo: GitHubRepo) -> AnyPublisher<[GitHubPRResponse], Error>
     func pullRequestBy(diffUrl: URL) -> AnyPublisher<String, Error>
 }

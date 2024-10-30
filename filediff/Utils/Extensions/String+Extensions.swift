@@ -16,13 +16,14 @@ extension String {
         case viewDiff = "VIEW DIFF"
         case gitHubRepositoryDiffTool = "GitHub Repository Diff Tool"
         case searchForRepository = "Search for repository..."
+        case openPullRequest = "Open Pull Requests"
     }
 
     static func localize(_ localKey: LocalKey, with comment: String = "") -> String {
         return NSLocalizedString(localKey.rawValue, comment: comment)
     }
     
-    //https://stackoverflow.com/questions/42476395/how-to-split-string-using-regex-expressions
+    /// [Reference](https://stackoverflow.com/questions/42476395/how-to-split-string-using-regex-expressions)
     func getMatches(pattern : String) -> [String]{
         let regex = try! NSRegularExpression(pattern: pattern, options: [])
         
