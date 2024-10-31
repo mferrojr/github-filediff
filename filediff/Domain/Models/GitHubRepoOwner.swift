@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GitHubRepoOwner: Identifiable {
+struct GitHubRepoOwner: Identifiable, Equatable {
     let id: Int
     let login: String
     let avatarUrl: URL

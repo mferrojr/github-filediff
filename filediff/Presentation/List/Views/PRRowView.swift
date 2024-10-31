@@ -25,6 +25,16 @@ struct PRRowView: View {
 
 struct PRRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PRRowView(model: PRRowViewModel(title: "title", subTitle: "subTitle"))
+        PRRowView(model: PRRowViewModel(entity:
+            .init(id: 3,
+            body: nil,
+            created_at: nil,
+            diff_url: "diff_url",
+            number: 6,
+            state: nil,
+            title: "title",
+            user: .init(id: 5, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
+            )
+        ))
     }
 }

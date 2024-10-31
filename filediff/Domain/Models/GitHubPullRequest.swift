@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GitHubPullRequest: Identifiable {
+struct GitHubPullRequest: Identifiable, Equatable {
     let id: Int
     let body: String?
     let created_at: String?

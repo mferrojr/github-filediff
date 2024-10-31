@@ -31,7 +31,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func viewPullRequestsFor(repo: GitHubRepo) {
-        let listView = PRListView(coordinator: self, viewModel: PRListViewModel(repo: repo))
+        let listView = PRListingView(coordinator: self, viewModel: PRListViewModel(repo: repo))
         let view = UIHostingController(rootView: listView)
         navigationController.pushViewController(view, animated: false)
     }

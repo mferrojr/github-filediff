@@ -9,20 +9,22 @@
 import Foundation
 import Combine
 
+enum RepoSearchViewModelError: Error {
+    case invalidSearchText
+}
+
 final class RepoSearchViewModel: ObservableObject {
     
     // MARK: - Properties
-    @Published var items: [GitHubRepo] = []
     @Published var title: String = .localize(.gitHubRepositoryDiffTool)
-    @Published var error: Error?
-    @Published var isLoading: Bool = false
+    @Published var state: ViewState<[GitHubRepo]> = .initial
     
     // MARK: Private
     private var repo: GitHubRepoRepository
     private var cancellableSet: Set<AnyCancellable> = []
     
     // MARK: - Initialization
-    init(repo: GitHubRepoRepository = GitHubRepoRepositoryImpl.sharedInstance(GitHubRemoteDataSource())) {
+    init(repo: GitHubRepoRepository = GitHubRepoRepositoryImpl(GitHubRemoteDataSource())) {
         self.repo = repo
     }
     
@@ -30,22 +32,46 @@ final class RepoSearchViewModel: ObservableObject {
     /// - Parameters:
     ///  - input: repo name to search for
     func searchRepos(with input: String) {
+        do {
+            self.state = .initial
+            let searchText = try validate(input: input)
+            self.prepareDataLoad()
+            self.repo.searchRepo(by: searchText)
+                .receive(on: DispatchQueue.main)
+                .sink(
+                    receiveCompletion: { completion in
+                        if case let .failure(error) = completion {
+                            self.state = .error(error)
+                        }
+                    },
+                    receiveValue: { [weak self] in
+                        self?.state = .loaded($0.items)
+                    }
+                )
+                .store(in: &cancellableSet)
+        } catch {
+            // No Op
+        }
+    }
+    
+}
+
+private extension RepoSearchViewModel {
+    
+    /// Prepare for a fresh data fetch by canceling any requests in-flight and updating state
+    func prepareDataLoad() {
         self.cancellableSet.forEach { $0.cancel() }
         self.cancellableSet.removeAll()
-        self.error = nil
-        self.isLoading = true
-        
-        self.repo.searchRepo(by: input)
-            .receive(on: DispatchQueue.main)
-            .catch({ (error) -> Just<GitHubSearch> in
-                self.error = error
-                return Just(GitHubSearch(items: []))
-            })
-            .sink(receiveValue: { [weak self] value in
-                self?.isLoading = false
-                self?.items.removeAll()
-                self?.items = value.items
-            })
-            .store(in: &cancellableSet)
+        self.state = .loading
+    }
+    
+    /// Validates input prior to initiating a fetch
+    /// - Parameters:
+    ///  - input: text to validate
+    /// - Returns: true if valid or false otherwise
+    func validate(input: String) throws -> String {
+        let searchText = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !searchText.isEmpty else {  throw RepoSearchViewModelError.invalidSearchText }
+        return searchText
     }
 }

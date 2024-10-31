@@ -10,16 +10,10 @@ import Combine
 import Foundation
 
 struct GitHubPRRepositoryImpl {
-    typealias GitHubInstance = (GitHubDataSource) -> GitHubPRRepositoryImpl
+    private let dataSource: GitHubDataSource
     
-    fileprivate let dataSource: GitHubDataSource
-    
-    private init(dataSource: GitHubDataSource) {
+    init(_ dataSource: GitHubDataSource) {
         self.dataSource = dataSource
-    }
-    
-    static let sharedInstance: GitHubInstance = {  dataSource in
-        return GitHubPRRepositoryImpl(dataSource: dataSource)
     }
 }
 

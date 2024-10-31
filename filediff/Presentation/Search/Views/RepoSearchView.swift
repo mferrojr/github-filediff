@@ -12,7 +12,6 @@ struct RepoSearchView: View {
     var coordinator: MainCoordinator?
     @StateObject var viewModel: RepoSearchViewModel
     @StateObject var textObserver = TextFieldObserver()
-    @State private var name: String = ""
     
     var body: some View {
         NavigationStack {
@@ -25,7 +24,7 @@ struct RepoSearchView: View {
                         }
                 }
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 5, trailing: 8))
-                listView
+                contentView
             }
         }
         .navigationTitle(viewModel.title)
@@ -33,43 +32,30 @@ struct RepoSearchView: View {
     }
     
     @ViewBuilder
-    var listView: some View {
-        if viewModel.error != nil {
-            errorView
-        } else if viewModel.items.isEmpty &&    !textObserver.debouncedText.isEmpty &&
-            !viewModel.isLoading {
-            emptyListView
-        } else {
-            objectsListView
-        }
-    }
-    
-    var errorView: some View {
-        Label {
-            Text("Error retrieving repositories.")
-        } icon: {
-            Image(systemName: "exclamationmark.transmission")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(Color.red)
-        }
-    }
-    
-    var emptyListView: some View {
-        VStack {
-            Label {
-                Text("No repositories found.")
-            } icon: {
-                Image(systemName: "minus.magnifyingglass")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(Color.green)
-            }
-            .padding(8)
+    var contentView: some View {
+        switch viewModel.state {
+        case .initial:
             Spacer()
+        case .loading:
+            LoadingView()
+        case .loaded(let items):
+            if items.isEmpty {
+                ContentUnavailableView.search
+            } else {
+                RepoListView(items: items, coordinator: coordinator)
+            }
+        case .error:
+            ErrorView(text: "Error retrieving repositories.", imageSystemName: "exclamationmark.transmission")
         }
     }
+}
+
+struct RepoListView: View {
+    let items: [GitHubRepo]
+    let coordinator: MainCoordinator?
     
-    var objectsListView: some View {
-        List(viewModel.items) { item in
+    var body: some View {
+        List(items) { item in
             RepoView(item: item)
                 .onTapGesture {
                     coordinator?.viewPullRequestsFor(repo: item)

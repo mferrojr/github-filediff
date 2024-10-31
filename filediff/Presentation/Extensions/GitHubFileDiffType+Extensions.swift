@@ -14,7 +14,7 @@ extension GitHubFileDiffType {
     var diffColor: UIColor {
         switch self {
         case .same:
-            return .white
+            return .systemBackground
         case .blank:
             return UIColor(red: 0.980, green: 0.984, blue: 0.988, alpha: 1)
         case .remove:
@@ -27,7 +27,7 @@ extension GitHubFileDiffType {
     var lineNumberColor: UIColor {
         switch self {
         case .same:
-            return .white
+            return .systemBackground
         case .blank:
             return self.diffColor
         case .remove:

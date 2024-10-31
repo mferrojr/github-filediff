@@ -16,7 +16,7 @@ final class PRDiffViewController: UIViewController {
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         return view
     }()
     

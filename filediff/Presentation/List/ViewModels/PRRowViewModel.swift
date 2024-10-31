@@ -11,11 +11,6 @@ struct PRRowViewModel {
     let subTitle: String
     
     // MARK: - Initialization
-    init(title: String, subTitle: String) {
-        self.title = title
-        self.subTitle = subTitle
-    }
-    
     init(entity: GitHubPullRequest) {
         var subTitle = "#\(entity.number)"
         if let login = entity.user?.login {

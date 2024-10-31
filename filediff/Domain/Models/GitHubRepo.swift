@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GitHubRepo: Identifiable {
+struct GitHubRepo: Identifiable, Equatable {
     let id: Int
     let name: String
     let fullName: String

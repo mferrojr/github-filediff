@@ -4,7 +4,9 @@
 
 This application provides displaying pull request diffs for GitHub repositories. This is a project where I explore Swift artitectures, design patterns and frameworks.
 
-> **_CALLOUT:_**  Although this project includes CoreData, it is not currently used for local storage/caching.  This application relies soles on network calls for data. This project will be transitioned to SwiftData at some point and CoreData implementations remain solely for reference.
+> **_CALLOUT:_**  This project includes CoreData, but it does not support local storage/caching.  This application relies solely on network calls for data. CoreData implementations remains solely for reference until the implementation is converted to SwiftData.
+
+> **_CALLOUT:_**  Dark Mode is not fully supported until the UIKit logic is converted to SwiftUI.
 
 ## Artitecture
 ### Clean

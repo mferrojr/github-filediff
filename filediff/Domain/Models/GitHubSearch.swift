@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct GitHubSearch {
+struct GitHubSearch: Equatable {
     let items: [GitHubRepo]
 }

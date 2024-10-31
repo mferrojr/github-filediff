@@ -15,8 +15,8 @@ struct GitHubSearchResponse {
         case items
     }
     
-    init() {
-        items = []
+    init(items: [GitHubRepoResponse] = []) {
+        self.items = items
     }
 }
 
