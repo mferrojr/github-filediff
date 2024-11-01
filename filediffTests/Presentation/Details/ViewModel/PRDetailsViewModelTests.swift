@@ -11,12 +11,12 @@ import XCTest
 
 final class PRDetailsViewModelTests: XCTestCase {
 
-    func testInitialization() {
+    func test_init_empty() {
         let entity = GitHubPullRequest(
             id: 3,
             body: nil,
             created_at: nil,
-            diff_url: "diff_url",
+            diff_url: "",
             number: 6,
             state: nil,
             title: nil,
@@ -25,5 +25,25 @@ final class PRDetailsViewModelTests: XCTestCase {
         let viewModel = PRDetailsViewModel(entity: entity)
         XCTAssertEqual(viewModel.title, "PR #6")
         XCTAssertEqual(viewModel.btnTitle, .localize(.viewDiff))
+        XCTAssertEqual(viewModel.body, "")
+        XCTAssertEqual(viewModel.entity, entity)
+    }
+    
+    func test_init_notEmpty() {
+        let entity = GitHubPullRequest(
+            id: 3,
+            body: "body",
+            created_at: "created_at",
+            diff_url: "diff_url",
+            number: 6,
+            state: "state",
+            title: "title",
+            user: .init(id: 0, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
+        )
+        let viewModel = PRDetailsViewModel(entity: entity)
+        XCTAssertEqual(viewModel.title, "PR #6")
+        XCTAssertEqual(viewModel.btnTitle, .localize(.viewDiff))
+        XCTAssertEqual(viewModel.body, "body")
+        XCTAssertEqual(viewModel.entity, entity)
     }
 }

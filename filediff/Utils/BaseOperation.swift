@@ -2,7 +2,7 @@
 //  BaseOperation.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Combine
 
 class BaseOperation: Operation, @unchecked Sendable {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     // MARK: Public
     var errorCallback: ((Error?) -> Void)?

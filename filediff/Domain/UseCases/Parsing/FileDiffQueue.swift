@@ -2,7 +2,7 @@
 //  FileDiffQueue.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -58,12 +58,12 @@ enum FileDiffQueueResult {
 
 final class FileDiffQueue: Sendable {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
-    //MARK: Private
+    // MARK: Private
     private let queue = OperationQueue()
     
-    //MARK: - Functions
+    // MARK: - Functions
     func getFileDiff(diffUrl: String) async -> Result<[GitHubFile]?, Error> {
         guard let url = URL(string: diffUrl) else {
             return .failure(FileDiffQueueResultError.malformedUrl)

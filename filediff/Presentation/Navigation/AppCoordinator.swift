@@ -2,13 +2,14 @@
 //  AppCoordinator.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
+/// Entry point for app navigation
 @MainActor
 final class AppCoordinator: Coordinator {
     
@@ -16,7 +17,7 @@ final class AppCoordinator: Coordinator {
     
     // MARK: Private
     private weak var window: UIWindow?
-    private var rootMasterCoordinator: Coordinator?
+    private var rootCoordinator: Coordinator?
     
     // MARK: - Initialization
     init(window: UIWindow) {
@@ -25,7 +26,7 @@ final class AppCoordinator: Coordinator {
     
     // MARK: - Functions
     func start() {
-        self.rootMasterCoordinator = RootMasterCoordinator(window: window)
-        self.rootMasterCoordinator?.start()
+        self.rootCoordinator = PrimaryCoordinator(window: window)
+        self.rootCoordinator?.start()
     }
 }

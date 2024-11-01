@@ -2,27 +2,27 @@
 //  PRDetailsView.swift
 //  PR Diff Tool
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import SwiftUI
 
 struct PRDetailsView: View {
-    var coordinator: MainCoordinator?
-    var viewModel: PRDetailsViewModel
+    weak var coordinator: MainCoordinator?
+    @StateObject var viewModel: PRDetailsViewModel
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text(viewModel.entity.title ?? "")
+                Text(viewModel.title)
                     .bold()
                     .font(.system(size:17))
                     .padding(.bottom, 10)
-                Text(viewModel.entity.body ?? "")
+                Text(viewModel.body)
                     .font(.system(size: 15))
                 Button(viewModel.btnTitle) {
-                    coordinator?.viewPullRequestDiff(entity: self.viewModel.entity)
+                    coordinator?.navigate(to: .pullRequestDiff(entity: self.viewModel.entity))
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 Spacer()

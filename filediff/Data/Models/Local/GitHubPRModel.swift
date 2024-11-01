@@ -2,7 +2,7 @@
 //  GitHubPREntity.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -21,7 +21,7 @@ final class GitHubPRModel: DomainBaseModel, HasStorable, Identifiable {
     var title: String?
     var body: String?
     var created_at: String?
-    var user: GitHubUserEntity?
+    var user: GitHubUserModel?
     
     // MARK: - Initialization
     init() {

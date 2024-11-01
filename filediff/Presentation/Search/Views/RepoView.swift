@@ -2,14 +2,17 @@
 //  RepoView.swift
 //  PR Diff Tool
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import SwiftUI
 
+/// Displays repository details
 struct RepoView: View {
+    // MARK: - Properties
     let item: GitHubRepo
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(item.name)

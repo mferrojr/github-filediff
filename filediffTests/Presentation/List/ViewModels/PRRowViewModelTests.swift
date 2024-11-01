@@ -12,35 +12,39 @@ import XCTest
 
 final class PRRowViewModelTests: XCTestCase {
 
-    func testInitialization_WithoutUser() {
-        let entity = buildPR()
-        let viewModel = PRRowViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "title")
-        XCTAssertEqual(viewModel.subTitle, "#6")
-    }
-    
-    func testInitialization_WithUser() {
-        let entity = buildPR(user:
-            .init(id: 5, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
-        )
-        let viewModel = PRRowViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "title")
-        XCTAssertEqual(viewModel.subTitle, "#6 opened by login")
-    }
-}
-
-private extension PRRowViewModelTests {
-    
-    func buildPR(user: GitHubRepoOwner? = nil) -> GitHubPullRequest {
-        return GitHubPullRequest(
+    func test_init_withoutData() {
+        let entity = GitHubPullRequest(
             id: 3,
             body: nil,
             created_at: nil,
-            diff_url: "diff_url",
+            diff_url: "",
             number: 6,
             state: nil,
-            title: "title",
-            user: user
+            title: nil,
+            user: nil
         )
+        let viewModel = PRRowViewModel(entity: entity)
+        XCTAssertEqual(viewModel.title, "")
+        XCTAssertEqual(viewModel.prTitle, "#6 opened by")
+        XCTAssertEqual(viewModel.userTitle, "N/A")
+        XCTAssertEqual(viewModel.avatarUrl, nil)
+    }
+    
+    func test_init_withData() {
+        let entity = GitHubPullRequest(
+            id: 3,
+            body: "body",
+            created_at: "created_at",
+            diff_url: "diff_url",
+            number: 6,
+            state: "state",
+            title: "title",
+            user: .init(id: 5, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
+        )
+        let viewModel = PRRowViewModel(entity: entity)
+        XCTAssertEqual(viewModel.title, "title")
+        XCTAssertEqual(viewModel.prTitle, "#6 opened by")
+        XCTAssertEqual(viewModel.userTitle, "login")
+        XCTAssertEqual(viewModel.avatarUrl, URL(string: "http://avatar.url")!)
     }
 }

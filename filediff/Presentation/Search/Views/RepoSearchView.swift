@@ -2,20 +2,21 @@
 //  RepoSearchView.swift
 //  PR Diff Tool
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import SwiftUI
 
 struct RepoSearchView: View {
-    var coordinator: MainCoordinator?
+    // MARK: - Properties
+    weak var coordinator: MainCoordinator?
     @StateObject var viewModel: RepoSearchViewModel
     @StateObject var textObserver = TextFieldObserver()
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            VStack {
                 HStack {
                     Image(systemName: "magnifyingglass")
                     TextField(String.localize(.searchForRepository), text: $textObserver.searchText)
@@ -23,7 +24,7 @@ struct RepoSearchView: View {
                             viewModel.searchRepos(with: textObserver.debouncedText)
                         }
                 }
-                .padding(EdgeInsets(top: 0, leading: 8, bottom: 5, trailing: 8))
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 5, trailing: 8))
                 contentView
             }
         }
@@ -31,8 +32,9 @@ struct RepoSearchView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    /// Main content
     @ViewBuilder
-    var contentView: some View {
+    private var contentView: some View {
         switch viewModel.state {
         case .initial:
             Spacer()
@@ -42,24 +44,27 @@ struct RepoSearchView: View {
             if items.isEmpty {
                 ContentUnavailableView.search
             } else {
-                RepoListView(items: items, coordinator: coordinator)
+                RepoListView(coordinator: coordinator, items: items)
             }
         case .error:
             ErrorView(text: "Error retrieving repositories.", imageSystemName: "exclamationmark.transmission")
         }
     }
-}
-
-struct RepoListView: View {
-    let items: [GitHubRepo]
-    let coordinator: MainCoordinator?
     
-    var body: some View {
-        List(items) { item in
-            RepoView(item: item)
-                .onTapGesture {
-                    coordinator?.viewPullRequestsFor(repo: item)
-                }
+    /// Displays all repositories
+    struct RepoListView: View {
+        // MARK: - Properties
+        let coordinator: MainCoordinator?
+        let items: [GitHubRepo]
+        
+        var body: some View {
+            List(items) { item in
+                RepoView(item: item)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        coordinator?.navigate(to: .pullRequests(repo: item))
+                    }
+            }
         }
     }
 }

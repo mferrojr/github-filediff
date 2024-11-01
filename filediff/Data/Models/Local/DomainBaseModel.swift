@@ -1,5 +1,5 @@
 //
-//  Sorted.swift
+//  DomainBaseEntity.swift
 //  filediff
 //
 //  Created by Michael Ferro, Jr.
@@ -7,10 +7,8 @@
 //
 
 import Foundation
+import CoreData
 
-public struct Sorted {
-    
-    // MARK: - Properties
-    var key: String
-    var ascending = true
+protocol DomainBaseModel: Mappable {
+    var objectID: NSManagedObjectID? { get set }
 }

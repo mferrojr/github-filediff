@@ -2,7 +2,7 @@
 //  StringExtensions.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2017 Michael Ferro. All rights reserved.
 //
 

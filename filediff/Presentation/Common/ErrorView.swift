@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/// Displays a common error view
 struct ErrorView: View {
     let text: String
     let imageSystemName: String

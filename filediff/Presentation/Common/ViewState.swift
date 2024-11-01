@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Maintains the state of the view with data
 enum ViewState<T> {
     case initial
     case loading

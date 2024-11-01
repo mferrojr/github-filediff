@@ -2,7 +2,7 @@
 //  GitHubParser.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -150,26 +150,24 @@ private extension GitHubParser {
     static func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType? {
         guard !line.isEmpty else { return nil }
         
-        // Adding line
         if line.hasPrefix("+"){
+            // Adding line
             var fileDiff = GitHubFileDiff()
             fileDiff.setText(value: line)
             fileDiff.setType(value: .add)
             fileDiff.setLineNumber(value: afterLineNumber)
             fileGroup.addAfterDiff(value: fileDiff)
             return .add
-        }
+        } else if line.hasPrefix("-") {
             // Removing line
-        else if line.hasPrefix("-"){
             var fileDiff = GitHubFileDiff()
             fileDiff.setText(value: line)
             fileDiff.setType(value: .remove)
             fileDiff.setLineNumber(value: beforeLineNumber)
             fileGroup.addBeforeDiff(value: fileDiff)
             return .remove
-        }
+        } else  {
             // No change
-        else  {
             fillInBlanks(fileGroup: &fileGroup, addBeforeLines: addingLinesCount, addingAfterLines: removingLinesCount)
             
             // Before line #
@@ -188,7 +186,7 @@ private extension GitHubParser {
         }
     }
     
-    static func fillInBlanks(fileGroup : inout GitHubFileGroup, addBeforeLines: Int, addingAfterLines : Int){
+    static func fillInBlanks(fileGroup: inout GitHubFileGroup, addBeforeLines: Int, addingAfterLines: Int){
         // Fill in before blank rows
         if addBeforeLines > 0 {
             for _ in 1...addBeforeLines {

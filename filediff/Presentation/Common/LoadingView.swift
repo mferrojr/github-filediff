@@ -8,8 +8,8 @@
 
 import SwiftUI
 
+/// Displays loading view
 struct LoadingView: View {
-    
     var body: some View {
         VStack {
             Label {

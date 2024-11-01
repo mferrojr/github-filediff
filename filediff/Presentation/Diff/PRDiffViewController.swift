@@ -2,7 +2,7 @@
 //  PRDiffViewController.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -118,12 +118,12 @@ private extension PRDiffViewController {
     
     func setUpTableView() {
         self.view.addSubview(self.tableView)
-        
-        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
         self.tableView.tableHeaderView = UIView(frame: .zero)
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.addSubview(self.refreshCtrl)
@@ -131,8 +131,10 @@ private extension PRDiffViewController {
     
     func setUpActivityIndicator() {
         self.view.addSubview(self.activityIndicator)
-        self.activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            self.activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ])
     }
     
 }

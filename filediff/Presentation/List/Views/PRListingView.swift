@@ -2,7 +2,7 @@
 //  PRListingView.swift
 //  PR Diff Tool
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -10,8 +10,7 @@ import Combine
 import SwiftUI
 
 struct PRListingView: View {
-    
-    var coordinator: MainCoordinator?
+    weak var coordinator: MainCoordinator?
     @StateObject var viewModel: PRListViewModel
     
     var body: some View {
@@ -30,6 +29,7 @@ struct PRListingView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    // Main content
     @ViewBuilder
     var contentView: some View {
         switch viewModel.state {
@@ -57,25 +57,27 @@ struct PRListingView: View {
                 .foregroundStyle(Color.green)
         }
     }
-}
-
-struct PRListView: View {
-    let items: [GitHubPullRequest]
-    let coordinator: MainCoordinator?
-    private let kSpacing: CGFloat = 8
     
-    var body: some View {
-        List(items) { entity in
-            HStack {
-                Image(systemName: "arrowshape.turn.up.left.2.circle")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(Color.green)
-                PRRowView(model: PRRowViewModel(entity: entity))
-                    .onTapGesture {
-                        coordinator?.viewPullRequestDetailsBy(entity: entity)
-                    }
+    /// Displays all pull requests
+    struct PRListView: View {
+        let items: [GitHubPullRequest]
+        let coordinator: MainCoordinator?
+        private let kSpacing: CGFloat = 8
+        
+        var body: some View {
+            List(items) { entity in
+                HStack {
+                    Image(systemName: "arrowshape.turn.up.left.2.circle")
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(Color.green)
+                    PRRowView(model: PRRowViewModel(entity: entity))
+                }
+                .listRowInsets(.init(top: kSpacing, leading: kSpacing, bottom: kSpacing, trailing: kSpacing))
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    coordinator?.navigate(to: .pullRequestDetails(entity: entity))
+                }
             }
-            .listRowInsets(.init(top: kSpacing, leading: kSpacing, bottom: kSpacing, trailing: kSpacing))
         }
     }
 }

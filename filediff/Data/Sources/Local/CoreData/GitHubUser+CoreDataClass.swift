@@ -2,7 +2,7 @@
 //  GitHubUser+CoreDataClass.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 //
@@ -16,7 +16,7 @@ public class GitHubUser: NSManagedObject {
 extension GitHubUser: Storable {
     
     func toMappable() -> Mappable {
-        let entity = GitHubUserEntity()
+        let entity = GitHubUserModel()
         entity.objectID = self.objectID
         entity.id = Int(self.id)
         entity.login = self.login

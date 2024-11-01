@@ -2,14 +2,13 @@
 //  SceneDelegate.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@available(iOS 13.0, *)
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: - Properties

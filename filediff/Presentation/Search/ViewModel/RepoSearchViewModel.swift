@@ -2,7 +2,7 @@
 //  RepoSearchViewModel.swift
 //  PR Diff Tool
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
@@ -14,10 +14,9 @@ enum RepoSearchViewModelError: Error {
 }
 
 final class RepoSearchViewModel: ObservableObject {
-    
     // MARK: - Properties
-    @Published var title: String = .localize(.gitHubRepositoryDiffTool)
-    @Published var state: ViewState<[GitHubRepo]> = .initial
+    @Published private(set) var title: String = .localize(.gitHubRepositoryDiffTool)
+    @Published private(set) var state: ViewState<[GitHubRepo]> = .initial
     
     // MARK: Private
     private var repo: GitHubRepoRepository
@@ -53,9 +52,9 @@ final class RepoSearchViewModel: ObservableObject {
             // No Op
         }
     }
-    
 }
 
+// MARK: - Private Functions
 private extension RepoSearchViewModel {
     
     /// Prepare for a fresh data fetch by canceling any requests in-flight and updating state
@@ -69,9 +68,10 @@ private extension RepoSearchViewModel {
     /// - Parameters:
     ///  - input: text to validate
     /// - Returns: true if valid or false otherwise
+    /// - Throws: when input is not valid
     func validate(input: String) throws -> String {
         let searchText = input.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !searchText.isEmpty else {  throw RepoSearchViewModelError.invalidSearchText }
+        guard !searchText.isEmpty else { throw RepoSearchViewModelError.invalidSearchText }
         return searchText
     }
 }
