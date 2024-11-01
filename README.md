@@ -25,6 +25,7 @@ MVC is used to separate business logic, views and the domain. MVC is used in con
 ![mvc](https://miro.medium.com/v2/resize:fit:960/format:webp/1*VLOXe7bTN5m0n6wzxEIp3A.png)[^MVC]
 
 ## Design Patterns
+- *Builder*: used for view composition
 - *Coordinator*: extracts navigation logic to better ensure reusability of views as they are not coupled to screen transitions. [^Coordinator]
 - *Dependency Injection*: dependencies are received from an external source and not created internally (allows for testing)
 - *Observer*: notifications to allow subjects to notify dependent objects (observers) about state changes.
