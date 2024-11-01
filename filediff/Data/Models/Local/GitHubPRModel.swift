@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class GitHubPREntity: DomainBaseEntity, HasStorable, Identifiable {
+final class GitHubPRModel: DomainBaseModel, HasStorable, Identifiable {
     
     // MARK: - Properties
     var storable: Storable?

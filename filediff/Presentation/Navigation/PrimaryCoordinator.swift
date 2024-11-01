@@ -1,16 +1,17 @@
 //
-//  MasterCoordinator.swift
+//  PrimaryCoordinator.swift
 //  filediff
 //
-//  Created by Michael Ferro.
+//  Created by Michael Ferro, Jr.
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
+/// Entry point for app navigation
 @MainActor
-final class RootMasterCoordinator: Coordinator {
+final class PrimaryCoordinator: Coordinator {
     
     // MARK: - Properties
     

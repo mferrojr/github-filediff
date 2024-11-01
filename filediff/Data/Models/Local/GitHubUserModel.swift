@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class GitHubUserEntity: DomainBaseEntity {
+final class GitHubUserModel: DomainBaseModel {
     
     // MARK: - Properties
     var objectID: NSManagedObjectID?

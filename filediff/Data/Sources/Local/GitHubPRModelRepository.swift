@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol GitHubPREntityRepository {
-    func createAllPRs(entities: [GitHubPREntity]) throws
-    func createPR(entity: GitHubPREntity) throws
-    func updatePR(entity: GitHubPREntity) throws
-    func fetchBy(prNumber: Int) -> GitHubPREntity?
-    func fetchAll(sorted: Sorted?) -> [GitHubPREntity]
+protocol GitHubPRModelRepository {
+    func createAllPRs(entities: [GitHubPRModel]) throws
+    func createPR(entity: GitHubPRModel) throws
+    func updatePR(entity: GitHubPRModel) throws
+    func fetchBy(prNumber: Int) -> GitHubPRModel?
+    func fetchAll(sorted: Sorted?) -> [GitHubPRModel]
 }
 
-final class GitHubPREntityRepositoryImpl<A:GitHubUserEntityLocalDataSource, T:GitHubPREntityLocalDataSource>: GitHubPREntityRepository {
+final class GitHubPREntityRepositoryImpl<A:GitHubUserEntityLocalDataSource, T:GitHubPREntityLocalDataSource>: GitHubPRModelRepository {
 
     // MARK: - Properties
     

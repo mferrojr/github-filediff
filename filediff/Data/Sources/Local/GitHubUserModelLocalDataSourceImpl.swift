@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol GitHubUserEntityLocalDataSource: LocalDataSource where DB == GitHubUser, Domain == GitHubUserEntity {
+protocol GitHubUserModelLocalDataSource: LocalDataSource where DB == GitHubUser, Domain == GitHubUserModel {
 }
 
-struct GitHubUserEntityLocalDataSourceImpl: GitHubUserEntityLocalDataSource {
+struct GitHubUserModelLocalDataSourceImpl: GitHubUserModelLocalDataSource {
     var storageContext: StorageContext?
 }
