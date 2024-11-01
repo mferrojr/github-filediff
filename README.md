@@ -35,7 +35,7 @@ MVC is used to separate business logic, views and the domain. MVC is used in con
 - CoreData
 - Combine
 - SwiftUI
-- XCTest
+- XCTest & XCUITest
 - UIKit
 
 ### Credits
