@@ -9,10 +9,10 @@
 import SwiftUI
 
 final class PRRowViewModel: ObservableObject {
-    @Published var title: String
-    @Published var prTitle: String
-    @Published var userTitle: String = ""
-    @Published var avatarUrl: URL?
+    @Published private(set) var title: String
+    @Published private(set) var prTitle: String
+    @Published private(set) var userTitle: String = ""
+    @Published private(set) var avatarUrl: URL?
     
     // MARK: - Initialization
     init(entity: GitHubPullRequest) {

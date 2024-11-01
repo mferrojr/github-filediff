@@ -12,7 +12,7 @@ import SwiftUI
 /// Adds a delay when entering text
 /// [Reference](https://stackoverflow.com/a/66165075)
 final class TextFieldObserver: ObservableObject {
-    @Published var debouncedText = ""
+    @Published private(set) var debouncedText = ""
     @Published var searchText = ""
     
     private var subscriptions = Set<AnyCancellable>()

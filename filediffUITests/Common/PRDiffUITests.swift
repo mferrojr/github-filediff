@@ -21,35 +21,28 @@ class PRDiffUITests: XCTestCase {
     @MainActor
     func test_searchForRepository_andViewPRDiff() {
         let app = XCUIApplication()
-        app.textFields["Search for repository..."].typeText("swift-algorithm-club")
-        
-        let repositoryList = app.collectionViews["LIST_REPOSITORY"]
+        let searchTextField = app.textFields[AccessibilityElement.TextFields.ID.searchForRepository.rawValue]
+        XCTAssertTrue(searchTextField.exists)
+        searchTextField.typeText("swift-algorithm-club")
+        let repositoryList = app.collectionViews[AccessibilityElement.Lists.ID.repository.rawValue]
         XCTAssertTrue(repositoryList.waitForExistence(timeout: 3))
-        
+    
         let swiftAlgorithmClubCell = repositoryList.firstCell()
         XCTAssertTrue(swiftAlgorithmClubCell.exists)
         swiftAlgorithmClubCell.tap()
         
-        let prList = app.collectionViews["LIST_PR"]
+        let prList = app.collectionViews[AccessibilityElement.Lists.ID.pullRequests.rawValue]
         XCTAssertTrue(prList.waitForExistence(timeout: 3))
         
         let firstPRCell = prList.firstCell()
         XCTAssertTrue(firstPRCell.exists)
         firstPRCell.tap()
         
-        let viewDiffButton = app.buttons["View PR Diff"]
+        let viewDiffButton = app.buttons[AccessibilityElement.Buttons.ID.viewPRDiff.rawValue]
         XCTAssertTrue(viewDiffButton.waitForExistence(timeout: 3))
         viewDiffButton.tap()
         
-        let prDiffTable = app.tables["TABLE_PR_DIFF"]
+        let prDiffTable = app.tables[AccessibilityElement.Tables.ID.prDiff.rawValue]
         XCTAssertTrue(prDiffTable.waitForExistence(timeout: 3))
-    }
-    
-}
-
-private extension XCUIElement {
-    
-    func firstCell() -> XCUIElement {
-        self.cells.children(matching: .any).element(boundBy: 0)
     }
 }

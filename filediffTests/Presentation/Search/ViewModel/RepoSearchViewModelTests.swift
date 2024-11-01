@@ -16,7 +16,7 @@ final class RepoSearchViewModelTests: XCTestCase {
     
     func test_init() {
         let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
-        XCTAssertEqual(viewModel.title, .localize(.gitHubRepositoryDiffTool))
+        XCTAssertEqual(viewModel.title, "GitHub Repository Diff Tool")
         switch viewModel.state {
         case .loading, .error, .loaded:
             XCTFail()

@@ -24,7 +24,7 @@ final class PRDetailsViewModelTests: XCTestCase {
         )
         let viewModel = PRDetailsViewModel(entity: entity)
         XCTAssertEqual(viewModel.title, "PR #6")
-        XCTAssertEqual(viewModel.btnTitle, .localize(.viewDiff))
+        XCTAssertEqual(viewModel.btnTitle, "View PR Diff")
         XCTAssertEqual(viewModel.body, "")
         XCTAssertEqual(viewModel.entity, entity)
     }
@@ -42,7 +42,7 @@ final class PRDetailsViewModelTests: XCTestCase {
         )
         let viewModel = PRDetailsViewModel(entity: entity)
         XCTAssertEqual(viewModel.title, "PR #6")
-        XCTAssertEqual(viewModel.btnTitle, .localize(.viewDiff))
+        XCTAssertEqual(viewModel.btnTitle, "View PR Diff")
         XCTAssertEqual(viewModel.body, "body")
         XCTAssertEqual(viewModel.entity, entity)
     }

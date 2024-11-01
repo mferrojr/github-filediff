@@ -65,19 +65,23 @@ struct PRListingView: View {
         private let kSpacing: CGFloat = 8
         
         var body: some View {
-            List(items) { entity in
-                HStack {
-                    Image(systemName: "arrowshape.turn.up.left.2.circle")
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(Color.green)
-                    PRRowView(model: PRRowViewModel(entity: entity))
-                }
-                .listRowInsets(.init(top: kSpacing, leading: kSpacing, bottom: kSpacing, trailing: kSpacing))
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    coordinator?.navigate(to: .pullRequestDetails(entity: entity))
+            List {
+                ForEach(Array(items.enumerated()), id: \.1.id) { (index, entity) in
+                    HStack {
+                        Image(systemName: "arrowshape.turn.up.left.2.circle")
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(Color.green)
+                            .accessibilityLabel(AccessibilityElement.Images.Label.pendingMerge.rawValue)
+                        PRRowView(model: PRRowViewModel(entity: entity))
+                    }
+                    .contentShape(Rectangle())
+                    .listRowInsets(.init(top: kSpacing, leading: kSpacing, bottom: kSpacing, trailing: kSpacing))
+                    .onTapGesture {
+                        coordinator?.navigate(to: .pullRequestDetails(entity: entity))
+                    }
                 }
             }
+            .accessibilityIdentifier(AccessibilityElement.Lists.ID.pullRequests.rawValue)
         }
     }
 }

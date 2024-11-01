@@ -33,8 +33,10 @@ struct PRRowView: View {
                         default:
                             Image(systemName: "person.circle")
                                 .frame(width: kImageSize, height: kImageSize)
+                                .accessibilityLabel(AccessibilityElement.Images.Label.noAvatarIcon.rawValue)
                         }
                     }
+                    .accessibilityLabel(AccessibilityElement.Images.Label.avatarIcon.rawValue)
                 }
                 Text(model.userTitle)
                     .font(.system(size:12))

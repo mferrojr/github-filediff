@@ -10,14 +10,14 @@ import Foundation
 import SwiftUI
 
 final class PRDetailsViewModel: ObservableObject {
-    @Published var title: String
-    @Published var btnTitle: String
-    @Published var body: String
-    @Published var entity: GitHubPullRequest
+    @Published private(set) var title: String
+    @Published private(set) var btnTitle: String
+    @Published private(set) var body: String
+    @Published private(set) var entity: GitHubPullRequest
     
     init(entity: GitHubPullRequest) {
         self.title = "PR #\(entity.number)"
-        self.btnTitle = .localize(.viewDiff)
+        self.btnTitle = "View PR Diff"
         self.body = entity.body ?? ""
         self.entity = entity
     }

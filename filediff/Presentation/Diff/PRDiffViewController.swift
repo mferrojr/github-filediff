@@ -17,6 +17,7 @@ final class PRDiffViewController: UIViewController {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
+        view.accessibilityIdentifier = AccessibilityElement.Tables.ID.prDiff.rawValue
         return view
     }()
     

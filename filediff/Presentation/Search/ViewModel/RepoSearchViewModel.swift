@@ -15,7 +15,7 @@ enum RepoSearchViewModelError: Error {
 
 final class RepoSearchViewModel: ObservableObject {
     // MARK: - Properties
-    @Published private(set) var title: String = .localize(.gitHubRepositoryDiffTool)
+    @Published private(set) var title: String = "GitHub Repository Diff Tool"
     @Published private(set) var state: ViewState<[GitHubRepo]> = .initial
     
     // MARK: Private

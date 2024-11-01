@@ -6,13 +6,14 @@
   Copyright © 2024 Michael Ferro. All rights reserved.
 */
 
-"PULL REQUESTS" = "Solicitudes de extracción";
-"PULL TO REFRESH" = "Pull to Refresh";
-"VIEW DIFF" = "View PR Diff";
-"GitHub Repository Diff Tool" = "GitHub Repository Diff Tool";
+"View PR Diff" = "View PR Diff";
 "Search for repository..." = "Search for repository...";
 "No open pull requests." = "No open pull requests.";
 "Open Pull Requests" = "Open Pull Requests";
 "Error retrieving pull requests." = "Error retrieving pull requests.";
 "Error retrieving repositories." = "Error retrieving repositories.";
 "Loading..." = "Loading...";
+"Avatar Icon" = "Avatar Icon";
+"Pending Merge Icon" = "Pending Merge Icon";
+"Search Icon" = "Search Icon";
+"No Avatar Icon" = "No Avatar Icon";

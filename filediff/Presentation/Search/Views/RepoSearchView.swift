@@ -13,13 +13,23 @@ struct RepoSearchView: View {
     weak var coordinator: MainCoordinator?
     @StateObject var viewModel: RepoSearchViewModel
     @StateObject var textObserver = TextFieldObserver()
+    @FocusState private var focusedField: FocusField?
     
+    enum FocusField: Hashable {
+        case search
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
                 HStack {
                     Image(systemName: "magnifyingglass")
-                    TextField(String.localize(.searchForRepository), text: $textObserver.searchText)
+                        .accessibilityLabel(AccessibilityElement.Images.Label.searchIcon.rawValue)
+                    TextField("Search for repository...", text: $textObserver.searchText)
+                        .focused($focusedField, equals: .search)
+                        .task {
+                            self.focusedField = .search
+                        }
                         .onChange(of: textObserver.debouncedText) {
                             viewModel.searchRepos(with: textObserver.debouncedText)
                         }
@@ -65,6 +75,7 @@ struct RepoSearchView: View {
                         coordinator?.navigate(to: .pullRequests(repo: item))
                     }
             }
+            .accessibilityIdentifier(AccessibilityElement.Lists.ID.repository.rawValue)
         }
     }
 }

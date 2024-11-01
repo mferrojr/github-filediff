@@ -11,8 +11,8 @@ import Combine
 
 final class PRListViewModel: ObservableObject {
     // MARK: - Properties
-    @Published var navTitle: String
-    @Published var state: ViewState<[GitHubPullRequest]> = .initial
+    @Published private(set)var navTitle: String
+    @Published private(set) var state: ViewState<[GitHubPullRequest]> = .initial
     private var repo: GitHubRepo
     
     // MARK: Private
