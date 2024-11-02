@@ -33,6 +33,12 @@ struct AccessibilityElement {
         }
     }
     
+    struct Sections {
+        enum ID: String {
+            case repository = "SECTION_REPOSITORY"
+        }
+    }
+    
     struct Tables {
         enum ID: String {
             case prDiff = "TABLE_PR_DIFF"

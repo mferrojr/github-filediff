@@ -65,15 +65,22 @@ struct RepoSearchView: View {
     struct RepoListView: View {
         // MARK: - Properties
         let coordinator: MainCoordinator?
-        let items: [GitHubRepo]
+        let items: [RepoByLetterItem]
         
         var body: some View {
             List(items) { item in
-                RepoView(item: item)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        coordinator?.navigate(to: .pullRequests(repo: item))
+                Section {
+                    ForEach(item.repos) { repo in
+                        RepoView(item: repo)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                coordinator?.navigate(to: .pullRequests(repo: repo))
+                            }
                     }
+                } header: {
+                    Text(item.id)
+                }
+                .accessibilityIdentifier(AccessibilityElement.Sections.ID.repository.rawValue + "_" + String(item.id))
             }
             .accessibilityIdentifier(AccessibilityElement.Lists.ID.repository.rawValue)
         }

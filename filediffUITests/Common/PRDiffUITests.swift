@@ -23,14 +23,12 @@ class PRDiffUITests: XCTestCase {
         let app = XCUIApplication()
         let searchTextField = app.textFields[AccessibilityElement.TextFields.ID.searchForRepository.rawValue]
         XCTAssertTrue(searchTextField.exists)
-        searchTextField.typeText("swift-algorithm-club")
+        searchTextField.typeText("kodecocodes/swift-algorithm-club")
         let repositoryList = app.collectionViews[AccessibilityElement.Lists.ID.repository.rawValue]
         XCTAssertTrue(repositoryList.waitForExistence(timeout: 3))
-    
-        let swiftAlgorithmClubCell = repositoryList.firstCell()
-        XCTAssertTrue(swiftAlgorithmClubCell.exists)
-        swiftAlgorithmClubCell.tap()
         
+        app.collectionViews[AccessibilityElement.Lists.ID.repository.rawValue]/*@START_MENU_TOKEN@*/.staticTexts["kodecocodes/swift-algorithm-club"]/*[[".cells.staticTexts[\"kodecocodes\/swift-algorithm-club\"]",".staticTexts[\"kodecocodes\/swift-algorithm-club\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+                
         let prList = app.collectionViews[AccessibilityElement.Lists.ID.pullRequests.rawValue]
         XCTAssertTrue(prList.waitForExistence(timeout: 3))
         

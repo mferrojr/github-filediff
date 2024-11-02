@@ -13,10 +13,15 @@ enum RepoSearchViewModelError: Error {
     case invalidSearchText
 }
 
+struct RepoByLetterItem: Identifiable, Equatable {
+    let id: String
+    let repos: [GitHubRepo]
+}
+
 final class RepoSearchViewModel: ObservableObject {
     // MARK: - Properties
     @Published private(set) var title: String = "GitHub Repository Diff Tool"
-    @Published private(set) var state: ViewState<[GitHubRepo]> = .initial
+    @Published private(set) var state: ViewState<[RepoByLetterItem]> = .initial
     
     // MARK: Private
     private var repo: GitHubRepoRepository
@@ -44,7 +49,7 @@ final class RepoSearchViewModel: ObservableObject {
                         }
                     },
                     receiveValue: { [weak self] in
-                        self?.state = .loaded($0.items)
+                        self?.state = .loaded(self?.parse(repos: $0.items) ?? [])
                     }
                 )
                 .store(in: &cancellableSet)
@@ -64,6 +69,8 @@ private extension RepoSearchViewModel {
         self.state = .loading
     }
     
+    
+    
     /// Validates input prior to initiating a fetch
     /// - Parameters:
     ///  - input: text to validate
@@ -73,5 +80,36 @@ private extension RepoSearchViewModel {
         let searchText = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !searchText.isEmpty else { throw RepoSearchViewModelError.invalidSearchText }
         return searchText
+    }
+    
+    /// Parse GitHubRepo for view display. Each section is the first letter of `fullName`
+    /// - Parameters:
+    ///  - repos: GitHub repositories
+    /// - Returns: array of GitHubRepoItems for display
+    func parse(repos: [GitHubRepo]) -> [RepoByLetterItem]{
+        let reposByLetter = repoByLetter(of: repos)
+        var results: [RepoByLetterItem] = []
+        for letter in reposByLetter.keys.sorted() {
+            guard let repos = reposByLetter[letter] else { continue }
+            results.append(.init(id: letter, repos: repos.sorted(by: {$0.fullName < $1.fullName })))
+        }
+        return results
+    }
+    
+    /// For all returned repositories, map first letter of `fullName` to array of corresponding repos
+    /// - Parameters:
+    ///  - repos: GitHub repositories
+    /// - Returns: dictionary of letter to repositories
+    func repoByLetter(of repos: [GitHubRepo]) -> [String:[GitHubRepo]] {
+        var firstCharacters = [String:[GitHubRepo]]()
+        for repo in repos {
+            guard let firstLetter = repo.fullName.first?.uppercased() else { continue }
+            if let repos = firstCharacters[firstLetter] {
+                firstCharacters[firstLetter]?.append(repo)
+            } else {
+                firstCharacters[firstLetter] = [repo]
+            }
+        }
+        return firstCharacters
     }
 }

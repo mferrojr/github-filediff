@@ -15,7 +15,7 @@ struct RepoView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(item.name)
+            Text(item.fullName)
                 .bold()
                 .font(.system(size:17))
         }

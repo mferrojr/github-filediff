@@ -22,7 +22,21 @@ struct GitHubRepoRepositoryMock: GitHubRepoRepository {
     }
     
     static func generateSearch() -> GitHubSearch {
-        GitHubSearch(items: [.init(id: 0, name: "name", fullName: "fullName")])
+        return GitHubSearch(items: [
+            .init(id: 0, name: "name", fullName: "nameFull"),
+            .init(id: 1, name: "test", fullName: "testFull"),
+            .init(id: 2, name: "test2", fullName: "test2Full"),
+            .init(id: 3, name: "abc", fullName: "abcFul")
+        ])
+    }
+    
+    static func generateSearchSorted() -> [RepoByLetterItem] {
+        let items = generateSearch().items
+        return [
+            RepoByLetterItem(id: "A", repos: [items[3]]),
+            RepoByLetterItem(id: "N", repos: [items[0]]),
+            RepoByLetterItem(id: "T", repos: [items[2], items[1]])
+        ]
     }
     
 }

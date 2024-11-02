@@ -72,7 +72,7 @@ final class RepoSearchViewModelTests: XCTestCase {
                 case .initial, .error, .loading:
                     break
                 case .loaded(let items):
-                    XCTAssertEqual(items, GitHubRepoRepositoryMock.generateSearch().items)
+                    XCTAssertEqual(items, GitHubRepoRepositoryMock.generateSearchSorted())
                     expect.fulfill()
                 }
             }
