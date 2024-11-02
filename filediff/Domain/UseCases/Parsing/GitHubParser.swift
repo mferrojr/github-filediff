@@ -132,19 +132,26 @@ private extension GitHubParser {
     // Parse "@@ -31,22 +31,17 @@" to extract line diffs
     static func parseLines(input : String) -> (DiffInfo,DiffInfo){
         let lineDiffs = input.components(separatedBy: " ")
-        let beforeDiffComma = lineDiffs[1].components(separatedBy: ",")
-        let afterDiffComma = lineDiffs[2].components(separatedBy: ",")
-        
-        let bDiffFirst = beforeDiffComma[0]
-        let beforeLineIndex = Int(String(bDiffFirst[bDiffFirst.index(bDiffFirst.startIndex, offsetBy: 1)...])) ?? 1
-        
-        let aDiffFirst = afterDiffComma[0]
-        let afterLineIndex = Int(String(aDiffFirst[aDiffFirst.index(aDiffFirst.startIndex, offsetBy: 1)...])) ?? 1
-        
-        let beforeParse = DiffInfo(startingLine: beforeLineIndex, numLines: Int(beforeDiffComma[1]) ?? 0)
-        let afterParse = DiffInfo(startingLine: afterLineIndex, numLines: Int(afterDiffComma[1]) ?? 0)
-        
+        let beforeDiffComma = commaSeparated(input: lineDiffs[1])
+        let afterDiffComma = commaSeparated(input: lineDiffs[2])
+        let beforeLineIndex = findCommaIndex(input: beforeDiffComma)
+        let afterLineIndex = findCommaIndex(input: afterDiffComma)
+        let beforeParse = getDiffInfo(lineIndex: beforeLineIndex, diffComma: beforeDiffComma)
+        let afterParse = getDiffInfo(lineIndex: afterLineIndex, diffComma: afterDiffComma)
         return (beforeParse,afterParse)
+    }
+    
+    static func commaSeparated(input: String) -> [String] {
+        input.components(separatedBy: ",")
+    }
+    
+    static func findCommaIndex(input: [String]) -> Int {
+        let diffFirst = input[0]
+        return Int(String(diffFirst[diffFirst.index(diffFirst.startIndex, offsetBy: 1)...])) ?? 1
+    }
+    
+    static func getDiffInfo(lineIndex: Int, diffComma: [String]) -> DiffInfo {
+        DiffInfo(startingLine: lineIndex, numLines: Int(diffComma.count > 2 ? diffComma[1] : "") ?? 0)
     }
     
     static func processLine(line : String, fileGroup : inout GitHubFileGroup, afterLineNumber: Int, beforeLineNumber : Int, addingLinesCount: Int, removingLinesCount : Int) -> GitHubFileDiffType? {
