@@ -104,7 +104,7 @@ private extension RepoSearchViewModel {
         var firstCharacters = [String:[GitHubRepo]]()
         for repo in repos {
             guard let firstLetter = repo.fullName.first?.uppercased() else { continue }
-            if let repos = firstCharacters[firstLetter] {
+            if let _ = firstCharacters[firstLetter] {
                 firstCharacters[firstLetter]?.append(repo)
             } else {
                 firstCharacters[firstLetter] = [repo]
