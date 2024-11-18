@@ -16,7 +16,7 @@ struct GitHubPRResponse: Identifiable {
     let diff_url: String
     let state: String
     let title: String
-    let body: String
+    let body: String?
     let created_at: String
     let user: GitHubUserResponse
 
@@ -43,7 +43,7 @@ extension GitHubPRResponse: Decodable {
         diff_url = try container.decode(String.self, forKey: .diff_url)
         state = try container.decode(String.self, forKey: .state)
         title = try container.decode(String.self, forKey: .title)
-        body = try container.decode(String.self, forKey: .body)
+        body = try container.decodeIfPresent(String.self, forKey: .body)
         created_at = try container.decode(String.self, forKey: .created_at)
         user = try container.decode(GitHubUserResponse.self, forKey: .user)
     }

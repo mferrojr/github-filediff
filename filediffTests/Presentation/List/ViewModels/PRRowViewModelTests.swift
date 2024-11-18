@@ -16,15 +16,15 @@ final class PRRowViewModelTests: XCTestCase {
         let entity = GitHubPullRequest(
             id: 3,
             body: nil,
-            created_at: nil,
+            created_at: "created_at",
             diff_url: "",
             number: 6,
-            state: nil,
-            title: nil,
+            state: "open",
+            title: "title",
             user: nil
         )
         let viewModel = PRRowViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "")
+        XCTAssertEqual(viewModel.title, "title")
         XCTAssertEqual(viewModel.prTitle, "#6 opened by")
         XCTAssertEqual(viewModel.userTitle, "N/A")
         XCTAssertEqual(viewModel.avatarUrl, nil)

@@ -11,10 +11,10 @@ import Foundation
 struct GitHubPullRequest: Identifiable, Equatable {
     let id: Int
     let body: String?
-    let created_at: String?
+    let created_at: String
     let diff_url: String
     let number: Int
-    let state: String?
-    let title: String?
+    let state: String
+    let title: String
     let user: GitHubRepoOwner?
 }

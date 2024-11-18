@@ -51,10 +51,10 @@ struct PRRowView_Previews: PreviewProvider {
         PRRowView(model: PRRowViewModel(entity:
             .init(id: 3,
             body: nil,
-            created_at: nil,
+            created_at: "2024-11-18T20:09:31Z",
             diff_url: "diff_url",
             number: 6,
-            state: nil,
+            state: "open",
             title: "title",
             user: .init(id: 5, login: "login", avatarUrl: URL(string: "https://developer.apple.com/news/images/og/swiftui-og.png")!)
             )

@@ -16,7 +16,7 @@ final class PRRowViewModel: ObservableObject {
     
     // MARK: - Initialization
     init(entity: GitHubPullRequest) {
-        self.title = entity.title ?? ""
+        self.title = entity.title
         self.prTitle = "#\(entity.number) opened by"
         self.userTitle = entity.user?.login ?? "N/A"
         self.avatarUrl = entity.user?.avatarUrl

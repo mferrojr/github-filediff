@@ -15,11 +15,11 @@ final class PRDetailsViewModelTests: XCTestCase {
         let entity = GitHubPullRequest(
             id: 3,
             body: nil,
-            created_at: nil,
+            created_at: "nil",
             diff_url: "",
             number: 6,
-            state: nil,
-            title: nil,
+            state: "open",
+            title: "title",
             user: nil
         )
         let viewModel = PRDetailsViewModel(entity: entity)

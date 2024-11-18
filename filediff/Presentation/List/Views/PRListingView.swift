@@ -14,19 +14,16 @@ struct PRListingView: View {
     @StateObject var viewModel: PRListViewModel
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                contentView
-            }
-            .task {
-                viewModel.refreshData()
-            }
-            .refreshable {
-                viewModel.refreshData()
-            }
+        VStack {
+            contentView
+        }
+        .task {
+            viewModel.refreshData()
+        }
+        .refreshable {
+            viewModel.refreshData()
         }
         .navigationTitle(viewModel.navTitle)
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     // Main content

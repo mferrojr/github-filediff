@@ -278,8 +278,8 @@
 		017A14521F13109E004E9EE6 /* filediffTests */ = {
 			isa = PBXGroup;
 			children = (
-				7488B26B2CD4261C009E6A4D /* Domain */,
 				7468C1062CD30F1600FDC12E /* Data */,
+				7488B26B2CD4261C009E6A4D /* Domain */,
 				7468C0F82CD303A700FDC12E /* Presentation */,
 				017A14551F13109E004E9EE6 /* Info.plist */,
 			);
@@ -289,8 +289,8 @@
 		017A145D1F13109E004E9EE6 /* filediffUITests */ = {
 			isa = PBXGroup;
 			children = (
-				747E3CB62CD5419C004C6645 /* Extensions */,
 				747E3CB52CD54191004C6645 /* Common */,
+				747E3CB62CD5419C004C6645 /* Extensions */,
 				017A14601F13109E004E9EE6 /* Info.plist */,
 			);
 			path = filediffUITests;
@@ -346,10 +346,10 @@
 			isa = PBXGroup;
 			children = (
 				745CCABD243267F100183977 /* GitHubFile.swift */,
+				74D634592CD1A40100107D63 /* GitHubPullRequest.swift */,
 				7467B99C2A6FFE0500672C59 /* GitHubRepo.swift */,
 				7467B99A2A6FFDF400672C59 /* GitHubRepoOwner.swift */,
 				7467B9982A6FFDE000672C59 /* GitHubSearch.swift */,
-				74D634592CD1A40100107D63 /* GitHubPullRequest.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -468,8 +468,8 @@
 		745CCAB6243264F600183977 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				74D634562CD1881200107D63 /* Remote */,
 				74D634542CD1880300107D63 /* Local */,
+				74D634562CD1881200107D63 /* Remote */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -486,8 +486,8 @@
 		7467B98E2A6F58CC00672C59 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7436329A2CD03DE800DF07E6 /* RepoView.swift */,
 				7467B99E2A70002900672C59 /* RepoSearchView.swift */,
+				7436329A2CD03DE800DF07E6 /* RepoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -660,10 +660,10 @@
 			isa = PBXGroup;
 			children = (
 				745CCAB72432652600183977 /* GitHubPRResponse.swift */,
-				745CCAB92432673400183977 /* GitHubUserResponse.swift */,
 				7467B9902A6FF96B00672C59 /* GitHubRepoResponse.swift */,
-				7467B9922A6FF99B00672C59 /* GitRepoOwnerResponse.swift */,
 				7467B9942A6FFB2900672C59 /* GitHubSearchResponse.swift */,
+				745CCAB92432673400183977 /* GitHubUserResponse.swift */,
+				7467B9922A6FF99B00672C59 /* GitRepoOwnerResponse.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
