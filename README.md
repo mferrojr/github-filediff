@@ -27,6 +27,7 @@ MVC is used to separate business logic, views and the domain. MVC is used in con
 ## Design Patterns
 - *Builder*: used for view composition
 - *Coordinator*: extracts navigation logic to better ensure reusability of views as they are not coupled to screen transitions. [^Coordinator]
+- *Delegate*: common delegation pattern used with UIKit views.
 - *Dependency Injection*: dependencies are received from an external source and not created internally (allows for testing)
 - *Observer*: notifications to allow subjects to notify dependent objects (observers) about state changes.
 - *Repository*:  layer between an applicatons domain logic and data storage.[^Repository]
