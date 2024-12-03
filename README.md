@@ -37,12 +37,13 @@ MVC is used to separate business logic, views and the domain. MVC is used in con
 - CoreData
 - Combine
 - SwiftUI
-- XCTest & XCUITest
+- Swift Testing[^swift_testing], XCTest & XCUITest
 - UIKit
 
 ### Credits
 [^CLEAN]: [A Beginner’s Guide to Clean Architecture in SwiftUI: Building Better Apps Step by Step](https://medium.com/@walfandi/a-beginners-guide-to-clean-architecture-in-ios-building-better-apps-step-by-step-53e6ec8b3abd)
 [^MVVM]: [Model–view–viewmodel](https://en.wikipedia.org/wiki/Model–view–viewmodel)
 [^Repository]: [Repository design pattern in Swift explained using code examples](https://www.avanderlee.com/swift/repository-design-pattern/)
-[^Coordinator]:[SwiftUI apps at scale](https://blog.jacobstechtavern.com/p/swiftui-apps-at-scale)
+[^Coordinator]: [SwiftUI apps at scale](https://blog.jacobstechtavern.com/p/swiftui-apps-at-scale)
 [^MVC]: [Understanding the Role of MVC in iOS Development: How Apple Utilizes the MVC Architecture in UI Libraries](https://medium.com/@viniciusnadin/understanding-the-role-of-mvc-in-ios-development-how-apple-utilizes-the-mvc-architecture-in-ui-4aa128ed59ad)
+[^swift_testing]: [Partially generated with Testpiler](https://apps.apple.com/us/app/testpiler/id6737156289?mt=12)

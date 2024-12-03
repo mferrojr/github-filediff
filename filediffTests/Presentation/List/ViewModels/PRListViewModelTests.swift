@@ -6,75 +6,91 @@
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Combine
 @testable import PR_Diff_Tool
 
-final class PRListViewModelTests: XCTestCase {
+struct PRListViewModelTests {
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    func test_init() {
+    @Test
+    func init_state() {
         let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
                                         prRepo: GitHubPRRepositoryMock())
-        XCTAssertEqual(viewModel.navTitle, "name \(String.localize(.openPullRequest))")
         switch viewModel.state {
         case .loading, .error, .loaded:
-            XCTFail()
+            Issue.record("Unexpected state")
         case .initial:
-            break
+            #expect(viewModel.navTitle == "name \(String.localize(.openPullRequest))")
         }
     }
     
-    func test_refreshData_Loading() {
+    @Test
+    func refreshData_Loading() {
         let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
                                         prRepo: GitHubPRRepositoryMock())
         viewModel.refreshData()
         switch viewModel.state {
         case .initial, .error, .loaded:
-            XCTFail()
+            Issue.record("Unexpected state")
         case .loading:
             break
         }
     }
     
-    func test_searchData_LoadSuccess() {
+    @Test
+    func searchData_LoadSuccess() async {
+        var cancellables = Set<AnyCancellable>()
         let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
                                         prRepo: GitHubPRRepositoryMock())
-        let expect = expectation(description: "loaded state")
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .initial, .error, .loading:
-                    break
-                case .loaded(let items):
-                    XCTAssertEqual(items, [GitHubPRRepositoryMock.generatePR()])
-                    expect.fulfill()
-                }
-            }
-            .store(in: &cancellables)
         
         viewModel.refreshData()
-        wait(for: [expect], timeout: 3)
+        do {
+            let result: [GitHubPullRequest] = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial, .loading:
+                            break
+                        case .loaded(let items):
+                            continuation.resume(returning: items)
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
+            }
+            #expect(result == [GitHubPRRepositoryMock.generatePR()])
+        } catch {
+            Issue.record(error)
+        }
     }
     
-    func test_Initialization_Refresh_Fail() {
+    @Test
+    func init_Refresh_Fail() async {
+        var cancellables = Set<AnyCancellable>()
+        
         let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
                                         prRepo: GitHubPRRepositoryMockFail())
-        let expect = expectation(description: "error state")
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .initial, .loaded, .loading:
-                    break
-                case .error(let error):
-                    XCTAssertEqual(error as? GitHubPRRepositoryMockError, GitHubPRRepositoryMockError.fail)
-                    expect.fulfill()
-                }
-            }
-            .store(in: &cancellables)
         
         viewModel.refreshData()
-        wait(for: [expect], timeout: 3)
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial, .loading:
+                            break
+                        case .loaded:
+                            continuation.resume(returning: ())
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
+            }
+            Issue.record("Unexpected success")
+        } catch {
+            #expect(error as? GitHubPRRepositoryMockError == GitHubPRRepositoryMockError.fail)
+        }
     }
 }

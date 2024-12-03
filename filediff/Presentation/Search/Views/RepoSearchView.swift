@@ -52,12 +52,17 @@ struct RepoSearchView: View {
             LoadingView()
         case .loaded(let items):
             if items.isEmpty {
-                ContentUnavailableView.search
+                ContentUnavailableView.search(text: textObserver.debouncedText)
             } else {
                 RepoListView(coordinator: coordinator, items: items)
             }
-        case .error:
-            ErrorView(text: "Error retrieving repositories.", imageSystemName: "exclamationmark.transmission")
+        case .error(let error):
+            switch error {
+            case RepoSearchViewModelError.invalidSearchText:
+                ContentUnavailableView.search
+            default:
+                ErrorView(text: "Error retrieving repositories.", imageSystemName: "exclamationmark.transmission")
+            }
         }
     }
     

@@ -7,97 +7,135 @@
 //
 
 import Combine
-import XCTest
+import Testing
 @testable import PR_Diff_Tool
 
-final class RepoSearchViewModelTests: XCTestCase {
+struct RepoSearchViewModelTests {
     
-    private var cancellables = Set<AnyCancellable>()
+    enum TestError: Error {
+        case invalidState
+    }
     
-    func test_init() {
+    @Test
+    func init_State() {
         let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
-        XCTAssertEqual(viewModel.title, "GitHub Repository Diff Tool")
         switch viewModel.state {
         case .loading, .error, .loaded:
-            XCTFail()
+            Issue.record("Invalid state: \(viewModel.state)")
         case .initial:
-            break
+            #expect(viewModel.title == "GitHub Repository Diff Tool")
         }
     }
     
-    func test_searchRepos_invalid_emptyInput() {
+    @Test
+    func searchRepos_invalid_emptyInput() async {
+        var cancellables = Set<AnyCancellable>()
         let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
-        let expect = expectation(description: "loaded state")
-        expect.expectedFulfillmentCount = 2
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .loaded, .error, .loading:
-                    break
-                case .initial:
-                    expect.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-        
         viewModel.searchRepos(with: "")
-        wait(for: [expect], timeout: 3)
-    }
-    
-    func test_searchRepos_invalid_whitespaceInput() {
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
-        let expect = expectation(description: "loaded state")
-        expect.expectedFulfillmentCount = 2
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .loaded, .error, .loading:
-                    break
-                case .initial:
-                    expect.fulfill()
-                }
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial:
+                            break
+                        case .loaded, .loading:
+                            continuation.resume(throwing: RepoSearchViewModelTests.TestError.invalidState)
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
             }
-            .store(in: &cancellables)
-        
+        } catch {
+            switch error {
+            case RepoSearchViewModelError.invalidSearchText:
+                break
+            default:
+                Issue.record(error)
+            }
+        }
+    }
+
+    @Test
+    func searchRepos_invalid_whitespaceInput() async {
+        var cancellables = Set<AnyCancellable>()
+        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
         viewModel.searchRepos(with: "    ")
-        wait(for: [expect], timeout: 3)
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial:
+                            break
+                        case .loaded, .loading:
+                            continuation.resume(throwing: RepoSearchViewModelTests.TestError.invalidState)
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
+            }
+        } catch {
+            switch error {
+            case RepoSearchViewModelError.invalidSearchText:
+                break
+            default:
+                Issue.record(error)
+            }
+        }
     }
-    
-    func test_searchRepos_Success() {
+
+    @Test
+    func searchRepos_Success() async {
+        var cancellables = Set<AnyCancellable>()
         let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
-        let expect = expectation(description: "loaded state")
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .initial, .error, .loading:
-                    break
-                case .loaded(let items):
-                    XCTAssertEqual(items, GitHubRepoRepositoryMock.generateSearchSorted())
-                    expect.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-        
         viewModel.searchRepos(with: "test")
-        wait(for: [expect], timeout: 3)
+        do {
+            let result: [RepoByLetterItem] = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial, .loading:
+                            break
+                        case .loaded(let items):
+                            continuation.resume(returning: items)
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
+            }
+            #expect(result == GitHubRepoRepositoryMock.generateSearchSorted())
+        } catch {
+            Issue.record(error)
+        }
     }
-    
-    func test_searchRepos_Fail() {
+
+    @Test
+    func searchRepos_Fail() async {
+        var cancellables = Set<AnyCancellable>()
         let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMockFail())
-        let expect = expectation(description: "error state")
-        viewModel.$state
-            .sink { state in
-                switch state {
-                case .initial, .loaded, .loading:
-                    break
-                case .error(let error):
-                    XCTAssertEqual(error as? GitHubRepoRepositoryMockError, GitHubRepoRepositoryMockError.fail)
-                    expect.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-        
         viewModel.searchRepos(with: "test")
-        wait(for: [expect], timeout: 3)
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                viewModel.$state
+                    .sink { state in
+                        switch state {
+                        case .initial, .loading:
+                            break
+                        case .loaded:
+                            continuation.resume(returning: ())
+                        case .error(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                    .store(in: &cancellables)
+            }
+            Issue.record("Unexpected success")
+        } catch {
+            #expect(error as? GitHubRepoRepositoryMockError == GitHubRepoRepositoryMockError.fail)
+        }
     }
 }

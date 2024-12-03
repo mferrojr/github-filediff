@@ -7,92 +7,114 @@
 //
 
 import Combine
-import XCTest
+import Testing
 @testable import PR_Diff_Tool
 
-final class GitHubPRRepositoryImplTests: XCTestCase {
+struct GitHubPRRepositoryImplTests {
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    func test_pullRequests_success() {
+    @Test
+    func pullRequests_success() async {
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubPRRepositoryImpl(GitHubDataSourceMock())
-        let expect = expectation(description: "success state")
         let gitHubRepo = GitHubRepo(id: 0, name: "name", fullName: "fullName")
-        repo.pullRequests(for: gitHubRepo)
-        .sink(
-            receiveCompletion: { completion in
-                if case .failure = completion {
-                    XCTFail()
-                } else {
-                    expect.fulfill()
-                }
-            },
-            receiveValue: { val in
-                XCTAssertEqual(val, [GitHubDataSourceMock.generatePR().toModel()])
+        do {
+            let result = try await withCheckedThrowingContinuation { continuation in
+                repo.pullRequests(for: gitHubRepo)
+                .sink(
+                    receiveCompletion: { completion in
+                        if case .failure(let error) = completion {
+                            continuation.resume(throwing: error)
+                        }
+                    },
+                    receiveValue: { val in
+                        continuation.resume(returning: val)
+                    }
+                )
+                .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            #expect(result == [GitHubDataSourceMock.generatePR().toModel()])
+        } catch {
+            Issue.record(error)
+        }
     }
     
-    func test_pullRequests_fail() {
+    @Test
+    func pullRequests_fail() async {
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubPRRepositoryImpl(GitHubDataSourceMockFail())
-        let expect = expectation(description: "error state")
-        repo.pullRequests(for: .init(id: 0, name: "name", fullName: "fullName"))
-        .sink(
-            receiveCompletion: { completion in
-                if case let .failure(error) = completion {
-                    XCTAssertEqual(error as? GitHubDataSourceMockError, GitHubDataSourceMockError.fail)
-                    expect.fulfill()
-                } else {
-                    XCTFail()
-                }
-            },
-            receiveValue: { _ in
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                repo.pullRequests(for: .init(id: 0, name: "name", fullName: "fullName"))
+                    .sink(
+                        receiveCompletion: { completion in
+                            if case let .failure(error) = completion {
+                                continuation.resume(throwing: error)
+                            } else {
+                                continuation.resume(returning: ())
+                            }
+                        },
+                        receiveValue: { _ in
+                            continuation.resume(returning: ())
+                        }
+                    )
+                    .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            Issue.record("Unexpected success")
+        } catch {
+            #expect(error as? GitHubDataSourceMockError == GitHubDataSourceMockError.fail)
+        }
     }
     
-    func test_pullRequestBy_success() {
+    @Test
+    func pullRequestBy_success() async {
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubPRRepositoryImpl(GitHubDataSourceMock())
-        let expect = expectation(description: "success state")
-        repo.pullRequestBy(diffUrl: .init(string: "diff_url")!)
-        .sink(
-            receiveCompletion: { completion in
-                if case .failure = completion {
-                    XCTFail()
-                } else {
-                    expect.fulfill()
-                }
-            },
-            receiveValue: { val in
-                XCTAssertEqual(val, GitHubDataSourceMock.generateDiff())
+        do {
+            let result: String = try await withCheckedThrowingContinuation { continuation in
+                repo.pullRequestBy(diffUrl: .init(string: "diff_url")!)
+                .sink(
+                    receiveCompletion: { completion in
+                        if case .failure(let error) = completion {
+                            continuation.resume(throwing: error)
+                        }
+                    },
+                    receiveValue: { val in
+                        continuation.resume(returning: val)
+                    }
+                )
+                .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            #expect(result == GitHubDataSourceMock.generateDiff())
+        } catch {
+            Issue.record(error)
+        }
     }
     
-    func test_pullRequestBy_fail() {
+    @Test
+    func pullRequestBy_fail() async{
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubPRRepositoryImpl(GitHubDataSourceMockFail())
         
-        let expect = expectation(description: "error state")
-        repo.pullRequestBy(diffUrl: .init(string: "diff_url")!)
-        .sink(
-            receiveCompletion: { completion in
-                if case let .failure(error) = completion {
-                    XCTAssertEqual(error as? GitHubDataSourceMockError, GitHubDataSourceMockError.fail)
-                    expect.fulfill()
-                } else {
-                    XCTFail()
-                }
-            },
-            receiveValue: { _ in
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                repo.pullRequestBy(diffUrl: .init(string: "diff_url")!)
+                .sink(
+                    receiveCompletion: { completion in
+                        if case let .failure(error) = completion {
+                            continuation.resume(throwing: error)
+                        } else {
+                            continuation.resume(returning: ())
+                        }
+                    },
+                    receiveValue: { _ in
+                        continuation.resume(returning: ())
+                    }
+                )
+                .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            Issue.record("Unexpected success")
+        } catch {
+            #expect(error as? GitHubDataSourceMockError == GitHubDataSourceMockError.fail)
+        }
     }
 }

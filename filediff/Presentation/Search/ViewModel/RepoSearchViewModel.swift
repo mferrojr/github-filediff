@@ -54,7 +54,7 @@ final class RepoSearchViewModel: ObservableObject {
                 )
                 .store(in: &cancellableSet)
         } catch {
-            // No Op
+            self.state = .error(error)
         }
     }
 }

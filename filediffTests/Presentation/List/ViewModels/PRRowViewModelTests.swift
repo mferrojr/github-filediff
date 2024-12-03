@@ -6,13 +6,14 @@
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
-
-import XCTest
+import Foundation
+import Testing
 @testable import PR_Diff_Tool
 
-final class PRRowViewModelTests: XCTestCase {
+struct PRRowViewModelTests {
 
-    func test_init_withoutData() {
+    @Test
+    func init_withoutData() {
         let entity = GitHubPullRequest(
             id: 3,
             body: nil,
@@ -24,13 +25,14 @@ final class PRRowViewModelTests: XCTestCase {
             user: nil
         )
         let viewModel = PRRowViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "title")
-        XCTAssertEqual(viewModel.prTitle, "#6 opened by")
-        XCTAssertEqual(viewModel.userTitle, "N/A")
-        XCTAssertEqual(viewModel.avatarUrl, nil)
+        #expect(viewModel.title == "title")
+        #expect(viewModel.prTitle == "#6 opened by")
+        #expect(viewModel.userTitle == "N/A")
+        #expect(viewModel.avatarUrl == nil)
     }
     
-    func test_init_withData() {
+    @Test
+    func init_withData() {
         let entity = GitHubPullRequest(
             id: 3,
             body: "body",
@@ -42,9 +44,9 @@ final class PRRowViewModelTests: XCTestCase {
             user: .init(id: 5, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
         )
         let viewModel = PRRowViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "title")
-        XCTAssertEqual(viewModel.prTitle, "#6 opened by")
-        XCTAssertEqual(viewModel.userTitle, "login")
-        XCTAssertEqual(viewModel.avatarUrl, URL(string: "http://avatar.url")!)
+        #expect(viewModel.title == "title")
+        #expect(viewModel.prTitle == "#6 opened by")
+        #expect(viewModel.userTitle == "login")
+        #expect(viewModel.avatarUrl == URL(string: "http://avatar.url")!)
     }
 }

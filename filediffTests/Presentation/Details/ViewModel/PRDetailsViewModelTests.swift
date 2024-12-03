@@ -6,12 +6,14 @@
 //  Copyright © 2024 Michael Ferro. All rights reserved.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import PR_Diff_Tool
 
-final class PRDetailsViewModelTests: XCTestCase {
+struct PRDetailsViewModelTests {
 
-    func test_init_empty() {
+    @Test
+    func init_empty() {
         let entity = GitHubPullRequest(
             id: 3,
             body: nil,
@@ -23,13 +25,14 @@ final class PRDetailsViewModelTests: XCTestCase {
             user: nil
         )
         let viewModel = PRDetailsViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "PR #6")
-        XCTAssertEqual(viewModel.btnTitle, "View PR Diff")
-        XCTAssertEqual(viewModel.body, "")
-        XCTAssertEqual(viewModel.entity, entity)
+        #expect(viewModel.title == "PR #6")
+        #expect(viewModel.btnTitle == "View PR Diff")
+        #expect(viewModel.body == "")
+        #expect(viewModel.entity == entity)
     }
     
-    func test_init_notEmpty() {
+    @Test
+    func init_notEmpty() {
         let entity = GitHubPullRequest(
             id: 3,
             body: "body",
@@ -41,9 +44,9 @@ final class PRDetailsViewModelTests: XCTestCase {
             user: .init(id: 0, login: "login", avatarUrl: URL(string: "http://avatar.url")!)
         )
         let viewModel = PRDetailsViewModel(entity: entity)
-        XCTAssertEqual(viewModel.title, "PR #6")
-        XCTAssertEqual(viewModel.btnTitle, "View PR Diff")
-        XCTAssertEqual(viewModel.body, "body")
-        XCTAssertEqual(viewModel.entity, entity)
+        #expect(viewModel.title == "PR #6")
+        #expect(viewModel.btnTitle == "View PR Diff")
+        #expect(viewModel.body == "body")
+        #expect(viewModel.entity == entity)
     }
 }

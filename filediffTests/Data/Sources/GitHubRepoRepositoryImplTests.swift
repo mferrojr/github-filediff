@@ -8,50 +8,62 @@
 
 import Combine
 import Foundation
-import XCTest
+import Testing
 @testable import PR_Diff_Tool
 
-final class GitHubRepoRepositoryImplTests: XCTestCase {
+struct GitHubRepoRepositoryImplTests {
     
-    private var cancellables = Set<AnyCancellable>()
-    
-    func test_searchRepo_success() {
+    @Test
+    func searchRepo_success() async {
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubRepoRepositoryImpl(GitHubDataSourceMock())
-        let expect = expectation(description: "success state")
-        repo.searchRepo(by: "test")
-        .sink(
-            receiveCompletion: { completion in
-                if case .failure = completion {
-                    XCTFail()
-                } else {
-                    expect.fulfill()
-                }
-            },
-            receiveValue: { val in
-                XCTAssertEqual(val, GitHubDataSourceMock.generateSearch().toModel())
+        
+        do {
+            let result = try await withCheckedThrowingContinuation { continuation in
+                repo.searchRepo(by: "test")
+                .sink(
+                    receiveCompletion: { completion in
+                        if case .failure(let error) = completion {
+                            continuation.resume(throwing: error)
+                        }
+                    },
+                    receiveValue: { val in
+                        continuation.resume(returning: val)
+                    }
+                )
+                .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            #expect(result == GitHubDataSourceMock.generateSearch().toModel())
+        } catch {
+            Issue.record(error)
+        }
     }
     
-    func test_searchRepo_fail() {
+    @Test
+    func searchRepo_fail() async {
+        var cancellables = Set<AnyCancellable>()
         let repo = GitHubRepoRepositoryImpl(GitHubDataSourceMockFail())
-        let expect = expectation(description: "error state")
-        repo.searchRepo(by: "test")
-        .sink(
-            receiveCompletion: { completion in
-                if case let .failure(error) = completion {
-                    XCTAssertEqual(error as? GitHubDataSourceMockError, GitHubDataSourceMockError.fail)
-                    expect.fulfill()
-                } else {
-                    XCTFail()
-                }
-            },
-            receiveValue: { _ in
+        
+        do {
+            let _: Void = try await withCheckedThrowingContinuation { continuation in
+                repo.searchRepo(by: "test")
+                    .sink(
+                        receiveCompletion: { completion in
+                            if case let .failure(error) = completion {
+                                continuation.resume(throwing: error)
+                            } else {
+                                continuation.resume(returning: ())
+                            }
+                        },
+                        receiveValue: { _ in
+                            continuation.resume(returning: ())
+                        }
+                    )
+                    .store(in: &cancellables)
             }
-        )
-        .store(in: &cancellables)
-        wait(for: [expect], timeout: 3)
+            Issue.record("Unexpected success")
+        } catch {
+            #expect(error as? GitHubDataSourceMockError == GitHubDataSourceMockError.fail)
+        }
     }
 }
