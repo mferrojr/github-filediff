@@ -180,6 +180,7 @@
 		7468C1022CD308B100FDC12E /* PRRowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRRowViewModelTests.swift; sourceTree = "<group>"; };
 		7468C1042CD30DA300FDC12E /* PRListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRListViewModelTests.swift; sourceTree = "<group>"; };
 		7468C1092CD30F3300FDC12E /* GitHubPRRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPRRepositoryMock.swift; sourceTree = "<group>"; };
+		747B24B12D0CD3F800C0277F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747E3CB72CD541BD004C6645 /* XCUIElement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Extensions.swift"; sourceTree = "<group>"; };
 		747E3CBA2CD542DC004C6645 /* AccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityElement.swift; sourceTree = "<group>"; };
 		7488B25E2CD3F20E009E6A4D /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -271,6 +272,7 @@
 		017A143D1F13109D004E9EE6 /* filediff */ = {
 			isa = PBXGroup;
 			children = (
+				747B24B12D0CD3F800C0277F /* Info.plist */,
 				7436329F2CD040B300DF07E6 /* Data */,
 				7436329D2CD0400800DF07E6 /* Domain */,
 				745877D92457929E00E6E078 /* Presentation */,
