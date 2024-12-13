@@ -18,7 +18,7 @@ final class SyncPRDiffOperation: BaseOperation, @unchecked Sendable {
     private var prRepo: GitHubPRRepository
     
     // MARK: - Initialization
-    required init(diffUrl : URL, context : FileDiffQueueContext, prRepo: GitHubPRRepository = GitHubPRRepositoryImpl(GitHubRemoteDataSource())) {
+    required init(diffUrl : URL, context : FileDiffQueueContext, prRepo: GitHubPRRepository = GitHubPRRepositoryImpl()) {
         self.diffUrl = diffUrl
         self.context = context
         self.prRepo = prRepo

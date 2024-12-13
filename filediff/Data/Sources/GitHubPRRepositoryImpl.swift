@@ -10,11 +10,8 @@ import Combine
 import Foundation
 
 struct GitHubPRRepositoryImpl {
-    private let dataSource: GitHubDataSource
-    
-    init(_ dataSource: GitHubDataSource) {
-        self.dataSource = dataSource
-    }
+    @Service
+    var dataSource: GitHubDataSource
 }
 
 extension GitHubPRRepositoryImpl: GitHubPRRepository {

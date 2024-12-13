@@ -10,12 +10,15 @@ import Testing
 import Combine
 @testable import PR_Diff_Tool
 
-struct PRListViewModelTests {
+struct PRListViewModelTests_Success {
+    private var viewModel: PRListViewModel = {
+        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"))
+        viewModel.prRepo = GitHubPRRepositoryMock()
+        return viewModel
+    }()
     
     @Test
     func init_state() {
-        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
-                                        prRepo: GitHubPRRepositoryMock())
         switch viewModel.state {
         case .loading, .error, .loaded:
             Issue.record("Unexpected state")
@@ -26,8 +29,6 @@ struct PRListViewModelTests {
     
     @Test
     func refreshData_Loading() {
-        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
-                                        prRepo: GitHubPRRepositoryMock())
         viewModel.refreshData()
         switch viewModel.state {
         case .initial, .error, .loaded:
@@ -38,10 +39,8 @@ struct PRListViewModelTests {
     }
     
     @Test
-    func searchData_LoadSuccess() async {
+    func searchData_Load() async {
         var cancellables = Set<AnyCancellable>()
-        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
-                                        prRepo: GitHubPRRepositoryMock())
         
         viewModel.refreshData()
         do {
@@ -64,14 +63,18 @@ struct PRListViewModelTests {
             Issue.record(error)
         }
     }
+}
+
+struct PRListViewModelTests_Fail {
+    private var cancellables = Set<AnyCancellable>()
+    private var viewModel: PRListViewModel = {
+        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"))
+        viewModel.prRepo = GitHubPRRepositoryMockFail()
+        return viewModel
+    }()
     
     @Test
-    func init_Refresh_Fail() async {
-        var cancellables = Set<AnyCancellable>()
-        
-        let viewModel = PRListViewModel(repo: .init(id: 0, name: "name", fullName: "fullName"),
-                                        prRepo: GitHubPRRepositoryMockFail())
-        
+    mutating func init_Refresh_Fail() async {
         viewModel.refreshData()
         do {
             let _: Void = try await withCheckedThrowingContinuation { continuation in

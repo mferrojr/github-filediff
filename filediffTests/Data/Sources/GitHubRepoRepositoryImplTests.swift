@@ -11,13 +11,16 @@ import Foundation
 import Testing
 @testable import PR_Diff_Tool
 
-struct GitHubRepoRepositoryImplTests {
+struct GitHubRepoRepositoryImplTests_Success {
+    var cancellables = Set<AnyCancellable>()
+    var repo: GitHubRepoRepositoryImpl = {
+        var impl = GitHubRepoRepositoryImpl()
+        impl.dataSource = GitHubDataSourceMock()
+        return impl
+    }()
     
     @Test
-    func searchRepo_success() async {
-        var cancellables = Set<AnyCancellable>()
-        let repo = GitHubRepoRepositoryImpl(GitHubDataSourceMock())
-        
+    mutating func searchRepo() async {
         do {
             let result = try await withCheckedThrowingContinuation { continuation in
                 repo.searchRepo(by: "test")
@@ -39,11 +42,18 @@ struct GitHubRepoRepositoryImplTests {
         }
     }
     
+}
+
+struct GitHubRepoRepositoryImplTests_Fail {
+    var cancellables = Set<AnyCancellable>()
+    var repo: GitHubRepoRepositoryImpl = {
+        var impl = GitHubRepoRepositoryImpl()
+        impl.dataSource = GitHubDataSourceMockFail()
+        return impl
+    }()
+    
     @Test
-    func searchRepo_fail() async {
-        var cancellables = Set<AnyCancellable>()
-        let repo = GitHubRepoRepositoryImpl(GitHubDataSourceMockFail())
-        
+    mutating func searchRepo() async {
         do {
             let _: Void = try await withCheckedThrowingContinuation { continuation in
                 repo.searchRepo(by: "test")

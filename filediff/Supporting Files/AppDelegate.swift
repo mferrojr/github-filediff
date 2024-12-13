@@ -17,6 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = DBManager(storageContext: CoreDataStorageContext())
+        setupDependencyContainer()
         return true
     }
     
@@ -26,3 +27,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 }
 
+// MARK: - Private Functions
+private extension AppDelegate {
+    
+    func setupDependencyContainer() {
+        ServiceContainer.register(type: GitHubDataSource.self, GitHubRemoteDataSource())
+        ServiceContainer.register(type: GitHubRepoRepository.self, GitHubRepoRepositoryImpl())
+        ServiceContainer.register(type: GitHubPRRepository.self, GitHubPRRepositoryImpl())
+    }
+}

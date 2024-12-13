@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 /// Entry point for app navigation
-@MainActor
 final class AppCoordinator: Coordinator {
     
     // MARK: - Properties
