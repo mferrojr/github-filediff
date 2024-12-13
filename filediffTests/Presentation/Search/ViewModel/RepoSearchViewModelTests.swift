@@ -10,15 +10,20 @@ import Combine
 import Testing
 @testable import PR_Diff_Tool
 
-struct RepoSearchViewModelTests {
-    
+struct RepoSearchViewModelTests_Success {
     enum TestError: Error {
         case invalidState
     }
     
+    private var cancellables = Set<AnyCancellable>()
+    private var viewModel: RepoSearchViewModel = {
+        let viewModel = RepoSearchViewModel()
+        viewModel.repo = GitHubRepoRepositoryMock()
+        return viewModel
+    }()
+    
     @Test
     func init_State() {
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
         switch viewModel.state {
         case .loading, .error, .loaded:
             Issue.record("Invalid state: \(viewModel.state)")
@@ -28,9 +33,7 @@ struct RepoSearchViewModelTests {
     }
     
     @Test
-    func searchRepos_invalid_emptyInput() async {
-        var cancellables = Set<AnyCancellable>()
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
+    mutating func searchRepos_invalid_emptyInput() async {
         viewModel.searchRepos(with: "")
         do {
             let _: Void = try await withCheckedThrowingContinuation { continuation in
@@ -40,7 +43,7 @@ struct RepoSearchViewModelTests {
                         case .initial:
                             break
                         case .loaded, .loading:
-                            continuation.resume(throwing: RepoSearchViewModelTests.TestError.invalidState)
+                            continuation.resume(throwing: RepoSearchViewModelTests_Success.TestError.invalidState)
                         case .error(let error):
                             continuation.resume(throwing: error)
                         }
@@ -56,11 +59,9 @@ struct RepoSearchViewModelTests {
             }
         }
     }
-
+    
     @Test
-    func searchRepos_invalid_whitespaceInput() async {
-        var cancellables = Set<AnyCancellable>()
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
+    mutating func searchRepos_invalid_whitespaceInput() async {
         viewModel.searchRepos(with: "    ")
         do {
             let _: Void = try await withCheckedThrowingContinuation { continuation in
@@ -70,7 +71,7 @@ struct RepoSearchViewModelTests {
                         case .initial:
                             break
                         case .loaded, .loading:
-                            continuation.resume(throwing: RepoSearchViewModelTests.TestError.invalidState)
+                            continuation.resume(throwing: RepoSearchViewModelTests_Success.TestError.invalidState)
                         case .error(let error):
                             continuation.resume(throwing: error)
                         }
@@ -86,11 +87,9 @@ struct RepoSearchViewModelTests {
             }
         }
     }
-
+    
     @Test
-    func searchRepos_Success() async {
-        var cancellables = Set<AnyCancellable>()
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMock())
+    mutating func searchRepos() async {
         viewModel.searchRepos(with: "test")
         do {
             let result: [RepoByLetterItem] = try await withCheckedThrowingContinuation { continuation in
@@ -112,11 +111,18 @@ struct RepoSearchViewModelTests {
             Issue.record(error)
         }
     }
+}
 
+struct RepoSearchViewModelTests_Fail {
+    private var cancellables = Set<AnyCancellable>()
+    private var viewModel: RepoSearchViewModel = {
+        let viewModel = RepoSearchViewModel()
+        viewModel.repo = GitHubRepoRepositoryMockFail()
+        return viewModel
+    }()
+    
     @Test
-    func searchRepos_Fail() async {
-        var cancellables = Set<AnyCancellable>()
-        let viewModel = RepoSearchViewModel(repo: GitHubRepoRepositoryMockFail())
+    mutating func searchRepos_Fail() async {
         viewModel.searchRepos(with: "test")
         do {
             let _: Void = try await withCheckedThrowingContinuation { continuation in

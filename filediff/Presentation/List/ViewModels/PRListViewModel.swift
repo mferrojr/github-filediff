@@ -11,20 +11,20 @@ import Combine
 
 final class PRListViewModel: ObservableObject {
     // MARK: - Properties
-    @Published private(set)var navTitle: String
-    @Published private(set) var state: ViewState<[GitHubPullRequest]> = .initial
-    private var repo: GitHubRepo
-    
+    @Service
+    var prRepo: GitHubPRRepository
+    @Published
+    private(set)var navTitle: String
+    @Published
+    private(set) var state: ViewState<[GitHubPullRequest]> = .initial
+   
     // MARK: Private
-    private var prRepo: GitHubPRRepository
+    private var repo: GitHubRepo
     private var cancellableSet: Set<AnyCancellable> = []
     
     // MARK: - Initialization
-    init(repo: GitHubRepo,
-         prRepo: GitHubPRRepository = GitHubPRRepositoryImpl(GitHubRemoteDataSource())
-    ) {
+    init(repo: GitHubRepo) {
         self.repo = repo
-        self.prRepo = prRepo
         self.navTitle = "\(repo.name) \(String.localize(.openPullRequest))"
     }
     

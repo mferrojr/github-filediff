@@ -102,8 +102,9 @@ struct PRListView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
+        ServiceContainer.register(type: GitHubPRRepository.self, GitHubPRRepositoryMock())
         let repo = GitHubRepo(id: 1, name: "Name", fullName: "Full Name")
-        let vm = PRListViewModel(repo: repo, prRepo: GitHubPRRepositoryMock())
+        let vm = PRListViewModel(repo: repo)
         return PRListingView(viewModel: vm)
     }
 }

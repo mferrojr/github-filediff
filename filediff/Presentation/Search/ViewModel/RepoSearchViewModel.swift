@@ -20,17 +20,15 @@ struct RepoByLetterItem: Identifiable, Equatable {
 
 final class RepoSearchViewModel: ObservableObject {
     // MARK: - Properties
-    @Published private(set) var title: String = "GitHub Repository Diff Tool"
-    @Published private(set) var state: ViewState<[RepoByLetterItem]> = .initial
-    
+    @Service
+    var repo: GitHubRepoRepository
+    @Published
+    private(set) var title: String = "GitHub Repository Diff Tool"
+    @Published
+    private(set) var state: ViewState<[RepoByLetterItem]> = .initial
+   
     // MARK: Private
-    private var repo: GitHubRepoRepository
     private var cancellableSet: Set<AnyCancellable> = []
-    
-    // MARK: - Initialization
-    init(repo: GitHubRepoRepository = GitHubRepoRepositoryImpl(GitHubRemoteDataSource())) {
-        self.repo = repo
-    }
     
     /// Searchs for repositories
     /// - Parameters:
