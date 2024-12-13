@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PRRowView: View {
-    @StateObject var model: PRRowViewModel
+    @State var model: PRRowViewModel
     private let kImageSize: CGFloat = 10
     
     var body: some View {

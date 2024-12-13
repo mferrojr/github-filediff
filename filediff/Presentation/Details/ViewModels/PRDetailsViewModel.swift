@@ -8,12 +8,14 @@
 
 import Foundation
 import SwiftUI
+import Observation
 
-final class PRDetailsViewModel: ObservableObject {
-    @Published private(set) var title: String
-    @Published private(set) var btnTitle: String
-    @Published private(set) var body: String
-    @Published private(set) var entity: GitHubPullRequest
+@Observable
+final class PRDetailsViewModel {
+    private(set) var title: String
+    private(set) var btnTitle: String
+    private(set) var body: String
+    private(set) var entity: GitHubPullRequest
     
     init(entity: GitHubPullRequest) {
         self.title = "PR #\(entity.number)"

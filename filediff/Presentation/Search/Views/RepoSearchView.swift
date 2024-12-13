@@ -11,7 +11,7 @@ import SwiftUI
 struct RepoSearchView: View {
     // MARK: - Properties
     weak var coordinator: MainCoordinator?
-    @StateObject var viewModel: RepoSearchViewModel
+    @State var viewModel: RepoSearchViewModel
     @StateObject var textObserver = TextFieldObserver()
     @FocusState private var focusedField: FocusField?
     

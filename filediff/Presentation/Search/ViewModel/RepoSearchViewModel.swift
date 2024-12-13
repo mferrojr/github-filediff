@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Observation
 
 enum RepoSearchViewModelError: Error {
     case invalidSearchText
@@ -18,13 +19,12 @@ struct RepoByLetterItem: Identifiable, Equatable {
     let repos: [GitHubRepo]
 }
 
-final class RepoSearchViewModel: ObservableObject {
+@Observable
+final class RepoSearchViewModel {
     // MARK: - Properties
-    @Service
+    @Service @ObservationIgnored
     var repo: GitHubRepoRepository
-    @Published
     private(set) var title: String = "GitHub Repository Diff Tool"
-    @Published
     private(set) var state: ViewState<[RepoByLetterItem]> = .initial
    
     // MARK: Private

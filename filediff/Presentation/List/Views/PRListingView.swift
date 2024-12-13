@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PRListingView: View {
     weak var coordinator: MainCoordinator?
-    @StateObject var viewModel: PRListViewModel
+    @State var viewModel: PRListViewModel
     
     var body: some View {
         VStack {

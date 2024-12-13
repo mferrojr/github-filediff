@@ -8,14 +8,14 @@
 
 import Foundation
 import Combine
+import Observation
 
-final class PRListViewModel: ObservableObject {
+@Observable
+final class PRListViewModel {
     // MARK: - Properties
-    @Service
+    @Service @ObservationIgnored
     var prRepo: GitHubPRRepository
-    @Published
-    private(set)var navTitle: String
-    @Published
+    private(set) var navTitle: String
     private(set) var state: ViewState<[GitHubPullRequest]> = .initial
    
     // MARK: Private

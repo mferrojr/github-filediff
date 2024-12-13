@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PRDetailsView: View {
     weak var coordinator: MainCoordinator?
-    @StateObject var viewModel: PRDetailsViewModel
+    @State var viewModel: PRDetailsViewModel
     
     var body: some View {
         NavigationStack {
